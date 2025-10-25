@@ -29,10 +29,10 @@ export const ProductGrid = () => {
   }
 
   return (
-    <section id="products" className="py-32 bg-muted/20">
+    <section id="products" className="py-40 bg-background">
       <div className="container mx-auto px-4 lg:px-8">
-        <div className="text-center mb-20 animate-slide-up">
-          <h2 className="font-display text-5xl md:text-6xl tracking-tighter mb-6">
+        <div className="text-center mb-24 animate-slide-up">
+          <h2 className="font-display text-5xl md:text-7xl tracking-tighter mb-6">
             THE COLLECTION
           </h2>
           <p className="text-muted-foreground text-xl max-w-2xl mx-auto font-light">
@@ -40,12 +40,12 @@ export const ProductGrid = () => {
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
           {products.map((product, index) => (
             <div
               key={product.node.id}
               className="animate-fade-in"
-              style={{ animationDelay: `${index * 0.1}s`, opacity: 0 }}
+              style={{ animationDelay: `${index * 0.15}s`, opacity: 0 }}
             >
               <ProductCard product={product} />
             </div>
