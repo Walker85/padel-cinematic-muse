@@ -29,20 +29,26 @@ export const ProductGrid = () => {
   }
 
   return (
-    <section id="products" className="py-24 bg-background">
+    <section id="products" className="py-32 bg-muted/20">
       <div className="container mx-auto px-4 lg:px-8">
-        <div className="text-center mb-16 animate-slide-up">
-          <h2 className="font-display text-5xl md:text-6xl tracking-tighter mb-4">
+        <div className="text-center mb-20 animate-slide-up">
+          <h2 className="font-display text-5xl md:text-6xl tracking-tighter mb-6">
             THE COLLECTION
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+          <p className="text-muted-foreground text-xl max-w-2xl mx-auto font-light">
             Premium rackets engineered for every playing style
           </p>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {products.map((product) => (
-            <ProductCard key={product.node.id} product={product} />
+          {products.map((product, index) => (
+            <div
+              key={product.node.id}
+              className="animate-fade-in"
+              style={{ animationDelay: `${index * 0.1}s`, opacity: 0 }}
+            >
+              <ProductCard product={product} />
+            </div>
           ))}
         </div>
       </div>
