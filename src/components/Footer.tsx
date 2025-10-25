@@ -1,56 +1,117 @@
 import { Link } from "react-router-dom";
+import { Instagram, Youtube, Linkedin } from "lucide-react";
 
 export const Footer = () => {
   return (
-    <footer className="bg-secondary text-secondary-foreground border-t border-primary/20">
-      <div className="container mx-auto px-4 lg:px-8 py-16">
-        <div className="grid md:grid-cols-4 gap-12 mb-12">
-          <div className="space-y-4">
-            <h3 className="font-display text-2xl tracking-tight">PADEL READY</h3>
-            <p className="text-sm text-secondary-foreground/70 font-light">
-              Precision engineering meets luxury minimalism.
+    <footer className="bg-secondary text-secondary-foreground">
+      <div className="container mx-auto px-4 lg:px-8 py-20">
+        {/* Top border with gold accent */}
+        <div className="w-full h-px bg-gradient-to-r from-transparent via-primary to-transparent mb-16"></div>
+        
+        <div className="grid md:grid-cols-4 gap-12 lg:gap-16 mb-16">
+          {/* Brand Column */}
+          <div className="space-y-6">
+            <h3 className="font-display text-3xl tracking-tight text-secondary-foreground">
+              PADEL READY
+            </h3>
+            <p className="text-sm text-secondary-foreground/70 font-light leading-relaxed">
+              Precision. Purpose. Padel Ready.
             </p>
           </div>
           
+          {/* Navigation Column */}
           <div className="space-y-4">
-            <h4 className="font-display text-sm uppercase tracking-wider">Shop</h4>
-            <nav className="flex flex-col space-y-2">
-              <Link to="/" className="text-sm text-secondary-foreground/70 hover:text-primary transition-colors">
-                All Products
+            <h4 className="font-display text-sm uppercase tracking-wider text-secondary-foreground/90">
+              Navigation
+            </h4>
+            <nav className="flex flex-col space-y-3">
+              <Link 
+                to="/" 
+                className="text-sm text-secondary-foreground/60 hover:text-primary transition-colors duration-300 font-light"
+              >
+                Home
               </Link>
-              <Link to="/" className="text-sm text-secondary-foreground/70 hover:text-primary transition-colors">
-                New Arrivals
+              <Link 
+                to="/#products" 
+                className="text-sm text-secondary-foreground/60 hover:text-primary transition-colors duration-300 font-light"
+              >
+                Shop
               </Link>
-            </nav>
-          </div>
-          
-          <div className="space-y-4">
-            <h4 className="font-display text-sm uppercase tracking-wider">About</h4>
-            <nav className="flex flex-col space-y-2">
-              <Link to="/#about" className="text-sm text-secondary-foreground/70 hover:text-primary transition-colors">
-                Our Story
+              <Link 
+                to="/#about" 
+                className="text-sm text-secondary-foreground/60 hover:text-primary transition-colors duration-300 font-light"
+              >
+                About
               </Link>
-              <Link to="/#technology" className="text-sm text-secondary-foreground/70 hover:text-primary transition-colors">
-                Technology
-              </Link>
-            </nav>
-          </div>
-          
-          <div className="space-y-4">
-            <h4 className="font-display text-sm uppercase tracking-wider">Connect</h4>
-            <nav className="flex flex-col space-y-2">
-              <a href="#" className="text-sm text-secondary-foreground/70 hover:text-primary transition-colors">
-                Instagram
-              </a>
-              <a href="#" className="text-sm text-secondary-foreground/70 hover:text-primary transition-colors">
+              <Link 
+                to="/partner" 
+                className="text-sm text-secondary-foreground/60 hover:text-primary transition-colors duration-300 font-light"
+              >
                 Contact
-              </a>
+              </Link>
             </nav>
+          </div>
+          
+          {/* Partners Column */}
+          <div className="space-y-4">
+            <h4 className="font-display text-sm uppercase tracking-wider text-secondary-foreground/90">
+              Partners
+            </h4>
+            <nav className="flex flex-col space-y-3">
+              <span className="text-sm text-secondary-foreground/60 font-light">
+                Soho House
+              </span>
+              <span className="text-sm text-secondary-foreground/60 font-light">
+                Babington House
+              </span>
+              <span className="text-sm text-secondary-foreground/60 font-light">
+                The Padel Club
+              </span>
+            </nav>
+          </div>
+          
+          {/* Social Column */}
+          <div className="space-y-4">
+            <h4 className="font-display text-sm uppercase tracking-wider text-secondary-foreground/90">
+              Connect
+            </h4>
+            <div className="flex gap-4">
+              <a 
+                href="https://instagram.com" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-secondary-foreground/60 hover:text-primary transition-colors duration-300"
+                aria-label="Instagram"
+              >
+                <Instagram className="w-5 h-5" />
+              </a>
+              <a 
+                href="https://youtube.com" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-secondary-foreground/60 hover:text-primary transition-colors duration-300"
+                aria-label="YouTube"
+              >
+                <Youtube className="w-5 h-5" />
+              </a>
+              <a 
+                href="https://linkedin.com" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-secondary-foreground/60 hover:text-primary transition-colors duration-300"
+                aria-label="LinkedIn"
+              >
+                <Linkedin className="w-5 h-5" />
+              </a>
+            </div>
           </div>
         </div>
         
-        <div className="pt-8 border-t border-primary/20">
-          <p className="text-sm text-secondary-foreground/50 text-center font-light">
+        {/* Bottom border with gold accent */}
+        <div className="w-full h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent mb-8"></div>
+        
+        <div className="text-center">
+          <p className="text-xs text-secondary-foreground/40 font-light">
             © {new Date().getFullYear()} Padel Ready. All rights reserved.
           </p>
         </div>

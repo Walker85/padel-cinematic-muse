@@ -2,12 +2,35 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Custom Fonts - Mollen (Display) and SA Triumph (Body) */
+@font-face {
+  font-family: 'Mollen';
+  src: url('/fonts/Mollen-Regular.woff2') format('woff2'),
+       url('/fonts/Mollen-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SA Triumph';
+  src: url('/fonts/SATriumph-Regular.woff2') format('woff2'),
+       url('/fonts/SATriumph-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
 All colors MUST be HSL.
 */
 
 @layer base {
   :root {
+    /* Custom Font Variables */
+    --font-display: 'Mollen', system-ui, sans-serif;
+    --font-body: 'SA Triumph', system-ui, sans-serif;
+    
     /* Padel Ready - Luxury Minimalism */
     --background: 42 30% 97%; /* Off-White #FEFAF3 */
     --foreground: 0 0% 5%; /* Matte Black #0C0C0C */
@@ -121,6 +144,26 @@ All colors MUST be HSL.
   
   .animate-fade-in-slow {
     animation: fadeIn 1.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+  
+  .animate-stagger {
+    animation: fadeIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+  
+  .hover-lift {
+    @apply transition-all duration-300 ease-out;
+  }
+  
+  .hover-lift:hover {
+    @apply -translate-y-1 shadow-lg;
+  }
+  
+  .gold-glow {
+    @apply ring-2 ring-primary/30 shadow-[0_0_20px_rgba(214,194,168,0.3)];
+  }
+  
+  .gold-underline {
+    @apply relative inline-block after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-primary after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left;
   }
 
   @keyframes fadeIn {
