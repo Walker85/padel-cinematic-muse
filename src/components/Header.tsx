@@ -88,6 +88,9 @@ export const Header = () => {
                 src={logo} 
                 alt="Padel Ready" 
                 className="h-8 md:h-10 w-auto transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]"
+                style={{
+                  filter: isDarkMode ? 'brightness(1.2)' : 'none'
+                }}
               />
             </Link>
             
