@@ -1,11 +1,13 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ShopifyProduct } from "@/lib/shopify";
+import { useState } from "react";
 import { useCartStore } from "@/stores/cartStore";
 import { toast } from "sonner";
+import { Product } from "@/data/products";
 
 interface ProductCardProps {
-  product: ShopifyProduct;
+  product: {
+    node: Product;
+  };
   index: number;
 }
 
@@ -13,11 +15,11 @@ export const ProductCard = ({ product, index }: ProductCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
   const addItem = useCartStore(state => state.addItem);
   const { node } = product;
-  
-  const firstVariant = node.variants.edges[0]?.node;
-  const primaryImage = node.images.edges[0]?.node;
-  const secondaryImage = node.images.edges[1]?.node;
-  const price = parseFloat(node.priceRange.minVariantPrice.amount);
+
+  const primaryImage = node.images[0];
+  const secondaryImage = node.images[1];
+  const price = parseFloat(node.price.amount);
+  const firstVariant = node.variants[0];
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -29,15 +31,25 @@ export const ProductCard = ({ product, index }: ProductCardProps) => {
     }
 
     const cartItem = {
-      product,
+      product: {
+        node: {
+          ...node,
+          priceRange: {
+            minVariantPrice: node.price
+          },
+          images: {
+            edges: node.images.map(img => ({ node: img }))
+          },
+          variants: {
+            edges: node.variants.map(v => ({ node: v }))
+          }
+        }
+      },
       variantId: firstVariant.id,
       variantTitle: firstVariant.title,
-      price: {
-        amount: firstVariant.price.amount,
-        currencyCode: firstVariant.price.currencyCode,
-      },
+      price: firstVariant.price,
       quantity: 1,
-      selectedOptions: firstVariant.selectedOptions || []
+      selectedOptions: firstVariant.selectedOptions
     };
     
     addItem(cartItem);
@@ -54,8 +66,7 @@ export const ProductCard = ({ product, index }: ProductCardProps) => {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       style={{
-        animation: `fadeIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards`,
-        animationDelay: `${index * 0.1}s`,
+        animation: `fadeIn 0.6s ease-out ${index * 0.1}s both`,
         opacity: 0
       }}
     >
@@ -63,26 +74,24 @@ export const ProductCard = ({ product, index }: ProductCardProps) => {
         {/* Image Container - 4:5 ratio */}
         <div className="aspect-[4/5] bg-muted/10 relative overflow-hidden">
           {primaryImage && (
-            <>
-              <img
-                src={primaryImage.url}
-                alt={primaryImage.altText || node.title}
-                className={`w-full h-full object-cover transition-all duration-500 ease-out ${
-                  secondaryImage 
-                    ? isHovered ? 'opacity-0' : 'opacity-100'
-                    : isHovered ? 'scale-105' : 'scale-100'
-                }`}
-              />
-              {secondaryImage && (
-                <img
-                  src={secondaryImage.url}
-                  alt={secondaryImage.altText || node.title}
-                  className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ease-out ${
-                    isHovered ? 'opacity-100' : 'opacity-0'
-                  }`}
-                />
-              )}
-            </>
+            <img
+              src={primaryImage.url}
+              alt={primaryImage.altText || node.title}
+              className={`w-full h-full object-cover transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] ${
+                isHovered && secondaryImage ? 'opacity-0' : 'opacity-100'
+              } ${isHovered ? 'scale-105' : 'scale-100'}`}
+            />
+          )}
+          
+          {/* Secondary image on hover */}
+          {secondaryImage && (
+            <img
+              src={secondaryImage.url}
+              alt={secondaryImage.altText || node.title}
+              className={`absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] ${
+                isHovered ? 'opacity-100 scale-105' : 'opacity-0 scale-100'
+              }`}
+            />
           )}
         </div>
         
@@ -95,7 +104,7 @@ export const ProductCard = ({ product, index }: ProductCardProps) => {
           
           {/* Price - SA Triumph, gold, weight 500 */}
           <div className="font-body text-lg font-medium text-primary">
-            {node.priceRange.minVariantPrice.currencyCode} {price.toFixed(2)}
+            {node.price.currencyCode} {price.toFixed(2)}
           </div>
           
           {/* Add to Cart - Smaller, lighter gray */}

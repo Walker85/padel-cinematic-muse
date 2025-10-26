@@ -1,14 +1,13 @@
 import { useParams } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
-import { getProductByHandle, getProducts } from "@/lib/shopify";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { Loader2, ShoppingCart, Check } from "lucide-react";
+import { ShoppingCart } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useCartStore } from "@/stores/cartStore";
 import { toast } from "sonner";
 import { ProductCard } from "@/components/ProductCard";
+import { getProductByHandle, getAllProducts } from "@/data/products";
 
 const Product = () => {
   const { handle } = useParams<{ handle: string }>();
@@ -17,16 +16,8 @@ const Product = () => {
   const [scrollY, setScrollY] = useState(0);
   const addItem = useCartStore(state => state.addItem);
 
-  const { data: product, isLoading } = useQuery({
-    queryKey: ['product', handle],
-    queryFn: () => getProductByHandle(handle!),
-    enabled: !!handle,
-  });
-
-  const { data: relatedProducts } = useQuery({
-    queryKey: ['related-products'],
-    queryFn: () => getProducts(4),
-  });
+  const product = handle ? getProductByHandle(handle) : undefined;
+  const relatedProducts = getAllProducts().filter(p => p.handle !== handle).slice(0, 4);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -35,17 +26,6 @@ const Product = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  if (isLoading) {
-    return (
-      <>
-        <Header />
-        <div className="min-h-screen flex items-center justify-center">
-          <Loader2 className="w-8 h-8 animate-spin text-primary" />
-        </div>
-      </>
-    );
-  }
 
   if (!product) {
     return (
@@ -61,22 +41,32 @@ const Product = () => {
     );
   }
 
-  const firstVariant = product.variants.edges[0]?.node;
-  const selectedVariant = product.variants.edges.find(v => v.node.id === selectedVariantId)?.node || firstVariant;
+  const firstVariant = product.variants[0];
+  const selectedVariant = product.variants.find(v => v.id === selectedVariantId) || firstVariant;
 
   const handleAddToCart = () => {
     if (!selectedVariant) return;
 
     const cartItem = {
-      product: { node: product },
+      product: {
+        node: {
+          ...product,
+          priceRange: {
+            minVariantPrice: product.price
+          },
+          images: {
+            edges: product.images.map(img => ({ node: img }))
+          },
+          variants: {
+            edges: product.variants.map(v => ({ node: v }))
+          }
+        }
+      },
       variantId: selectedVariant.id,
       variantTitle: selectedVariant.title,
-      price: {
-        amount: selectedVariant.price.amount,
-        currencyCode: selectedVariant.price.currencyCode,
-      },
+      price: selectedVariant.price,
       quantity: 1,
-      selectedOptions: selectedVariant.selectedOptions || []
+      selectedOptions: selectedVariant.selectedOptions
     };
     
     addItem(cartItem);
@@ -85,8 +75,8 @@ const Product = () => {
     });
   };
 
-  const mainImage = product.images.edges[selectedImageIndex]?.node || product.images.edges[0]?.node;
-  const thumbnails = product.images.edges.slice(0, 5);
+  const mainImage = product.images[selectedImageIndex] || product.images[0];
+  const thumbnails = product.images.slice(0, 5);
 
   return (
     <>
@@ -127,8 +117,8 @@ const Product = () => {
                         }`}
                       >
                         <img
-                          src={image.node.url}
-                          alt={image.node.altText || product.title}
+                          src={image.url}
+                          alt={image.altText || product.title}
                           className="w-full h-full object-cover"
                         />
                       </button>
@@ -173,9 +163,9 @@ const Product = () => {
                         </label>
                         <div className="flex flex-wrap gap-3">
                           {option.values.map((value) => {
-                            const variant = product.variants.edges.find(v => 
-                              v.node.selectedOptions.some(opt => opt.name === option.name && opt.value === value)
-                            )?.node;
+                            const variant = product.variants.find(v => 
+                              v.selectedOptions.some(opt => opt.name === option.name && opt.value === value)
+                            );
                             const isSelected = selectedVariant?.selectedOptions.some(
                               opt => opt.name === option.name && opt.value === value
                             );
@@ -220,9 +210,9 @@ const Product = () => {
           <div className="container mx-auto px-6 md:px-12">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
               <div className="aspect-[4/3] bg-muted/10 overflow-hidden">
-                {product.images.edges[1]?.node ? (
+                {product.images[1] ? (
                   <img
-                    src={product.images.edges[1].node.url}
+                    src={product.images[1].url}
                     alt="Product lifestyle"
                     className="w-full h-full object-cover"
                   />
@@ -305,8 +295,8 @@ const Product = () => {
               </h2>
 
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 md:gap-14 pt-8">
-                {relatedProducts.filter(p => p.node.handle !== handle).slice(0, 4).map((product, index) => (
-                  <ProductCard key={product.node.id} product={product} index={index} />
+                {relatedProducts.map((product, index) => (
+                  <ProductCard key={product.id} product={{ node: product }} index={index} />
                 ))}
               </div>
             </div>
