@@ -50,7 +50,7 @@ export const ProductCard = ({ product, index }: ProductCardProps) => {
   return (
     <Link 
       to={`/product/${node.handle}`}
-      className="group block"
+      className="group block w-[85%] mx-auto"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       style={{
@@ -59,7 +59,7 @@ export const ProductCard = ({ product, index }: ProductCardProps) => {
         opacity: 0
       }}
     >
-      <div className="bg-background border border-transparent hover:border-primary hover:bg-secondary transition-all duration-400 ease-[cubic-bezier(0.4,0,0.2,1)] hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(0,0,0,0.2)]">
+      <div className="bg-background border border-transparent hover:border-primary transition-all duration-400 ease-[cubic-bezier(0.4,0,0.2,1)] hover:-translate-y-1 shadow-[0_4px_12px_rgba(0,0,0,0.03)]">
         {/* Image Container - 4:5 ratio */}
         <div className="aspect-[4/5] bg-muted/10 relative overflow-hidden">
           {primaryImage && (
@@ -86,24 +86,26 @@ export const ProductCard = ({ product, index }: ProductCardProps) => {
           )}
         </div>
         
-        {/* Content */}
-        <div className="p-5 md:p-6 space-y-3">
-          <h3 className="font-display text-sm md:text-base uppercase tracking-wide text-muted-foreground group-hover:text-primary transition-colors duration-300">
+        {/* Content - More breathing room */}
+        <div className="px-4 py-6 space-y-4 text-center">
+          {/* Product Title - Mollen Medium */}
+          <h3 className="font-display font-medium text-sm md:text-base uppercase tracking-[0.04em] text-muted-foreground group-hover:text-primary transition-colors duration-300">
             {node.title}
           </h3>
           
-          <div className="flex items-center justify-between">
-            <span className="font-body text-lg text-primary">
-              {node.priceRange.minVariantPrice.currencyCode} {price.toFixed(2)}
-            </span>
-            
-            <button
-              onClick={handleAddToCart}
-              className="font-body text-sm text-primary hover:bg-primary hover:text-secondary px-4 py-2 transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]"
-            >
-              Add to Cart
-            </button>
+          {/* Price - SA Triumph, gold, weight 500 */}
+          <div className="font-body text-lg font-medium text-primary">
+            {node.priceRange.minVariantPrice.currencyCode} {price.toFixed(2)}
           </div>
+          
+          {/* Add to Cart - Smaller, lighter gray */}
+          <button
+            onClick={handleAddToCart}
+            className="font-body text-xs uppercase tracking-wider transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] hover:text-primary"
+            style={{ color: '#777' }}
+          >
+            Add to Cart
+          </button>
         </div>
       </div>
     </Link>

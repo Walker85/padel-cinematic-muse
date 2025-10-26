@@ -68,17 +68,19 @@ export const ProductGrid = () => {
       {/* Subtle gold divider line */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent"></div>
       
-      <div className="container mx-auto px-4 lg:px-8">
+      {/* Container with max-width and extra padding */}
+      <div className="mx-auto px-6 md:px-12" style={{ maxWidth: '1200px' }}>
         {/* Section Title */}
-        <div className="text-center mb-16 md:mb-20">
+        <div className="text-center mb-10 md:mb-10">
           <h2 className="font-display text-4xl md:text-5xl lg:text-6xl text-foreground inline-block relative">
             SHOP OUR BEST SELLERS
-            <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 w-24 h-0.5 bg-primary"></div>
+            {/* Thin gold underline - 60px width, 2px height */}
+            <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 w-[60px] h-[2px] bg-primary"></div>
           </h2>
         </div>
 
-        {/* Product Grid - 2 cols mobile, 4 cols desktop */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+        {/* Product Grid - 2 cols mobile, 3 cols tablet, 4 cols desktop */}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 md:gap-14">
           {displayProducts.map((product, index) => (
             <ProductCard key={product.node.id} product={product} index={index} />
           ))}
