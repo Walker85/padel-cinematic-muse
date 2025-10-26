@@ -38,17 +38,21 @@ export const Hero = () => {
       <div className="container mx-auto px-4 lg:px-8 py-32 relative z-20">
         <div className="max-w-4xl mx-auto text-center space-y-8">
           <h1 
-            className="font-display text-6xl md:text-8xl lg:text-9xl tracking-tighter text-white animate-fade-in"
-            style={{ textShadow: '0 4px 20px rgba(0,0,0,0.3)' }}
+            className="font-display text-6xl md:text-8xl lg:text-9xl text-white animate-fade-in"
+            style={{ 
+              letterSpacing: '0.04em',
+              textShadow: '0 4px 20px rgba(0,0,0,0.3)' 
+            }}
           >
             PADEL, PERFECTED.
           </h1>
           
           <p 
-            className="text-xl md:text-2xl text-white/90 max-w-2xl mx-auto font-light animate-fade-in"
+            className="text-xl md:text-2xl text-primary max-w-2xl mx-auto font-body animate-fade-in"
             style={{ 
               animationDelay: '0.3s',
               opacity: 0,
+              letterSpacing: '0.04em',
               textShadow: '0 2px 10px rgba(0,0,0,0.3)'
             }}
           >

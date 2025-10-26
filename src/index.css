@@ -31,24 +31,24 @@ All colors MUST be HSL.
     
     /* Padel Ready - Luxury Minimalism */
     --background: 42 30% 97%; /* Off-White #FEFAF3 */
-    --foreground: 0 0% 5%; /* Matte Black #0C0C0C */
+    --foreground: 0 0% 0%; /* Matte Black #000000 */
 
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 5%;
+    --card-foreground: 0 0% 0%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 5%;
+    --popover-foreground: 0 0% 0%;
 
     /* Champagne Gold Primary */
     --primary: 35 25% 68%; /* #D6C2A8 */
-    --primary-foreground: 0 0% 5%;
+    --primary-foreground: 0 0% 0%;
 
     /* Matte Black Secondary */
-    --secondary: 0 0% 5%; /* #0C0C0C */
+    --secondary: 0 0% 0%; /* #000000 */
     --secondary-foreground: 42 30% 97%;
 
     --muted: 35 20% 90%;
-    --muted-foreground: 0 0% 40%;
+    --muted-foreground: 0 0% 24%; /* Neutral Gray #3C3C3C */
 
     /* Accent Red */
     --accent: 3 85% 50%; /* #E3271C */
@@ -61,7 +61,17 @@ All colors MUST be HSL.
     --input: 35 15% 85%;
     --ring: 35 25% 68%;
 
-    --radius: 0.25rem;
+    --radius: 0.5rem;
+    
+    /* Typography Scale */
+    --font-size-display: 3.5rem;  /* 56px */
+    --font-size-heading: 1.75rem; /* 28px */
+    --font-size-body: 1rem;       /* 16px */
+    --font-size-caption: 0.8rem;  /* 12.8px */
+    
+    /* Motion */
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --hover-lift: -2px;
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -74,23 +84,23 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 0 0% 5%; /* Matte Black */
+    --background: 0 0% 0%; /* Matte Black #000000 */
     --foreground: 42 30% 97%; /* Off-White */
 
-    --card: 0 0% 8%;
+    --card: 0 0% 5%;
     --card-foreground: 42 30% 97%;
 
-    --popover: 0 0% 8%;
+    --popover: 0 0% 5%;
     --popover-foreground: 42 30% 97%;
 
     --primary: 35 25% 68%; /* Champagne Gold */
-    --primary-foreground: 0 0% 5%;
+    --primary-foreground: 0 0% 0%;
 
-    --secondary: 0 0% 12%;
+    --secondary: 0 0% 8%;
     --secondary-foreground: 42 30% 97%;
 
-    --muted: 0 0% 12%;
-    --muted-foreground: 0 0% 60%;
+    --muted: 0 0% 8%;
+    --muted-foreground: 0 0% 24%; /* Neutral Gray #3C3C3C */
 
     --accent: 3 85% 50%; /* Accent Red */
     --accent-foreground: 0 0% 100%;
@@ -149,11 +159,12 @@ All colors MUST be HSL.
   }
   
   .hover-lift {
-    @apply transition-all duration-300 ease-out;
+    transition: var(--transition-smooth);
   }
   
   .hover-lift:hover {
-    @apply -translate-y-1 shadow-lg;
+    transform: translateY(var(--hover-lift));
+    @apply shadow-lg;
   }
   
   .gold-glow {
