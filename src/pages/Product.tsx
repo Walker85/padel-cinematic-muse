@@ -81,28 +81,47 @@ const Product = () => {
   return (
     <>
       <Header />
-      <main className="pt-20 bg-background">
-        {/* Hero Section with Image Gallery */}
-        <section className="py-20 md:py-32">
-          <div className="container mx-auto px-6 md:px-12">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
+      <main className="bg-[#fefaf3]">
+        {/* Hero Section with Cinematic Product Presentation */}
+        <section className="relative pt-[100px] pb-20 md:pb-32 min-h-screen flex items-center">
+          {/* Top Gradient - Separates from Header */}
+          <div 
+            className="absolute top-0 left-0 right-0 h-48 pointer-events-none z-10"
+            style={{
+              background: 'linear-gradient(to bottom, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0) 80%)'
+            }}
+          ></div>
+
+          <div className="container mx-auto px-6 md:px-12 relative z-20">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
               {/* Left: Image Gallery */}
-              <div className="space-y-6">
-                {/* Main Image with Parallax */}
-                <div 
-                  className="aspect-[4/5] bg-muted/10 overflow-hidden relative group"
-                  style={{
-                    transform: `translateY(${scrollY * 0.1}px)`,
-                    transition: 'transform 0.1s ease-out'
-                  }}
-                >
-                  {mainImage && (
-                    <img
-                      src={mainImage.url}
-                      alt={mainImage.altText || product.title}
-                      className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                    />
-                  )}
+              <div className="space-y-6 animate-fade-in">
+                {/* Main Image with Vignette and Parallax */}
+                <div className="relative">
+                  <div 
+                    className="aspect-[4/5] bg-[#fefaf3] relative overflow-hidden flex items-center justify-center group"
+                    style={{
+                      transform: `translateY(${scrollY * 0.08}px)`,
+                      transition: 'transform 0.1s ease-out',
+                      boxShadow: '0px 40px 80px rgba(0,0,0,0.08)'
+                    }}
+                  >
+                    {/* Cinematic Vignette - Reduced opacity */}
+                    <div 
+                      className="absolute inset-0 z-[5] pointer-events-none opacity-15 mix-blend-multiply"
+                      style={{
+                        background: 'radial-gradient(ellipse at center, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.45) 100%)'
+                      }}
+                    ></div>
+                    
+                    {mainImage && (
+                      <img
+                        src={mainImage.url}
+                        alt={mainImage.altText || product.title}
+                        className="relative z-10 w-full h-full object-contain object-center transition-transform duration-700 ease-out group-hover:scale-103"
+                      />
+                    )}
+                  </div>
                 </div>
 
                 {/* Thumbnail Gallery */}
@@ -112,14 +131,19 @@ const Product = () => {
                       <button
                         key={idx}
                         onClick={() => setSelectedImageIndex(idx)}
-                        className={`aspect-square bg-muted/10 overflow-hidden transition-all duration-300 hover:scale-105 ${
-                          selectedImageIndex === idx ? 'ring-2 ring-primary' : 'opacity-60 hover:opacity-100'
+                        className={`aspect-square bg-[#fefaf3] overflow-hidden transition-all duration-300 hover:scale-105 border-2 ${
+                          selectedImageIndex === idx 
+                            ? 'border-[#D6C2A8]' 
+                            : 'border-transparent opacity-60 hover:opacity-100 hover:border-[#D6C2A8]/40'
                         }`}
+                        style={{
+                          boxShadow: selectedImageIndex === idx ? '0 4px 12px rgba(214,194,168,0.3)' : 'none'
+                        }}
                       >
                         <img
                           src={image.url}
                           alt={image.altText || product.title}
-                          className="w-full h-full object-cover"
+                          className="w-full h-full object-contain"
                         />
                       </button>
                     ))}
@@ -127,14 +151,21 @@ const Product = () => {
                 )}
               </div>
 
-              {/* Right: Product Info */}
-              <div className="space-y-8 lg:pt-8">
+              {/* Right: Product Info with Fade-up Animation */}
+              <div 
+                className="space-y-8 lg:pt-8 animate-fade-in"
+                style={{
+                  animationDelay: '0.5s',
+                  opacity: 0,
+                  animation: 'fade-in 0.8s ease-out 0.5s forwards'
+                }}
+              >
                 <div className="space-y-4">
-                  <h1 className="font-display font-extrabold text-4xl md:text-5xl lg:text-[2.5rem] uppercase tracking-tight text-foreground">
+                  <h1 className="font-display font-extrabold text-4xl md:text-5xl lg:text-[2.5rem] uppercase tracking-tight text-[#000000]">
                     {product.title}
                   </h1>
                   
-                  <div className="font-body text-3xl md:text-4xl text-primary font-medium">
+                  <div className="font-body text-3xl md:text-4xl text-[#D6C2A8] font-medium">
                     {selectedVariant?.price.currencyCode} {parseFloat(selectedVariant?.price.amount || '0').toFixed(2)}
                   </div>
 
@@ -142,13 +173,13 @@ const Product = () => {
                   {selectedVariant?.availableForSale && (
                     <div className="flex items-center gap-2 text-sm">
                       <div className="w-2 h-2 rounded-full bg-green-500"></div>
-                      <span className="text-foreground/70">In Stock</span>
+                      <span className="text-[#3C3C3C]">In Stock</span>
                     </div>
                   )}
                 </div>
 
                 {product.description && (
-                  <p className="font-body text-base leading-relaxed text-foreground/70 max-w-xl">
+                  <p className="font-body text-base leading-relaxed text-[#3C3C3C] max-w-xl">
                     {product.description}
                   </p>
                 )}
@@ -158,7 +189,7 @@ const Product = () => {
                   <div className="space-y-6">
                     {product.options.map((option) => (
                       <div key={option.name} className="space-y-3">
-                        <label className="font-display text-sm uppercase tracking-wider text-foreground/90">
+                        <label className="font-display text-sm uppercase tracking-wider text-[#000000]/90">
                           {option.name}
                         </label>
                         <div className="flex flex-wrap gap-3">
@@ -192,7 +223,7 @@ const Product = () => {
                 <div className="space-y-4 pt-4">
                   <Button
                     size="lg"
-                    className="w-full font-display text-sm uppercase tracking-wider bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-300"
+                    className="w-full font-display text-sm uppercase tracking-wider bg-[#D6C2A8] text-[#000000] hover:bg-[#000000] hover:text-[#D6C2A8] transition-all duration-[450ms] ease-[cubic-bezier(0.4,0,0.2,1)]"
                     onClick={handleAddToCart}
                     disabled={!selectedVariant?.availableForSale}
                   >
@@ -206,7 +237,7 @@ const Product = () => {
         </section>
 
         {/* Product Story Section */}
-        <section className="py-20 md:py-32 bg-muted/5">
+        <section className="py-20 md:py-32 bg-[#fefaf3]">
           <div className="container mx-auto px-6 md:px-12">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
               <div className="aspect-[4/3] bg-muted/10 overflow-hidden">
@@ -247,7 +278,7 @@ const Product = () => {
         </section>
 
         {/* Technical Specs Section */}
-        <section className="py-20 md:py-32">
+        <section className="py-20 md:py-32 bg-[#fefaf3]">
           <div className="container mx-auto px-6 md:px-12">
             <div className="max-w-4xl mx-auto">
               <h2 className="font-display text-3xl md:text-4xl lg:text-5xl uppercase mb-12 text-center text-foreground relative inline-block left-1/2 -translate-x-1/2">
@@ -287,7 +318,7 @@ const Product = () => {
 
         {/* You May Also Like Section */}
         {relatedProducts && relatedProducts.length > 0 && (
-          <section className="py-20 md:py-32 bg-muted/5">
+          <section className="py-20 md:py-32 bg-[#fefaf3]">
             <div className="mx-auto px-6 md:px-12" style={{ maxWidth: '1200px' }}>
               <h2 className="font-display text-3xl md:text-4xl lg:text-5xl uppercase mb-12 text-center text-foreground relative inline-block left-1/2 -translate-x-1/2">
                 You May Also Like
