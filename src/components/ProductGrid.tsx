@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getProducts } from "@/lib/shopify";
 import { ProductCard } from "./ProductCard";
 import { Loader2 } from "lucide-react";
+import racketImage from "@/assets/pr-racket-black.png";
 
 export const ProductGrid = () => {
   const { data: products, isLoading } = useQuery({
@@ -17,20 +18,50 @@ export const ProductGrid = () => {
     );
   }
 
-  if (!products || products.length === 0) {
-    return (
-      <section className="py-20 md:py-32 bg-background">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="text-center py-16">
-            <p className="text-muted-foreground font-body text-lg mb-4">No products found</p>
-            <p className="text-muted-foreground/60 font-body text-sm">
-              Create your first product by describing what you want to sell.
-            </p>
-          </div>
-        </div>
-      </section>
-    );
-  }
+  // Demo product for preview when no real products exist
+  const demoProduct = {
+    node: {
+      id: 'demo-1',
+      title: 'RDY Pro Racket',
+      description: 'Premium carbon fiber padel racket',
+      handle: 'rdy-pro-racket',
+      priceRange: {
+        minVariantPrice: {
+          amount: '249.00',
+          currencyCode: 'USD'
+        }
+      },
+      images: {
+        edges: [
+          {
+            node: {
+              url: racketImage,
+              altText: 'RDY Pro Racket - Black'
+            }
+          }
+        ]
+      },
+      variants: {
+        edges: [
+          {
+            node: {
+              id: 'demo-variant-1',
+              title: 'Default',
+              price: {
+                amount: '249.00',
+                currencyCode: 'USD'
+              },
+              availableForSale: true,
+              selectedOptions: []
+            }
+          }
+        ]
+      },
+      options: []
+    }
+  };
+
+  const displayProducts = products && products.length > 0 ? products : [demoProduct, demoProduct, demoProduct, demoProduct];
 
   return (
     <section id="products" className="py-20 md:py-32 bg-background relative">
@@ -48,10 +79,18 @@ export const ProductGrid = () => {
 
         {/* Product Grid - 2 cols mobile, 4 cols desktop */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
-          {products.map((product, index) => (
+          {displayProducts.map((product, index) => (
             <ProductCard key={product.node.id} product={product} index={index} />
           ))}
         </div>
+        
+        {(!products || products.length === 0) && (
+          <div className="text-center mt-12">
+            <p className="text-muted-foreground/60 font-body text-sm">
+              Demo cards shown above. Connect your Shopify products to see real inventory.
+            </p>
+          </div>
+        )}
       </div>
       
       {/* Bottom divider line */}
