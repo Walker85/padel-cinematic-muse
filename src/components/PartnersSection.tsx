@@ -1,11 +1,10 @@
 import { useEffect, useRef, useState } from "react";
+import sohoHouseLogo from "@/assets/soho-house-logo.jpg";
+import racketGardenLogo from "@/assets/racket-garden-logo.avif";
 
 const partners = [
-  { name: "Soho House", width: 140 },
-  { name: "Babington House", width: 160 },
-  { name: "The Padel Club", width: 150 },
-  { name: "Wilson Elite Program", width: 180 },
-  { name: "Royal Padel Centre", width: 170 },
+  { name: "Soho House", logo: sohoHouseLogo },
+  { name: "Racket Garden", logo: racketGardenLogo },
 ];
 
 export const PartnersSection = () => {
@@ -44,7 +43,7 @@ export const PartnersSection = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-12 items-center justify-items-center">
+        <div className="flex flex-wrap gap-12 lg:gap-16 items-center justify-center">
           {partners.map((partner, index) => (
             <div
               key={partner.name}
@@ -56,14 +55,12 @@ export const PartnersSection = () => {
               }}
             >
               <div className="group relative">
-                {/* Placeholder logo - will be replaced with actual logos */}
-                <div 
-                  className="flex items-center justify-center h-20 px-6 bg-secondary/5 rounded-lg border border-secondary/10 transition-all duration-300 group-hover:border-primary/40 group-hover:bg-primary/5"
-                  style={{ width: `${partner.width}px` }}
-                >
-                  <span className="font-display text-xs tracking-wider text-secondary/60 group-hover:text-primary transition-colors duration-300 text-center">
-                    {partner.name}
-                  </span>
+                <div className="flex items-center justify-center h-24 px-8 transition-all duration-300 grayscale hover:grayscale-0 opacity-60 hover:opacity-100">
+                  <img 
+                    src={partner.logo} 
+                    alt={`${partner.name} logo`}
+                    className="h-full w-auto object-contain"
+                  />
                 </div>
               </div>
             </div>
