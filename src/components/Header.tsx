@@ -29,11 +29,11 @@ export const Header = () => {
               <Link to="/" className="text-sm font-medium hover:text-primary transition-colors">
                 Shop
               </Link>
+              <Link to="/about" className="text-sm font-medium hover:text-primary transition-colors">
+                About
+              </Link>
               <Link to="/#events" className="text-sm font-medium hover:text-primary transition-colors">
                 Events
-              </Link>
-              <Link to="/#about" className="text-sm font-medium hover:text-primary transition-colors">
-                About
               </Link>
             </nav>
 
@@ -86,18 +86,18 @@ export const Header = () => {
               Shop
             </Link>
             <Link
+              to="/about"
+              onClick={closeMobileMenu}
+              className="font-display text-2xl uppercase tracking-wide hover:text-primary transition-colors py-3"
+            >
+              About
+            </Link>
+            <Link
               to="/#events"
               onClick={closeMobileMenu}
               className="font-display text-2xl uppercase tracking-wide hover:text-primary transition-colors py-3"
             >
               Events
-            </Link>
-            <Link
-              to="/#about"
-              onClick={closeMobileMenu}
-              className="font-display text-2xl uppercase tracking-wide hover:text-primary transition-colors py-3"
-            >
-              About
             </Link>
             <Link
               to="/#contact"
