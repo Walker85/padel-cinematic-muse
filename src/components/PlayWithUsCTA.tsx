@@ -3,7 +3,10 @@ import { Link } from "react-router-dom";
 
 export const PlayWithUsCTA = () => {
   return (
-    <section className="py-40 bg-secondary relative overflow-hidden">
+    <section 
+      data-nav-theme="dark"
+      className="py-40 bg-secondary relative overflow-hidden"
+    >
       {/* Subtle gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-t from-primary/5 via-transparent to-transparent pointer-events-none"></div>
       

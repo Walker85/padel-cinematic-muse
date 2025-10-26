@@ -25,45 +25,48 @@ export const Header = () => {
       
       if (!header) return;
       
-      const headerBottom = header.getBoundingClientRect().bottom;
+      const headerRect = header.getBoundingClientRect();
+      const headerCenter = headerRect.top + (headerRect.height / 2);
       
-      // Check if header overlaps with any dark section
+      // Check if header center overlaps with any dark section
       let isOverDark = false;
       
       darkSections.forEach((section) => {
         const rect = section.getBoundingClientRect();
-        // Check if header overlaps with this dark section
-        if (rect.top < headerBottom && rect.bottom > 0) {
+        // Check if header center is within this dark section
+        if (rect.top <= headerCenter && rect.bottom >= headerCenter) {
           isOverDark = true;
         }
       });
       
-      // On About page, check scroll position for Act Two hero
-      if (location.pathname === '/about') {
-        const scrollY = window.scrollY;
-        // Approximate position of Act Two hero (adjust based on actual layout)
-        // Act One is ~600-800px, Act Two starts around that point
-        if (scrollY > 500 && scrollY < 1600) {
-          isOverDark = true;
-        }
-        // Act Three (black section) - typically after 1800px
-        if (scrollY > 1800) {
-          isOverDark = true;
-        }
+      // Fallback: check if we're at the very top of the page (hero section)
+      if (window.scrollY < 100) {
+        isOverDark = true;
       }
       
       setIsDarkMode(isOverDark);
     };
 
-    // Initial check
-    handleScroll();
+    // Initial check with a small delay to ensure DOM is ready
+    setTimeout(handleScroll, 100);
     
-    // Add scroll listener
-    window.addEventListener('scroll', handleScroll);
+    // Add scroll listener with throttling for performance
+    let ticking = false;
+    const scrollListener = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+    
+    window.addEventListener('scroll', scrollListener);
     window.addEventListener('resize', handleScroll);
     
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('scroll', scrollListener);
       window.removeEventListener('resize', handleScroll);
     };
   }, [location.pathname]);

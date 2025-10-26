@@ -20,7 +20,10 @@ export const Hero = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section 
+      data-nav-theme="dark"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+    >
       {/* Parallax Background */}
       <div 
         className="absolute inset-0 parallax"

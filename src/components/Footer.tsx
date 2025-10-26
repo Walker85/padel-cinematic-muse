@@ -4,7 +4,10 @@ import logo from "@/assets/padel-ready-logo.png";
 
 export const Footer = () => {
   return (
-    <footer className="bg-secondary text-secondary-foreground">
+    <footer 
+      data-nav-theme="dark"
+      className="bg-secondary text-secondary-foreground"
+    >
       <div className="container mx-auto px-4 lg:px-8 py-20">
         {/* Top border with gold accent */}
         <div className="w-full h-px bg-gradient-to-r from-transparent via-primary to-transparent mb-16"></div>

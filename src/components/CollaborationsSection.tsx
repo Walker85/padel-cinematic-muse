@@ -2,7 +2,10 @@ import { Button } from "@/components/ui/button";
 
 export const CollaborationsSection = () => {
   return (
-    <section className="relative py-40 bg-secondary overflow-hidden">
+    <section 
+      data-nav-theme="dark"
+      className="relative py-40 bg-secondary overflow-hidden"
+    >
       {/* Cinematic overlay gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent pointer-events-none"></div>
       
