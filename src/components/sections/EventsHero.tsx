@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 const EventsHero = () => {
   return (
-    <section className="relative h-[70vh] md:h-[80vh] overflow-hidden">
+    <section data-nav-theme="dark" className="relative h-[70vh] md:h-[80vh] overflow-hidden">
       {/* Parallax Background */}
       <motion.div
         className="absolute inset-0"

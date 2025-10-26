@@ -136,7 +136,7 @@ const Events = () => {
         <main>
           <EventsHero />
           
-          <section className="py-16 md:py-24">
+          <section data-nav-theme="light" className="py-16 md:py-24">
             <div className="container mx-auto px-4">
               <EventFilter filter={filter} setFilter={setFilter} />
               {isLoading ? (
