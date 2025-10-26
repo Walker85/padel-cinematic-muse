@@ -32,6 +32,7 @@ const events: Event[] = [
     description: "A weekend of elite matches in the heart of Somerset.",
     image: "/images/soho-house-hero-new.png",
     status: "upcoming",
+    handle: "spring-championship-series",
   },
   {
     id: 2,
@@ -42,6 +43,7 @@ const events: Event[] = [
     description: "Small-group sessions with top coaches.",
     image: "/images/soho-house-hero-new.png",
     status: "upcoming",
+    handle: "performance-clinic",
   },
   {
     id: 3,
@@ -52,6 +54,7 @@ const events: Event[] = [
     description: "Drinks, music, and padel under the evening sun.",
     image: "/images/soho-house-hero-new.png",
     status: "upcoming",
+    handle: "members-summer-social",
   },
   {
     id: 4,
@@ -62,6 +65,7 @@ const events: Event[] = [
     description: "A thrilling indoor finale to the year.",
     image: "/images/soho-house-hero-new.png",
     status: "past",
+    handle: "winter-invitational-2024",
   },
   {
     id: 5,
@@ -72,6 +76,7 @@ const events: Event[] = [
     description: "Celebrate the new season with cocktails and live music.",
     image: "/images/soho-house-hero-new.png",
     status: "past",
+    handle: "season-launch-evening",
   },
 ];
 
