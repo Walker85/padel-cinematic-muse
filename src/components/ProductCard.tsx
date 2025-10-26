@@ -9,9 +9,10 @@ interface ProductCardProps {
     node: Product;
   };
   index: number;
+  tag?: "NEW" | "LIMITED";
 }
 
-export const ProductCard = ({ product, index }: ProductCardProps) => {
+export const ProductCard = ({ product, index, tag }: ProductCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
   const addItem = useCartStore(state => state.addItem);
   const { node } = product;
@@ -62,7 +63,7 @@ export const ProductCard = ({ product, index }: ProductCardProps) => {
   return (
     <Link 
       to={`/product/${node.handle}`}
-      className="group block w-[85%] mx-auto"
+      className="group block relative"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       style={{
@@ -70,16 +71,33 @@ export const ProductCard = ({ product, index }: ProductCardProps) => {
         opacity: 0
       }}
     >
-      <div className="bg-background border border-transparent hover:border-primary transition-all duration-400 ease-[cubic-bezier(0.4,0,0.2,1)] hover:-translate-y-1 shadow-[0_4px_12px_rgba(0,0,0,0.03)]">
-        {/* Image Container - 4:5 ratio */}
+      {/* Card Container with Dark Mode Support */}
+      <div className="relative overflow-hidden border border-transparent bg-[#FEFAF3] dark:bg-black transition-all duration-[450ms] ease-[cubic-bezier(0.4,0,0.2,1)] group-hover:border-[#D6C2A8] group-hover:-translate-y-1 group-hover:shadow-[0_12px_32px_rgba(0,0,0,0.15)]">
+        
+        {/* Optional Tag */}
+        {tag && (
+          <div className="absolute top-3 left-3 z-10 px-3 py-1 bg-black/40 dark:bg-white/10 backdrop-blur-sm rounded-full">
+            <span className="font-display text-[0.7rem] uppercase tracking-wider text-[#D6C2A8]">
+              {tag}
+            </span>
+          </div>
+        )}
+
+        {/* Image Container - 4:5 ratio with Hover Gradient Overlay */}
         <div className="aspect-[4/5] bg-muted/10 relative overflow-hidden">
+          {/* Hover Gradient Overlay */}
+          <div className={`absolute inset-0 bg-[rgba(214,194,168,0.08)] dark:bg-[rgba(214,194,168,0.15)] z-10 transition-opacity duration-[450ms] ease-[cubic-bezier(0.4,0,0.2,1)] ${
+            isHovered ? 'opacity-100' : 'opacity-0'
+          }`}></div>
+          
           {primaryImage && (
             <img
               src={primaryImage.url}
               alt={primaryImage.altText || node.title}
-              className={`w-full h-full object-cover transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] ${
+              className={`w-full h-full object-cover transition-all duration-[450ms] ease-[cubic-bezier(0.4,0,0.2,1)] ${
                 isHovered && secondaryImage ? 'opacity-0' : 'opacity-100'
-              } ${isHovered ? 'scale-105' : 'scale-100'}`}
+              } ${isHovered ? 'scale-103' : 'scale-100'}`}
+              style={{ transform: isHovered ? 'scale(1.03)' : 'scale(1)' }}
             />
           )}
           
@@ -88,33 +106,45 @@ export const ProductCard = ({ product, index }: ProductCardProps) => {
             <img
               src={secondaryImage.url}
               alt={secondaryImage.altText || node.title}
-              className={`absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] ${
-                isHovered ? 'opacity-100 scale-105' : 'opacity-0 scale-100'
+              className={`absolute inset-0 w-full h-full object-cover transition-all duration-[450ms] ease-[cubic-bezier(0.4,0,0.2,1)] ${
+                isHovered ? 'opacity-100' : 'opacity-0'
               }`}
+              style={{ transform: isHovered ? 'scale(1.03)' : 'scale(1)' }}
             />
           )}
         </div>
         
-        {/* Content - More breathing room */}
-        <div className="px-4 py-6 space-y-4 text-center">
-          {/* Product Title - Mollen Medium */}
-          <h3 className="font-display font-medium text-sm md:text-base uppercase tracking-[0.04em] text-muted-foreground group-hover:text-primary transition-colors duration-300">
+        {/* Content - Left Aligned with Hover Animation */}
+        <div 
+          className="px-5 py-6 space-y-3 transition-transform duration-[450ms] ease-[cubic-bezier(0.4,0,0.2,1)]"
+          style={{ transform: isHovered ? 'translateY(-4px)' : 'translateY(0)' }}
+        >
+          {/* Product Title - Mollen, Left Aligned */}
+          <h3 className="font-display text-sm md:text-base uppercase tracking-[0.03em] text-[#3C3C3C] dark:text-[#FEFAF3] transition-colors duration-300">
             {node.title}
           </h3>
           
-          {/* Price - SA Triumph, gold, weight 500 */}
-          <div className="font-body text-lg font-medium text-primary">
+          {/* Optional Subtext */}
+          <p className="font-body text-xs text-[#3C3C3C]/60 dark:text-[#FEFAF3]/60 leading-relaxed">
+            Premium Carbon Fiber
+          </p>
+          
+          {/* Price - SA Triumph, Gold */}
+          <div className="font-body text-lg font-medium text-[#D6C2A8]">
             {node.price.currencyCode} {price.toFixed(2)}
           </div>
           
-          {/* Add to Cart - Smaller, lighter gray */}
-          <button
-            onClick={handleAddToCart}
-            className="font-body text-xs uppercase tracking-wider transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] hover:text-primary"
-            style={{ color: '#777' }}
-          >
-            Add to Cart
-          </button>
+          {/* CTA Button - Appears on Hover */}
+          <div className={`pt-2 transition-all duration-[450ms] ease-[cubic-bezier(0.4,0,0.2,1)] ${
+            isHovered ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'
+          }`}>
+            <button
+              onClick={handleAddToCart}
+              className="w-full font-display text-xs uppercase tracking-wider py-3 border border-[#D6C2A8] text-[#D6C2A8] bg-transparent hover:bg-[#D6C2A8] hover:text-black transition-all duration-300"
+            >
+              View Details
+            </button>
+          </div>
         </div>
       </div>
     </Link>
