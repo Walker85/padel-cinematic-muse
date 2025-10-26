@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { CartDrawer } from "./CartDrawer";
-import logo from "@/assets/padel-ready-logo.png";
+import { Logo } from "./Logo";
 
 export const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -84,12 +84,9 @@ export const Header = () => {
         <div className="container mx-auto px-4 lg:px-8">
           <div className="flex items-center justify-between h-20">
             <Link to="/" className="flex items-center transition-opacity duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] hover:opacity-80">
-              <img 
-                src={logo} 
-                alt="Padel Ready" 
-                className={`h-8 md:h-10 w-auto transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] ${
-                  isDarkMode ? 'brightness-110' : ''
-                }`}
+              <Logo 
+                isDarkMode={isDarkMode}
+                className="h-8 md:h-10 w-auto transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]"
               />
             </Link>
             
