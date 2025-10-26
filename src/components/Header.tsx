@@ -91,7 +91,7 @@ export const Header = () => {
                 style={{
                   filter: isDarkMode 
                     ? 'none' 
-                    : 'brightness(0) saturate(100%) invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(0%) contrast(100%)'
+                    : 'brightness(0) saturate(100%) invert(85%) sepia(12%) saturate(650%) hue-rotate(350deg) brightness(92%) contrast(88%)'
                 }}
               />
             </Link>
