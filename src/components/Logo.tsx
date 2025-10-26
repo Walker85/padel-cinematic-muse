@@ -4,64 +4,65 @@ interface LogoProps {
 }
 
 export const Logo = ({ isDarkMode, className = "" }: LogoProps) => {
+  // On light backgrounds: all champagne (#D6C2A8)
+  // On dark backgrounds: white fills become #FFFFFF, champagne stays #D6C2A8
+  const primaryFill = isDarkMode ? "#FFFFFF" : "#D6C2A8";
+  const accentFill = "#D6C2A8"; // Always champagne
+  
   return (
     <svg
-      viewBox="0 0 1512 400"
+      viewBox="0 0 1600 400"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
       aria-label="Padel Ready"
     >
-      {/* P */}
+      {/* R - Primary structure */}
       <path
-        d="M0 50L200 0V150L100 175C80 180 60 190 60 215V400H0V50Z"
-        fill={isDarkMode ? "#FFFFFF" : "#D6C2A8"}
+        d="M50 350L180 0H280L150 350H50Z"
+        fill={primaryFill}
       />
       <path
-        d="M100 100L200 75V150L100 175V100Z"
-        fill={isDarkMode ? "#D6C2A8" : "#FEFAF3"}
-      />
-      
-      {/* R */}
-      <path
-        d="M220 0H420V150C420 180 400 195 370 200L420 400H340L295 210H280V400H220V0Z"
-        fill={isDarkMode ? "#FFFFFF" : "#D6C2A8"}
-      />
-      <path
-        d="M280 60V150H360C380 150 390 140 390 120V90C390 70 380 60 360 60H280Z"
-        fill={isDarkMode ? "#D6C2A8" : "#FEFAF3"}
+        d="M180 0H320V100C320 140 300 160 260 170L320 350H220L175 185H160V350H100V0H180ZM160 50V135H260C280 135 290 125 290 105V80C290 60 280 50 260 50H160Z"
+        fill={accentFill}
       />
       
-      {/* E */}
+      {/* E - Primary structure */}
       <path
-        d="M440 0H640V70H500V150H620V220H500V330H640V400H440V0Z"
-        fill={isDarkMode ? "#FFFFFF" : "#D6C2A8"}
+        d="M340 0H540V60H400V140H520V200H400V290H540V350H340V0Z"
+        fill={primaryFill}
       />
       
-      {/* A */}
+      {/* A - Primary with accent cutout */}
       <path
-        d="M660 400L750 0H850L940 400H875L860 320H740L725 400H660Z"
-        fill={isDarkMode ? "#FFFFFF" : "#D6C2A8"}
+        d="M560 350L650 0H750L840 350H775L760 280H640L625 350H560Z"
+        fill={primaryFill}
       />
       <path
-        d="M760 250H840L800 80L760 250Z"
-        fill={isDarkMode ? "#D6C2A8" : "#FEFAF3"}
-      />
-      
-      {/* D */}
-      <path
-        d="M960 0H1100C1180 0 1240 60 1240 150V250C1240 340 1180 400 1100 400H960V0Z"
-        fill={isDarkMode ? "#FFFFFF" : "#D6C2A8"}
-      />
-      <path
-        d="M1020 70V330H1100C1140 330 1170 300 1170 260V140C1170 100 1140 70 1100 70H1020Z"
-        fill={isDarkMode ? "#D6C2A8" : "#FEFAF3"}
+        d="M660 220H740L700 60L660 220Z"
+        fill={accentFill}
       />
       
-      {/* Y */}
+      {/* D - Primary with accent cutout */}
       <path
-        d="M1260 0H1330L1400 180L1470 0H1540L1435 250V400H1365V250L1260 0Z"
-        fill={isDarkMode ? "#FFFFFF" : "#D6C2A8"}
+        d="M860 0H1000C1080 0 1140 60 1140 150V200C1140 290 1080 350 1000 350H860V0Z"
+        fill={primaryFill}
+      />
+      <path
+        d="M920 60V290H1000C1040 290 1070 260 1070 220V130C1070 90 1040 60 1000 60H920Z"
+        fill={accentFill}
+      />
+      
+      {/* Y - Primary structure */}
+      <path
+        d="M1160 0H1230L1300 160L1370 0H1440L1335 220V350H1265V220L1160 0Z"
+        fill={primaryFill}
+      />
+      
+      {/* Decorative slash accent */}
+      <path
+        d="M1460 0L1600 350H1530L1390 0H1460Z"
+        fill={accentFill}
       />
     </svg>
   );
