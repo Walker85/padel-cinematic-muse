@@ -82,94 +82,59 @@ const Product = () => {
     <>
       <Header />
       <main className="bg-[#fefaf3]">
-        {/* Hero Section with Cinematic Product Presentation */}
-        <section className="relative mt-[100px] pb-20 md:pb-32">
-          {/* Top Gradient - Separates from Header */}
-          <div 
-            className="absolute top-[-100px] left-0 right-0 h-48 pointer-events-none z-10"
-            style={{
-              background: 'linear-gradient(to bottom, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0) 80%)'
-            }}
-          ></div>
-
-          <div className="container mx-auto px-6 md:px-12 relative z-20">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        {/* Hero Section - Premium Product Presentation */}
+        <section className="relative bg-[#fefaf3] pt-[100px] pb-16 md:pb-24">
+          <div className="container mx-auto px-6 md:px-12 max-w-7xl">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+              
               {/* Left: Image Gallery */}
               <div className="space-y-6">
-                {/* Main Image with Vignette and Parallax */}
-                <div className="relative z-3">
+                {/* Main Image Container */}
+                <div 
+                  className="relative flex items-center justify-center bg-[#fefaf3]"
+                  style={{
+                    maxHeight: '80vh',
+                  }}
+                >
                   <div 
-                    className="relative overflow-visible flex items-center justify-center group"
+                    className="aspect-[4/5] w-full bg-[#fefaf3] relative overflow-hidden flex items-center justify-center group"
                     style={{
-                      maxHeight: '80vh',
                       transform: `translateY(${scrollY * 0.08}px)`,
                       transition: 'transform 0.1s ease-out'
                     }}
                   >
-                    {/* Hero Image Container with Aspect Ratio */}
-                    <div className="aspect-[4/5] bg-[#fefaf3] relative overflow-hidden flex items-center justify-center w-full"
-                      style={{
-                        boxShadow: '0px 40px 80px rgba(0,0,0,0.08)'
-                      }}
-                    >
-                      {/* Cinematic Vignette - Reduced opacity */}
-                      <div 
-                        className="absolute inset-0 z-[5] pointer-events-none opacity-15 mix-blend-multiply"
-                        style={{
-                          background: 'radial-gradient(ellipse at center, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.45) 100%)'
-                        }}
-                      ></div>
-                      
-                      {mainImage && (
-                        <img
-                          src={mainImage.url}
-                          alt={mainImage.altText || product.title}
-                          className="relative z-10 h-full w-auto max-w-full object-contain object-center transition-transform duration-700 ease-out group-hover:scale-103"
-                        />
-                      )}
-                    </div>
+                    {mainImage && (
+                      <img
+                        src={mainImage.url}
+                        alt={mainImage.altText || product.title}
+                        className="h-full w-auto max-w-full object-contain object-center transition-transform duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover:scale-105"
+                      />
+                    )}
                   </div>
-
-                  {/* Gradient Transition Band */}
-                  <div 
-                    className="relative z-2 -mb-10"
-                    style={{
-                      background: 'linear-gradient(to bottom, rgba(0,0,0,0) 60%, #fefaf3 100%)',
-                      height: '80px',
-                      marginTop: '-40px'
-                    }}
-                  ></div>
                 </div>
 
-                {/* Thumbnail Gallery */}
+                {/* Thumbnail Strip */}
                 {thumbnails.length > 1 && (
-                  <div 
-                    className="relative z-5 pt-10 animate-fade-in"
-                    style={{
-                      animationDelay: '150ms'
-                    }}
-                  >
-                    <div className="flex gap-4 justify-center flex-wrap md:justify-start max-md:overflow-x-auto max-md:flex-nowrap max-md:scroll-snap-type-x-mandatory">
+                  <div className="pt-6 animate-fade-in" style={{ animationDelay: '150ms' }}>
+                    <div className="flex gap-4 justify-center md:justify-start overflow-x-auto pb-2 snap-x snap-mandatory">
                       {thumbnails.map((image, idx) => (
                         <button
                           key={idx}
                           onClick={() => setSelectedImageIndex(idx)}
-                          className={`bg-[#fefaf3] overflow-hidden transition-all duration-300 hover:scale-105 border-2 flex-shrink-0 max-md:scroll-snap-align-start ${
+                          className={`flex-shrink-0 bg-[#fefaf3] border-2 overflow-hidden transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] hover:scale-105 snap-start ${
                             selectedImageIndex === idx 
-                              ? 'border-[#D6C2A8]' 
-                              : 'border-transparent opacity-60 hover:opacity-100 hover:border-[#D6C2A8]/40'
+                              ? 'border-[#D6C2A8] shadow-[0_4px_12px_rgba(214,194,168,0.3)]' 
+                              : 'border-transparent opacity-70 hover:opacity-100 hover:border-[#D6C2A8]/40'
                           }`}
                           style={{
                             width: '100px',
-                            height: 'auto',
                             aspectRatio: '1/1',
-                            boxShadow: selectedImageIndex === idx ? '0 4px 12px rgba(214,194,168,0.3)' : 'none'
                           }}
                         >
                           <img
                             src={image.url}
                             alt={image.altText || product.title}
-                            className="w-full h-full object-contain transition-transform duration-300"
+                            className="w-full h-full object-contain"
                           />
                         </button>
                       ))}
@@ -178,35 +143,32 @@ const Product = () => {
                 )}
               </div>
 
-              {/* Right: Product Info with Fade-up Animation */}
+              {/* Right: Product Summary */}
               <div 
-                className="space-y-8 lg:pt-8 animate-fade-in"
+                className="space-y-8 lg:sticky lg:top-32 animate-fade-in"
                 style={{
-                  animationDelay: '0.5s',
-                  opacity: 0,
-                  animation: 'fade-in 0.8s ease-out 0.5s forwards'
+                  animationDelay: '0.4s',
                 }}
               >
-                <div className="space-y-4">
-                  <h1 className="font-display font-extrabold text-4xl md:text-5xl lg:text-[2.5rem] uppercase tracking-tight text-[#000000]">
+                {/* Product Name */}
+                <div className="space-y-2">
+                  <h1 className="font-display font-extrabold text-[2.5rem] md:text-5xl uppercase tracking-tight leading-tight text-[#000000]">
                     {product.title}
                   </h1>
-                  
-                  <div className="font-body text-3xl md:text-4xl text-[#D6C2A8] font-medium">
-                    {selectedVariant?.price.currencyCode} {parseFloat(selectedVariant?.price.amount || '0').toFixed(2)}
-                  </div>
-
-                  {/* Stock Availability */}
-                  {selectedVariant?.availableForSale && (
-                    <div className="flex items-center gap-2 text-sm">
-                      <div className="w-2 h-2 rounded-full bg-green-500"></div>
-                      <span className="text-[#3C3C3C]">In Stock</span>
-                    </div>
-                  )}
+                  <p className="font-body text-[1.1rem] text-[#3C3C3C]">Premium Carbon Fiber Construction</p>
                 </div>
 
+                {/* Price */}
+                <div className="font-body text-[1.3rem] font-bold text-[#D6C2A8]">
+                  {selectedVariant?.price.currencyCode} {parseFloat(selectedVariant?.price.amount || '0').toFixed(2)}
+                </div>
+
+                {/* Divider */}
+                <div className="h-px bg-[#E0DED9]"></div>
+
+                {/* Description */}
                 {product.description && (
-                  <p className="font-body text-base leading-relaxed text-[#3C3C3C] max-w-xl">
+                  <p className="font-body text-base leading-relaxed text-[#3C3C3C]">
                     {product.description}
                   </p>
                 )}
@@ -216,7 +178,7 @@ const Product = () => {
                   <div className="space-y-6">
                     {product.options.map((option) => (
                       <div key={option.name} className="space-y-3">
-                        <label className="font-display text-sm uppercase tracking-wider text-[#000000]/90">
+                        <label className="font-display text-sm uppercase tracking-wider text-[#000000]">
                           {option.name}
                         </label>
                         <div className="flex flex-wrap gap-3">
@@ -231,7 +193,7 @@ const Product = () => {
                             return (
                               <Button
                                 key={value}
-                                variant={isSelected ? "default" : "outline"}
+                                variant={isSelected ? "default" : "secondary"}
                                 onClick={() => variant && setSelectedVariantId(variant.id)}
                                 disabled={!variant?.availableForSale}
                                 className="min-w-[80px] font-body uppercase text-xs tracking-wider"
@@ -246,113 +208,92 @@ const Product = () => {
                   </div>
                 )}
 
-                {/* Action Buttons */}
-                <div className="space-y-4 pt-4">
-                  <Button
-                    size="lg"
-                    className="w-full font-display text-sm uppercase tracking-wider bg-[#D6C2A8] text-[#000000] hover:bg-[#000000] hover:text-[#D6C2A8] transition-all duration-[450ms] ease-[cubic-bezier(0.4,0,0.2,1)]"
-                    onClick={handleAddToCart}
-                    disabled={!selectedVariant?.availableForSale}
+                {/* Add to Cart Button */}
+                <button
+                  onClick={handleAddToCart}
+                  disabled={!selectedVariant?.availableForSale}
+                  className="w-full font-display text-sm uppercase tracking-wider bg-[#000000] text-[#ffffff] hover:bg-[#D6C2A8] hover:text-[#000000] rounded-lg px-8 py-4 transition-all duration-350 ease-[cubic-bezier(0.4,0,0.2,1)] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                >
+                  <ShoppingCart className="w-4 h-4" />
+                  {selectedVariant?.availableForSale ? 'Add to Cart' : 'Out of Stock'}
+                </button>
+
+                {/* Secondary Link */}
+                <a 
+                  href="#specs" 
+                  className="inline-block font-body text-sm text-[#3C3C3C] hover:text-[#D6C2A8] transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-px after:bg-[#D6C2A8] after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-left"
+                >
+                  View Technology Specs
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Details Section - The Story & Specs */}
+        <section id="specs" className="py-24 md:py-32 bg-[#ffffff]">
+          <div className="container mx-auto px-6 md:px-12 max-w-[1100px]">
+            
+            {/* The Details - Specs Grid */}
+            <div className="mb-20 md:mb-32">
+              <h2 className="font-['Playfair_Display'] text-[1.8rem] md:text-4xl mb-12 text-[#000000] text-center">
+                The Details
+              </h2>
+              
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+                {[
+                  { label: 'Weight', value: '365g ± 10g' },
+                  { label: 'Balance', value: 'Medium (265mm)' },
+                  { label: 'Frame', value: 'Carbon Fiber' },
+                  { label: 'Grip Size', value: 'Standard (38mm)' },
+                  { label: 'Shape', value: 'Diamond' },
+                  { label: 'Core', value: 'EVA Soft' }
+                ].map((spec, idx) => (
+                  <div 
+                    key={idx}
+                    className="border border-[#EAE6DD] bg-[#FCFBF8] p-6 text-center transition-all duration-300 hover:shadow-md"
                   >
-                    <ShoppingCart className="w-4 h-4 mr-2" />
-                    {selectedVariant?.availableForSale ? 'Add to Cart' : 'Out of Stock'}
-                  </Button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Product Story Section */}
-        <section className="py-20 md:py-32 bg-[#fefaf3]">
-          <div className="container mx-auto px-6 md:px-12">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-              <div className="aspect-[4/3] bg-muted/10 overflow-hidden">
-                {product.images[1] ? (
-                  <img
-                    src={product.images[1].url}
-                    alt="Product lifestyle"
-                    className="w-full h-full object-cover"
-                  />
-                ) : (
-                  <div className="w-full h-full flex items-center justify-center text-muted-foreground">
-                    Lifestyle Image
+                    <div className="font-display text-xs uppercase tracking-wider text-[#D6C2A8] mb-2">
+                      {spec.label}
+                    </div>
+                    <div className="font-body text-base text-[#3C3C3C]">
+                      {spec.value}
+                    </div>
                   </div>
-                )}
-              </div>
-
-              <div className="space-y-6">
-                <div>
-                  <h2 className="font-display text-3xl md:text-4xl lg:text-5xl uppercase mb-3 text-foreground relative inline-block">
-                    The Story
-                    <div className="absolute -bottom-2 left-0 w-16 h-[2px] bg-primary"></div>
-                  </h2>
-                </div>
-                <div className="space-y-4 font-body text-base leading-relaxed text-foreground/70 max-w-xl">
-                  <p>
-                    Crafted for players who demand precision and performance, this racket represents 
-                    the pinnacle of padel engineering. Every detail has been refined to deliver 
-                    exceptional control and power.
-                  </p>
-                  <p>
-                    From the premium materials to the innovative balance design, this is more than 
-                    equipment—it's an extension of your game.
-                  </p>
-                </div>
+                ))}
               </div>
             </div>
-          </div>
-        </section>
 
-        {/* Technical Specs Section */}
-        <section className="py-20 md:py-32 bg-[#fefaf3]">
-          <div className="container mx-auto px-6 md:px-12">
-            <div className="max-w-4xl mx-auto">
-              <h2 className="font-display text-3xl md:text-4xl lg:text-5xl uppercase mb-12 text-center text-foreground relative inline-block left-1/2 -translate-x-1/2">
-                Technical Specs
-                <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 w-16 h-[2px] bg-primary"></div>
+            {/* The Story */}
+            <div className="space-y-6 max-w-3xl mx-auto">
+              <h2 className="font-['Playfair_Display'] text-[1.8rem] md:text-4xl mb-8 text-[#000000] text-center">
+                The Story
               </h2>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-8">
-                <div className="space-y-3 pb-6 border-b border-border/20">
-                  <dt className="font-display text-sm uppercase tracking-wider text-foreground/60">Material</dt>
-                  <dd className="font-body text-lg text-foreground">Premium Carbon Fiber</dd>
-                </div>
-                <div className="space-y-3 pb-6 border-b border-border/20">
-                  <dt className="font-display text-sm uppercase tracking-wider text-foreground/60">Balance</dt>
-                  <dd className="font-body text-lg text-foreground">Medium (265mm)</dd>
-                </div>
-                <div className="space-y-3 pb-6 border-b border-border/20">
-                  <dt className="font-display text-sm uppercase tracking-wider text-foreground/60">Weight</dt>
-                  <dd className="font-body text-lg text-foreground">365g ± 10g</dd>
-                </div>
-                <div className="space-y-3 pb-6 border-b border-border/20">
-                  <dt className="font-display text-sm uppercase tracking-wider text-foreground/60">Grip Size</dt>
-                  <dd className="font-body text-lg text-foreground">Standard (38mm)</dd>
-                </div>
-                <div className="space-y-3 pb-6 border-b border-border/20">
-                  <dt className="font-display text-sm uppercase tracking-wider text-foreground/60">Shape</dt>
-                  <dd className="font-body text-lg text-foreground">Diamond</dd>
-                </div>
-                <div className="space-y-3 pb-6 border-b border-border/20">
-                  <dt className="font-display text-sm uppercase tracking-wider text-foreground/60">Core</dt>
-                  <dd className="font-body text-lg text-foreground">EVA Soft</dd>
-                </div>
+              
+              <div className="space-y-5 font-body text-[1.1rem] leading-loose text-[#3C3C3C]">
+                <p>
+                  Crafted for players who demand precision and performance, this racket represents 
+                  the pinnacle of padel engineering. Every detail has been refined to deliver 
+                  exceptional control and power.
+                </p>
+                <p>
+                  From the premium materials to the innovative balance design, this is more than 
+                  equipment—it's an extension of your game.
+                </p>
               </div>
             </div>
           </div>
         </section>
 
-        {/* You May Also Like Section */}
+        {/* Related Products Section */}
         {relatedProducts && relatedProducts.length > 0 && (
-          <section className="py-20 md:py-32 bg-[#fefaf3]">
-            <div className="mx-auto px-6 md:px-12" style={{ maxWidth: '1200px' }}>
-              <h2 className="font-display text-3xl md:text-4xl lg:text-5xl uppercase mb-12 text-center text-foreground relative inline-block left-1/2 -translate-x-1/2">
-                You May Also Like
-                <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 w-16 h-[2px] bg-primary"></div>
+          <section className="py-24 md:py-32 bg-[#fefaf3]">
+            <div className="container mx-auto px-6 md:px-12 max-w-7xl">
+              <h2 className="font-display text-3xl md:text-4xl uppercase mb-16 text-center text-[#000000]">
+                You Might Also Like
               </h2>
 
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 md:gap-14 pt-8">
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10">
                 {relatedProducts.map((product, index) => (
                   <ProductCard key={product.id} product={{ node: product }} index={index} />
                 ))}
