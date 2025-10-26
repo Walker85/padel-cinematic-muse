@@ -83,10 +83,10 @@ const Product = () => {
       <Header />
       <main className="bg-[#fefaf3]">
         {/* Hero Section with Cinematic Product Presentation */}
-        <section className="relative pt-[100px] pb-20 md:pb-32 min-h-screen flex items-center">
+        <section className="relative mt-[100px] pb-20 md:pb-32">
           {/* Top Gradient - Separates from Header */}
           <div 
-            className="absolute top-0 left-0 right-0 h-48 pointer-events-none z-10"
+            className="absolute top-[-100px] left-0 right-0 h-48 pointer-events-none z-10"
             style={{
               background: 'linear-gradient(to bottom, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0) 80%)'
             }}
@@ -95,58 +95,85 @@ const Product = () => {
           <div className="container mx-auto px-6 md:px-12 relative z-20">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
               {/* Left: Image Gallery */}
-              <div className="space-y-6 animate-fade-in">
+              <div className="space-y-6">
                 {/* Main Image with Vignette and Parallax */}
-                <div className="relative">
+                <div className="relative z-3">
                   <div 
-                    className="aspect-[4/5] bg-[#fefaf3] relative overflow-hidden flex items-center justify-center group"
+                    className="relative overflow-visible flex items-center justify-center group"
                     style={{
+                      maxHeight: '80vh',
                       transform: `translateY(${scrollY * 0.08}px)`,
-                      transition: 'transform 0.1s ease-out',
-                      boxShadow: '0px 40px 80px rgba(0,0,0,0.08)'
+                      transition: 'transform 0.1s ease-out'
                     }}
                   >
-                    {/* Cinematic Vignette - Reduced opacity */}
-                    <div 
-                      className="absolute inset-0 z-[5] pointer-events-none opacity-15 mix-blend-multiply"
+                    {/* Hero Image Container with Aspect Ratio */}
+                    <div className="aspect-[4/5] bg-[#fefaf3] relative overflow-hidden flex items-center justify-center w-full"
                       style={{
-                        background: 'radial-gradient(ellipse at center, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.45) 100%)'
+                        boxShadow: '0px 40px 80px rgba(0,0,0,0.08)'
                       }}
-                    ></div>
-                    
-                    {mainImage && (
-                      <img
-                        src={mainImage.url}
-                        alt={mainImage.altText || product.title}
-                        className="relative z-10 w-full h-full object-contain object-center transition-transform duration-700 ease-out group-hover:scale-103"
-                      />
-                    )}
+                    >
+                      {/* Cinematic Vignette - Reduced opacity */}
+                      <div 
+                        className="absolute inset-0 z-[5] pointer-events-none opacity-15 mix-blend-multiply"
+                        style={{
+                          background: 'radial-gradient(ellipse at center, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.45) 100%)'
+                        }}
+                      ></div>
+                      
+                      {mainImage && (
+                        <img
+                          src={mainImage.url}
+                          alt={mainImage.altText || product.title}
+                          className="relative z-10 h-full w-auto max-w-full object-contain object-center transition-transform duration-700 ease-out group-hover:scale-103"
+                        />
+                      )}
+                    </div>
                   </div>
+
+                  {/* Gradient Transition Band */}
+                  <div 
+                    className="relative z-2 -mb-10"
+                    style={{
+                      background: 'linear-gradient(to bottom, rgba(0,0,0,0) 60%, #fefaf3 100%)',
+                      height: '80px',
+                      marginTop: '-40px'
+                    }}
+                  ></div>
                 </div>
 
                 {/* Thumbnail Gallery */}
                 {thumbnails.length > 1 && (
-                  <div className="grid grid-cols-5 gap-4">
-                    {thumbnails.map((image, idx) => (
-                      <button
-                        key={idx}
-                        onClick={() => setSelectedImageIndex(idx)}
-                        className={`aspect-square bg-[#fefaf3] overflow-hidden transition-all duration-300 hover:scale-105 border-2 ${
-                          selectedImageIndex === idx 
-                            ? 'border-[#D6C2A8]' 
-                            : 'border-transparent opacity-60 hover:opacity-100 hover:border-[#D6C2A8]/40'
-                        }`}
-                        style={{
-                          boxShadow: selectedImageIndex === idx ? '0 4px 12px rgba(214,194,168,0.3)' : 'none'
-                        }}
-                      >
-                        <img
-                          src={image.url}
-                          alt={image.altText || product.title}
-                          className="w-full h-full object-contain"
-                        />
-                      </button>
-                    ))}
+                  <div 
+                    className="relative z-5 pt-10 animate-fade-in"
+                    style={{
+                      animationDelay: '150ms'
+                    }}
+                  >
+                    <div className="flex gap-4 justify-center flex-wrap md:justify-start max-md:overflow-x-auto max-md:flex-nowrap max-md:scroll-snap-type-x-mandatory">
+                      {thumbnails.map((image, idx) => (
+                        <button
+                          key={idx}
+                          onClick={() => setSelectedImageIndex(idx)}
+                          className={`bg-[#fefaf3] overflow-hidden transition-all duration-300 hover:scale-105 border-2 flex-shrink-0 max-md:scroll-snap-align-start ${
+                            selectedImageIndex === idx 
+                              ? 'border-[#D6C2A8]' 
+                              : 'border-transparent opacity-60 hover:opacity-100 hover:border-[#D6C2A8]/40'
+                          }`}
+                          style={{
+                            width: '100px',
+                            height: 'auto',
+                            aspectRatio: '1/1',
+                            boxShadow: selectedImageIndex === idx ? '0 4px 12px rgba(214,194,168,0.3)' : 'none'
+                          }}
+                        >
+                          <img
+                            src={image.url}
+                            alt={image.altText || product.title}
+                            className="w-full h-full object-contain transition-transform duration-300"
+                          />
+                        </button>
+                      ))}
+                    </div>
                   </div>
                 )}
               </div>
