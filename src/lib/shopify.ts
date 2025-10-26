@@ -187,3 +187,111 @@ export async function getProductByHandle(handle: string) {
   const data = await storefrontApiRequest(PRODUCT_BY_HANDLE_QUERY, { handle });
   return data?.data?.productByHandle;
 }
+
+// Event metaobject interface
+export interface ShopifyEvent {
+  id: string;
+  handle: string;
+  title: string;
+  date: string;
+  location: string;
+  description: string;
+  image: string;
+  type: 'Tournament' | 'Training' | 'Social';
+  status: 'upcoming' | 'past';
+  registerUrl?: string;
+  featured: boolean;
+}
+
+const EVENTS_QUERY = `
+  query GetEvents($first: Int!) {
+    metaobjects(type: "event", first: $first) {
+      edges {
+        node {
+          id
+          handle
+          fields {
+            key
+            value
+            reference {
+              ... on MediaImage {
+                image {
+                  url
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+const EVENT_BY_HANDLE_QUERY = `
+  query GetEventByHandle($handle: String!) {
+    metaobject(handle: { type: "event", handle: $handle }) {
+      id
+      handle
+      fields {
+        key
+        value
+        reference {
+          ... on MediaImage {
+            image {
+              url
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+// Helper to parse metaobject fields into event object
+function parseEventMetaobject(node: any): ShopifyEvent {
+  const fields = node.fields.reduce((acc: any, field: any) => {
+    if (field.key === 'image' && field.reference?.image?.url) {
+      acc[field.key] = field.reference.image.url;
+    } else {
+      acc[field.key] = field.value;
+    }
+    return acc;
+  }, {});
+
+  return {
+    id: node.id,
+    handle: node.handle,
+    title: fields.title || '',
+    date: fields.date || '',
+    location: fields.location || '',
+    description: fields.description || '',
+    image: fields.image || '/images/soho-house-hero-new.png',
+    type: fields.type || 'Social',
+    status: fields.status || 'upcoming',
+    registerUrl: fields.register_url,
+    featured: fields.featured === 'true' || fields.featured === true,
+  };
+}
+
+export async function getEvents(first: number = 50): Promise<ShopifyEvent[]> {
+  try {
+    const data = await storefrontApiRequest(EVENTS_QUERY, { first });
+    const edges = data?.data?.metaobjects?.edges || [];
+    return edges.map((edge: any) => parseEventMetaobject(edge.node));
+  } catch (error) {
+    console.error('Error fetching events from Shopify:', error);
+    return [];
+  }
+}
+
+export async function getEventByHandle(handle: string): Promise<ShopifyEvent | null> {
+  try {
+    const data = await storefrontApiRequest(EVENT_BY_HANDLE_QUERY, { handle });
+    const metaobject = data?.data?.metaobject;
+    if (!metaobject) return null;
+    return parseEventMetaobject(metaobject);
+  } catch (error) {
+    console.error('Error fetching event by handle:', error);
+    return null;
+  }
+}

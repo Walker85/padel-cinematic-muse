@@ -1,6 +1,6 @@
 {% comment %}
   Padel Ready Event Card Snippet
-  Individual event card with hover effects
+  Individual event card with hover effects and metaobject support
 {% endcomment %}
 
 <article
@@ -10,20 +10,39 @@
 >
   <!-- Image -->
   <div class="aspect-video overflow-hidden">
-    <img
-      src="{{ image | img_url: '800x' }}"
-      alt="{{ title }}"
-      class="w-full h-full object-cover pr-card-image"
-      loading="lazy"
-    />
+    {% if image.url %}
+      <img
+        src="{{ image.url }}"
+        alt="{{ title }}"
+        class="w-full h-full object-cover pr-card-image"
+        loading="lazy"
+      />
+    {% elsif image %}
+      <img
+        src="{{ image | img_url: '800x' }}"
+        alt="{{ title }}"
+        class="w-full h-full object-cover pr-card-image"
+        loading="lazy"
+      />
+    {% else %}
+      <img
+        src="{{ 'placeholder.svg' | asset_url }}"
+        alt="{{ title }}"
+        class="w-full h-full object-cover pr-card-image"
+        loading="lazy"
+      />
+    {% endif %}
   </div>
 
   <!-- Content -->
-  <div class="p-6">
+  <div class="p-6 flex flex-col">
     <div class="flex items-center justify-between mb-3">
       <span class="pr-event-badge pr-badge-{{ type | downcase }}">
         {{ type }}
       </span>
+      {% if featured %}
+        <span class="pr-event-badge pr-badge-featured">Featured</span>
+      {% endif %}
     </div>
 
     <h3 class="pr-card-title font-display text-2xl mb-3">
@@ -42,13 +61,19 @@
       {{ description }}
     </p>
 
-    <button class="pr-card-btn w-full">
-      {% if status == 'upcoming' %}
+    {% if status == 'upcoming' and register_url != blank %}
+      <a href="{{ register_url }}" target="_blank" rel="noopener noreferrer" class="pr-card-btn w-full text-center">
         Register
-      {% else %}
-        View Recap
-      {% endif %}
-    </button>
+      </a>
+    {% elsif handle %}
+      <a href="/pages/events/{{ handle }}" class="pr-card-btn w-full text-center">
+        {% if status == 'upcoming' %}Learn More{% else %}View Recap{% endif %}
+      </a>
+    {% else %}
+      <button class="pr-card-btn w-full" disabled>
+        {% if status == 'upcoming' %}Coming Soon{% else %}View Recap{% endif %}
+      </button>
+    {% endif %}
   </div>
 </article>
 
@@ -109,6 +134,11 @@
     background-color: #fefaf3;
     color: #000000;
     border: 1px solid #D6C2A8;
+  }
+
+  .pr-badge-featured {
+    background-color: #D6C2A8;
+    color: #fefaf3;
   }
 
   .pr-card-btn {

@@ -1,14 +1,15 @@
 import { Helmet } from "react-helmet-async";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import EventsHero from "@/components/sections/EventsHero";
 import EventsGrid from "@/components/sections/EventsGrid";
 import EventFilter from "@/components/ui/EventFilter";
 import { Newsletter } from "@/components/Newsletter";
+import { getEvents, type ShopifyEvent } from "@/lib/shopify";
 
 export interface Event {
-  id: number;
+  id: string | number;
   title: string;
   date: string;
   location: string;
@@ -16,6 +17,9 @@ export interface Event {
   description: string;
   image: string;
   status: "upcoming" | "past";
+  handle?: string;
+  registerUrl?: string;
+  featured?: boolean;
 }
 
 const events: Event[] = [
@@ -73,7 +77,38 @@ const events: Event[] = [
 
 const Events = () => {
   const [filter, setFilter] = useState<"upcoming" | "past">("upcoming");
-  const filteredEvents = events.filter((event) => event.status === filter);
+  const [shopifyEvents, setShopifyEvents] = useState<Event[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchEvents = async () => {
+      setIsLoading(true);
+      const fetchedEvents = await getEvents();
+      
+      // Convert ShopifyEvent to Event format
+      const formattedEvents: Event[] = fetchedEvents.map((event: ShopifyEvent) => ({
+        id: event.id,
+        title: event.title,
+        date: event.date,
+        location: event.location,
+        type: event.type,
+        description: event.description,
+        image: event.image,
+        status: event.status,
+        handle: event.handle,
+        registerUrl: event.registerUrl,
+        featured: event.featured,
+      }));
+
+      // If no Shopify events, fallback to mock data
+      setShopifyEvents(formattedEvents.length > 0 ? formattedEvents : events);
+      setIsLoading(false);
+    };
+
+    fetchEvents();
+  }, []);
+
+  const filteredEvents = shopifyEvents.filter((event) => event.status === filter);
 
   return (
     <>
@@ -99,7 +134,17 @@ const Events = () => {
           <section className="py-16 md:py-24">
             <div className="container mx-auto px-4">
               <EventFilter filter={filter} setFilter={setFilter} />
-              <EventsGrid events={filteredEvents} />
+              {isLoading ? (
+                <div className="text-center py-12">
+                  <p className="font-body text-muted-foreground">Loading events...</p>
+                </div>
+              ) : filteredEvents.length === 0 ? (
+                <div className="text-center py-12">
+                  <p className="font-body text-muted-foreground">No {filter} events found.</p>
+                </div>
+              ) : (
+                <EventsGrid events={filteredEvents} />
+              )}
             </div>
           </section>
 

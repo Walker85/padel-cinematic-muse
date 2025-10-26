@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import type { Event } from "@/pages/Events";
@@ -30,11 +31,11 @@ const EventCard = ({ event }: EventCardProps) => {
     }
   };
 
-  return (
-    <motion.article
-      variants={cardVariants}
-      className="group bg-card rounded-lg overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-2"
-    >
+  const eventDetailUrl = event.handle ? `/events/${event.handle}` : '#';
+  const shouldLink = event.handle || event.registerUrl;
+
+  const cardContent = (
+    <>
       {/* Image */}
       <div className="aspect-video overflow-hidden">
         <img
@@ -45,9 +46,12 @@ const EventCard = ({ event }: EventCardProps) => {
       </div>
 
       {/* Content */}
-      <div className="p-6">
+      <div className="p-6 flex flex-col h-full">
         <div className="flex items-center justify-between mb-3">
           <Badge className={getTypeColor(event.type)}>{event.type}</Badge>
+          {event.featured && (
+            <Badge className="bg-primary text-secondary">Featured</Badge>
+          )}
         </div>
 
         <h3 className="font-display text-2xl mb-3 text-foreground group-hover:text-[#D6C2A8] transition-colors duration-300">
@@ -62,15 +66,47 @@ const EventCard = ({ event }: EventCardProps) => {
           {event.location}
         </p>
 
-        <p className="text-foreground/80 mb-6 line-clamp-2">{event.description}</p>
+        <p className="text-foreground/80 mb-6 line-clamp-2 flex-grow">{event.description}</p>
 
-        <Button
-          variant={event.status === "upcoming" ? "secondary" : "outline"}
-          className="w-full"
-        >
-          {event.status === "upcoming" ? "Register" : "View Recap"}
-        </Button>
+        {event.status === "upcoming" && event.registerUrl ? (
+          <Button
+            variant="secondary"
+            className="w-full"
+            asChild
+          >
+            <a href={event.registerUrl} target="_blank" rel="noopener noreferrer">
+              Register
+            </a>
+          </Button>
+        ) : event.handle ? (
+          <Button
+            variant={event.status === "upcoming" ? "secondary" : "outline"}
+            className="w-full"
+            asChild
+          >
+            <Link to={eventDetailUrl}>
+              {event.status === "upcoming" ? "Learn More" : "View Recap"}
+            </Link>
+          </Button>
+        ) : (
+          <Button
+            variant={event.status === "upcoming" ? "secondary" : "outline"}
+            className="w-full"
+            disabled
+          >
+            {event.status === "upcoming" ? "Coming Soon" : "View Recap"}
+          </Button>
+        )}
       </div>
+    </>
+  );
+
+  return (
+    <motion.article
+      variants={cardVariants}
+      className="group bg-card rounded-lg overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-2 flex flex-col"
+    >
+      {cardContent}
     </motion.article>
   );
 };

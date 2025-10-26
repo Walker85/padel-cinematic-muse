@@ -28,17 +28,39 @@
 
     <!-- Events Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pr-events-grid">
-      {% for block in section.blocks %}
-        {% render 'pr-event-card',
-          title: block.settings.title,
-          date: block.settings.date,
-          location: block.settings.location,
-          type: block.settings.type,
-          description: block.settings.description,
-          image: block.settings.image,
-          status: block.settings.status
-        %}
-      {% endfor %}
+      {% comment %} Try to load events from metaobjects first {% endcomment %}
+      {% assign events = shop.metaobjects.event.values %}
+      
+      {% if events.size > 0 %}
+        {% comment %} Render events from metaobjects {% endcomment %}
+        {% for event in events %}
+          {% render 'pr-event-card',
+            title: event.title.value,
+            date: event.date.value,
+            location: event.location.value,
+            type: event.type.value,
+            description: event.description.value,
+            image: event.image.value,
+            status: event.status.value,
+            register_url: event.register_url.value,
+            featured: event.featured.value,
+            handle: event.system.handle
+          %}
+        {% endfor %}
+      {% else %}
+        {% comment %} Fallback to section blocks if no metaobjects {% endcomment %}
+        {% for block in section.blocks %}
+          {% render 'pr-event-card',
+            title: block.settings.title,
+            date: block.settings.date,
+            location: block.settings.location,
+            type: block.settings.type,
+            description: block.settings.description,
+            image: block.settings.image,
+            status: block.settings.status
+          %}
+        {% endfor %}
+      {% endif %}
     </div>
   </div>
 </section>
