@@ -21,18 +21,18 @@ const EventCard = ({ event }: EventCardProps) => {
   const getTypeColor = (type: string) => {
     switch (type) {
       case "Tournament":
-        return "bg-[#D6C2A8] text-primary hover:bg-[#D6C2A8]/90";
+        return "bg-[#D6C2A8]/90 text-[#1A1A1A] shadow-sm";
       case "Training":
-        return "bg-primary text-secondary hover:bg-primary/90";
+        return "bg-[#D6C2A8]/90 text-[#1A1A1A] shadow-sm";
       case "Social":
-        return "bg-secondary text-primary hover:bg-secondary/90";
+        return "bg-[#D6C2A8]/90 text-[#1A1A1A] shadow-sm";
       default:
-        return "bg-muted text-muted-foreground";
+        return "bg-[#D6C2A8]/90 text-[#1A1A1A] shadow-sm";
     }
   };
 
   const eventDetailUrl = event.handle ? `/events/${event.handle}` : '#';
-  const shouldLink = event.handle || event.registerUrl;
+  const hasLink = event.handle || event.registerUrl;
 
   const cardContent = (
     <>
@@ -46,27 +46,29 @@ const EventCard = ({ event }: EventCardProps) => {
       </div>
 
       {/* Content */}
-      <div className="p-6 flex flex-col h-full">
-        <div className="flex items-center justify-between mb-3">
-          <Badge className={getTypeColor(event.type)}>{event.type}</Badge>
-          {event.featured && (
-            <Badge className="bg-primary text-secondary">Featured</Badge>
-          )}
+      <div className="p-6 flex flex-col justify-between flex-grow">
+        <div>
+          <div className="flex items-center gap-2 mb-3 flex-wrap">
+            <Badge className={getTypeColor(event.type)}>{event.type}</Badge>
+            {event.featured && (
+              <Badge className="bg-[#D6C2A8]/90 text-[#1A1A1A] shadow-sm">Featured</Badge>
+            )}
+          </div>
+
+          <h3 className="font-display text-2xl mb-3 text-foreground group-hover:text-[#D6C2A8] transition-colors duration-300">
+            {event.title}
+          </h3>
+
+          <div className="font-body text-sm text-muted-foreground mb-2 uppercase tracking-wider">
+            <time dateTime={event.date}>{event.date}</time>
+          </div>
+
+          <p className="font-body text-sm text-muted-foreground mb-4 uppercase tracking-wider">
+            {event.location}
+          </p>
+
+          <p className="text-foreground/80 mb-6 line-clamp-2">{event.description}</p>
         </div>
-
-        <h3 className="font-display text-2xl mb-3 text-foreground group-hover:text-[#D6C2A8] transition-colors duration-300">
-          {event.title}
-        </h3>
-
-        <div className="font-body text-sm text-muted-foreground mb-2 uppercase tracking-wider">
-          <time dateTime={event.date}>{event.date}</time>
-        </div>
-
-        <p className="font-body text-sm text-muted-foreground mb-4 uppercase tracking-wider">
-          {event.location}
-        </p>
-
-        <p className="text-foreground/80 mb-6 line-clamp-2 flex-grow">{event.description}</p>
 
         {event.status === "upcoming" && event.registerUrl ? (
           <Button
@@ -74,27 +76,22 @@ const EventCard = ({ event }: EventCardProps) => {
             className="w-full"
             asChild
           >
-            <a href={event.registerUrl} target="_blank" rel="noopener noreferrer">
+            <a 
+              href={event.registerUrl} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
+            >
               Register
             </a>
-          </Button>
-        ) : event.handle ? (
-          <Button
-            variant={event.status === "upcoming" ? "secondary" : "outline"}
-            className="w-full"
-            asChild
-          >
-            <Link to={eventDetailUrl}>
-              {event.status === "upcoming" ? "Learn More" : "View Recap"}
-            </Link>
           </Button>
         ) : (
           <Button
             variant={event.status === "upcoming" ? "secondary" : "outline"}
             className="w-full"
-            disabled
+            disabled={!hasLink}
           >
-            {event.status === "upcoming" ? "Coming Soon" : "View Recap"}
+            {event.status === "upcoming" ? "Learn More" : "View Recap"}
           </Button>
         )}
       </div>
@@ -104,9 +101,17 @@ const EventCard = ({ event }: EventCardProps) => {
   return (
     <motion.article
       variants={cardVariants}
-      className="group bg-card rounded-lg overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-2 flex flex-col"
+      className="group bg-card rounded-lg overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-2 flex flex-col min-h-[420px] cursor-pointer"
     >
-      {cardContent}
+      {hasLink && event.handle ? (
+        <Link to={eventDetailUrl} className="flex flex-col h-full">
+          {cardContent}
+        </Link>
+      ) : (
+        <div className="flex flex-col h-full cursor-default">
+          {cardContent}
+        </div>
+      )}
     </motion.article>
   );
 };
