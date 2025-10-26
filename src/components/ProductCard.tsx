@@ -1,24 +1,27 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Button } from "./ui/button";
 import { ShopifyProduct } from "@/lib/shopify";
 import { useCartStore } from "@/stores/cartStore";
 import { toast } from "sonner";
-import { ShoppingCart } from "lucide-react";
 
 interface ProductCardProps {
   product: ShopifyProduct;
+  index: number;
 }
 
-export const ProductCard = ({ product }: ProductCardProps) => {
+export const ProductCard = ({ product, index }: ProductCardProps) => {
+  const [isHovered, setIsHovered] = useState(false);
   const addItem = useCartStore(state => state.addItem);
   const { node } = product;
   
   const firstVariant = node.variants.edges[0]?.node;
-  const image = node.images.edges[0]?.node;
+  const primaryImage = node.images.edges[0]?.node;
+  const secondaryImage = node.images.edges[1]?.node;
   const price = parseFloat(node.priceRange.minVariantPrice.amount);
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
+    e.stopPropagation();
     
     if (!firstVariant) {
       toast.error("This product is unavailable");
@@ -40,56 +43,67 @@ export const ProductCard = ({ product }: ProductCardProps) => {
     addItem(cartItem);
     toast.success("Added to cart", {
       description: node.title,
+      position: "top-center",
     });
   };
 
   return (
     <Link 
       to={`/product/${node.handle}`}
-      className="group block bg-background/95 backdrop-blur-sm rounded-2xl overflow-hidden transition-all duration-300 ease-out hover:-translate-y-1 shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.12)] border border-border/50 hover:border-primary/40"
+      className="group block"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      style={{
+        animation: `fadeIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards`,
+        animationDelay: `${index * 0.1}s`,
+        opacity: 0
+      }}
     >
-      <div className="aspect-[3/4] bg-muted/20 relative overflow-hidden">
-        {image && (
-          <img
-            src={image.url}
-            alt={image.altText || node.title}
-            className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
-          />
-        )}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-        
-        {/* View Details Button - Fades in on hover */}
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 ease-out transform translate-y-2 group-hover:translate-y-0">
-          <div className="px-6 py-2 border border-primary/80 rounded-full text-sm font-display tracking-wide text-primary bg-background/90 backdrop-blur-sm">
-            VIEW DETAILS
-          </div>
+      <div className="bg-background border border-transparent hover:border-primary hover:bg-secondary transition-all duration-400 ease-[cubic-bezier(0.4,0,0.2,1)] hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(0,0,0,0.2)]">
+        {/* Image Container - 4:5 ratio */}
+        <div className="aspect-[4/5] bg-muted/10 relative overflow-hidden">
+          {primaryImage && (
+            <>
+              <img
+                src={primaryImage.url}
+                alt={primaryImage.altText || node.title}
+                className={`w-full h-full object-cover transition-all duration-500 ease-out ${
+                  secondaryImage 
+                    ? isHovered ? 'opacity-0' : 'opacity-100'
+                    : isHovered ? 'scale-105' : 'scale-100'
+                }`}
+              />
+              {secondaryImage && (
+                <img
+                  src={secondaryImage.url}
+                  alt={secondaryImage.altText || node.title}
+                  className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ease-out ${
+                    isHovered ? 'opacity-100' : 'opacity-0'
+                  }`}
+                />
+              )}
+            </>
+          )}
         </div>
-      </div>
-      
-      <div className="p-6 space-y-3">
-        <h3 className="font-display text-xl tracking-tight group-hover:text-primary transition-colors duration-300">
-          {node.title}
-        </h3>
         
-        {node.description && (
-          <p className="text-sm text-muted-foreground/80 line-clamp-2 font-light leading-relaxed group-hover:text-muted-foreground transition-colors duration-300">
-            {node.description}
-          </p>
-        )}
-        
-        <div className="flex items-center justify-between pt-2">
-          <span className="text-2xl font-display tracking-tight">
-            {node.priceRange.minVariantPrice.currencyCode} {price.toFixed(2)}
-          </span>
+        {/* Content */}
+        <div className="p-5 md:p-6 space-y-3">
+          <h3 className="font-display text-sm md:text-base uppercase tracking-wide text-muted-foreground group-hover:text-primary transition-colors duration-300">
+            {node.title}
+          </h3>
           
-          <Button
-            onClick={handleAddToCart}
-            size="sm"
-            variant="ghost"
-            className="opacity-70 group-hover:opacity-100 transition-opacity duration-300"
-          >
-            <ShoppingCart className="w-4 h-4" />
-          </Button>
+          <div className="flex items-center justify-between">
+            <span className="font-body text-lg text-primary">
+              {node.priceRange.minVariantPrice.currencyCode} {price.toFixed(2)}
+            </span>
+            
+            <button
+              onClick={handleAddToCart}
+              className="font-body text-sm text-primary hover:bg-primary hover:text-secondary px-4 py-2 transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]"
+            >
+              Add to Cart
+            </button>
+          </div>
         </div>
       </div>
     </Link>
