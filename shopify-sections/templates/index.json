@@ -1,0 +1,58 @@
+{
+  "sections": {
+    "pr_hero": {
+      "type": "pr-hero",
+      "settings": {
+        "heading": "PADEL, PERFECTED.",
+        "subheading": "Precision. Purpose. Padel Ready.",
+        "cta_text": "EXPLORE COLLECTION"
+      }
+    },
+    "pr_craft": {
+      "type": "pr-craft",
+      "settings": {}
+    },
+    "pr_product_grid": {
+      "type": "pr-product-grid",
+      "settings": {
+        "heading": "SHOP OUR BEST SELLERS",
+        "products_to_show": 8
+      }
+    },
+    "pr_partners": {
+      "type": "pr-partners",
+      "settings": {}
+    },
+    "pr_collaborations": {
+      "type": "pr-collaborations",
+      "settings": {}
+    },
+    "pr_press": {
+      "type": "pr-press",
+      "settings": {}
+    },
+    "pr_brand_story": {
+      "type": "pr-brand-story",
+      "settings": {}
+    },
+    "pr_cta": {
+      "type": "pr-cta",
+      "settings": {}
+    },
+    "pr_newsletter": {
+      "type": "pr-newsletter",
+      "settings": {}
+    }
+  },
+  "order": [
+    "pr_hero",
+    "pr_craft",
+    "pr_product_grid",
+    "pr_partners",
+    "pr_collaborations",
+    "pr_press",
+    "pr_brand_story",
+    "pr_cta",
+    "pr_newsletter"
+  ]
+}

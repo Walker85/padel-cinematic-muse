@@ -42,8 +42,8 @@ export const CartDrawer = ({ isDarkMode = false }: CartDrawerProps) => {
     }
   };
 
-  const iconColor = isDarkMode ? 'hsl(var(--primary))' : 'hsl(var(--foreground))';
-  const badgeClass = isDarkMode ? 'bg-primary text-foreground' : 'bg-foreground text-background';
+  const iconColor = isDarkMode ? '#D6C2A8' : '#000000';
+  const badgeClass = isDarkMode ? 'bg-[#D6C2A8] text-[#000000]' : 'bg-[#000000] text-[#FEFAF3]';
 
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>

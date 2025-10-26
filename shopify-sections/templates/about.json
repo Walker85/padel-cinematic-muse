@@ -1,0 +1,32 @@
+{
+  "sections": {
+    "pr_about_hero": {
+      "type": "pr-about-hero",
+      "settings": {
+        "heading": "By Creatives, For Creatives",
+        "description_1": "Founded in Somerset by designers and players, Padel Ready was built around precision, simplicity, and creative balance. Every product embodies our belief that design and performance should feel effortless together.",
+        "description_2": "We create tools for those who value detail and calm. The result is a collection where refinement meets rhythm, made for both the court and the creative."
+      }
+    },
+    "pr_about_collaboration": {
+      "type": "pr-about-collaboration",
+      "settings": {
+        "heading": "Padel Ready × Babington House",
+        "subtitle": "Where design, sport, and community converge."
+      }
+    },
+    "pr_about_cta": {
+      "type": "pr-about-cta",
+      "settings": {
+        "heading": "Where the Game Evolves",
+        "description": "We build for those shaping the next chapter of the sport. Every collection refines the dialogue between design and performance.",
+        "cta_text": "Explore the Collection"
+      }
+    }
+  },
+  "order": [
+    "pr_about_hero",
+    "pr_about_collaboration",
+    "pr_about_cta"
+  ]
+}

@@ -5,7 +5,7 @@ export const ProductGrid = () => {
   const products = getAllProducts();
 
   return (
-    <section id="products" className="relative py-20 md:py-32 bg-[#fefaf3]">
+    <section id="products" className="relative py-20 md:py-32 bg-background">
       {/* Subtle gold divider line */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent"></div>
       

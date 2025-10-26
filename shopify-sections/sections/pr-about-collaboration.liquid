@@ -1,0 +1,76 @@
+{% comment %}
+  Padel Ready About Collaboration Section
+  Babington House collaboration section
+{% endcomment %}
+
+<section class="relative h-[85vh] md:h-[90vh] lg:h-[100vh] flex items-center justify-center text-center overflow-hidden bg-cover bg-center md:bg-[position:50%_30%] pr-about-collaboration" data-nav-theme="dark" style="background-image: url('{{ section.settings.background_image | img_url: '2048x' }}'); background-attachment: fixed;">
+  <!-- Accessibility image for SEO -->
+  <img 
+    src="{{ section.settings.background_image | img_url: '2048x' }}" 
+    alt="{{ section.settings.background_image.alt | default: 'Padel courts at Babington House, Somerset' }}" 
+    class="hidden" 
+  />
+  
+  <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/70 to-black/90"></div>
+  
+  <div class="relative z-10 px-4">
+    <h1 class="text-4xl sm:text-5xl md:text-7xl font-display font-extrabold tracking-tight leading-tight text-primary uppercase pr-collaboration-title">
+      {{ section.settings.heading | default: "Padel Ready × Babington House" }}
+    </h1>
+    
+    <p class="mt-6 text-base md:text-lg lg:text-xl text-white/70 pr-collaboration-subtitle">
+      {{ section.settings.subtitle | default: "Where design, sport, and community converge." }}
+    </p>
+  </div>
+</section>
+
+<style>
+  .pr-collaboration-title {
+    animation: pr-fade-up 1.2s ease-out both;
+  }
+
+  .pr-collaboration-subtitle {
+    animation: pr-fade-up 1.2s ease-out 0.3s both;
+  }
+
+  @keyframes pr-fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "PR About Collaboration",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Padel Ready × Babington House"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Where design, sport, and community converge."
+    }
+  ],
+  "presets": [
+    {
+      "name": "PR About Collaboration"
+    }
+  ]
+}
+{% endschema %}

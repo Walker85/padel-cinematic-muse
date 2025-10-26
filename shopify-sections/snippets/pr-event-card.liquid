@@ -3,6 +3,10 @@
   Individual event card with hover effects and metaobject support
 {% endcomment %}
 
+{% stylesheet %}
+  {{ 'pr-cards.css' | asset_url | stylesheet_tag }}
+{% endstylesheet %}
+
 {% assign card_url = '' %}
 {% if handle %}
   {% assign card_url = '/pages/events/' | append: handle %}
@@ -87,9 +91,6 @@
 {% if card_url != blank %}
 </a>
 {% endif %}
-
-<style>
-  .pr-event-card-wrapper {
     display: flex;
     flex-direction: column;
     text-decoration: none;
@@ -223,4 +224,3 @@
   .pr-card-btn-outline:hover {
     background-color: #f9fafb;
   }
-</style>

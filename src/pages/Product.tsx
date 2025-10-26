@@ -133,7 +133,7 @@ const Product = () => {
               </div>
 
               {/* Divider */}
-              <div className="h-px bg-border max-w-md mx-auto"></div>
+              <div className="h-px bg-[#E0DED9] max-w-md mx-auto"></div>
 
               {/* Description */}
               {product.description && (
@@ -182,7 +182,7 @@ const Product = () => {
                 <button
                   onClick={handleAddToCart}
                   disabled={!selectedVariant?.availableForSale}
-                  className="w-full font-display text-sm uppercase tracking-wider bg-secondary text-secondary-foreground hover:bg-primary hover:text-primary-foreground rounded-lg px-8 py-4 transition-all duration-350 ease-[cubic-bezier(0.4,0,0.2,1)] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                  className="w-full font-display text-sm uppercase tracking-wider bg-foreground text-background hover:bg-primary hover:text-foreground rounded-lg px-8 py-4 transition-all duration-350 ease-[cubic-bezier(0.4,0,0.2,1)] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                 >
                   <ShoppingCart className="w-4 h-4" />
                   {selectedVariant?.availableForSale ? 'Add to Cart' : 'Out of Stock'}
@@ -197,7 +197,7 @@ const Product = () => {
                       <button
                         key={idx}
                         onClick={() => setSelectedImageIndex(idx)}
-                        className={`flex-shrink-0 bg-card border-2 overflow-hidden rounded-lg transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] hover:scale-105 snap-start ${
+                        className={`flex-shrink-0 bg-[#FCFBF8] border-2 overflow-hidden rounded-lg transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] hover:scale-105 snap-start ${
                           selectedImageIndex === idx 
                             ? 'border-primary shadow-[0_4px_12px_rgba(214,194,168,0.3)]' 
                             : 'border-transparent opacity-70 hover:opacity-100 hover:border-primary/40'
@@ -239,7 +239,7 @@ const Product = () => {
               ].map((spec, idx) => (
                 <div 
                   key={idx}
-                  className="border border-border bg-card rounded-xl p-6 text-center transition-all duration-300 hover:shadow-md hover:-translate-y-1"
+                  className="border border-[#EAE6DD] bg-[#FCFBF8] rounded-xl p-6 text-center transition-all duration-300 hover:shadow-md hover:-translate-y-1"
                 >
                   <div className="font-display text-xs uppercase tracking-wider text-primary mb-2">
                     {spec.label}
@@ -255,7 +255,7 @@ const Product = () => {
 
 
         {/* The Story Section */}
-        <section className="py-24 md:py-32 bg-card">
+        <section className="py-24 md:py-32 bg-[#ffffff]">
           <div className="container mx-auto px-6 md:px-12 max-w-4xl">
             <div className="text-center space-y-8 animate-fade-in" style={{ animationDelay: '300ms' }}>
               <p className="font-body text-[1.3rem] md:text-[1.5rem] leading-relaxed text-muted-foreground">

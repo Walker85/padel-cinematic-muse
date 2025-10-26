@@ -1,0 +1,81 @@
+{% comment %}
+  Padel Ready Product Card Snippet
+  Reusable product card component
+{% endcomment %}
+
+{% stylesheet %}
+  {{ 'pr-cards.css' | asset_url | stylesheet_tag }}
+{% endstylesheet %}
+
+{% assign product = product %}
+{% assign index = index | default: 0 %}
+
+<a href="{{ product.url }}" class="group block relative pr-product-card" style="animation: pr-fade-in 0.6s ease-out {{ index | times: 0.1 }}s both; opacity: 0;">
+  <!-- Card Container with Dark Mode Support -->
+  <div class="relative overflow-hidden border border-transparent bg-[#FEFAF3] dark:bg-black transition-all duration-[450ms] ease-[cubic-bezier(0.4,0,0.2,1)] group-hover:border-[#D6C2A8] group-hover:-translate-y-1">
+    
+    <!-- Optional Tag -->
+    {% if product.tags contains 'new' %}
+      <div class="absolute top-3 left-3 z-10 px-3 py-1 bg-black/40 dark:bg-white/10 backdrop-blur-sm rounded-full">
+        <span class="font-display text-[0.7rem] uppercase tracking-wider text-[#D6C2A8]">
+          NEW
+        </span>
+      </div>
+    {% elsif product.tags contains 'limited' %}
+      <div class="absolute top-3 left-3 z-10 px-3 py-1 bg-black/40 dark:bg-white/10 backdrop-blur-sm rounded-full">
+        <span class="font-display text-[0.7rem] uppercase tracking-wider text-[#D6C2A8]">
+          LIMITED
+        </span>
+      </div>
+    {% endif %}
+
+    <!-- Image Container - 4:5 ratio, Clean & Evenly Lit -->
+    <div class="aspect-[4/5] bg-[#FEFAF3] dark:bg-[#000000] relative overflow-hidden flex items-center justify-center">
+      <!-- Hover Gradient Overlay -->
+      <div class="absolute inset-0 bg-[rgba(214,194,168,0.08)] dark:bg-[rgba(214,194,168,0.15)] z-20 transition-opacity duration-[450ms] ease-[cubic-bezier(0.4,0,0.2,1)] group-hover:opacity-100 opacity-0"></div>
+      
+      {% if product.featured_image %}
+        <img
+          src="{{ product.featured_image | img_url: '600x750' }}"
+          alt="{{ product.featured_image.alt | default: product.title }}"
+          class="relative z-10 w-full h-full object-contain object-center transition-all duration-[450ms] ease-[cubic-bezier(0.4,0,0.2,1)] group-hover:scale-105"
+        />
+      {% endif %}
+    </div>
+    
+    <!-- Content - Left Aligned with Hover Animation -->
+    <div class="px-5 py-6 space-y-3 transition-transform duration-[450ms] ease-[cubic-bezier(0.4,0,0.2,1)] group-hover:-translate-y-1">
+      <!-- Product Title - Mollen, Left Aligned -->
+      <h3 class="font-display text-sm md:text-base uppercase tracking-[0.03em] text-[#3C3C3C] dark:text-[#FEFAF3] transition-colors duration-300">
+        {{ product.title }}
+      </h3>
+      
+      <!-- Optional Subtext -->
+      <p class="font-body text-xs text-[#3C3C3C]/60 dark:text-[#FEFAF3]/60 leading-relaxed">
+        Premium Carbon Fiber
+      </p>
+      
+      <!-- Price - SA Triumph, Gold -->
+      <div class="font-body text-lg font-medium text-[#D6C2A8]">
+        {{ product.price | money }}
+      </div>
+      
+      <!-- CTA Button - Appears on Hover -->
+      <div class="pt-2 transition-all duration-[450ms] ease-[cubic-bezier(0.4,0,0.2,1)] group-hover:opacity-100 group-hover:translate-y-0 opacity-0 translate-y-2">
+        <span class="w-full font-display text-xs uppercase tracking-wider py-3 border border-[#D6C2A8] text-[#D6C2A8] bg-transparent hover:bg-[#D6C2A8] hover:text-black transition-all duration-300 inline-block text-center">
+          View Details
+        </span>
+      </div>
+    </div>
+  </div>
+</a>
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

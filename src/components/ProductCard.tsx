@@ -73,7 +73,7 @@ export const ProductCard = ({ product, index, tag }: ProductCardProps) => {
     >
       {/* Card Container with Dark Mode Support */}
       <div 
-        className="relative overflow-hidden border border-transparent bg-background dark:bg-black transition-all duration-[450ms] ease-[cubic-bezier(0.4,0,0.2,1)] group-hover:border-primary group-hover:-translate-y-1"
+                  className="relative overflow-hidden border border-transparent bg-background dark:bg-black transition-all duration-[450ms] ease-[cubic-bezier(0.4,0,0.2,1)] group-hover:border-primary group-hover:-translate-y-1"
         style={{
           boxShadow: isHovered ? '0 8px 24px rgba(0,0,0,0.08)' : '0 4px 20px rgba(0,0,0,0.04)'
         }}
@@ -91,7 +91,7 @@ export const ProductCard = ({ product, index, tag }: ProductCardProps) => {
         {/* Image Container - 4:5 ratio, Clean & Evenly Lit */}
         <div className="aspect-[4/5] bg-background dark:bg-foreground relative overflow-hidden flex items-center justify-center">
           {/* Hover Gradient Overlay */}
-          <div className={`absolute inset-0 bg-primary/8 dark:bg-primary/15 z-20 transition-opacity duration-[450ms] ease-[cubic-bezier(0.4,0,0.2,1)] ${
+          <div className={`absolute inset-0 bg-[rgba(214,194,168,0.08)] dark:bg-[rgba(214,194,168,0.15)] z-20 transition-opacity duration-[450ms] ease-[cubic-bezier(0.4,0,0.2,1)] ${
             isHovered ? 'opacity-100' : 'opacity-0'
           }`}></div>
           
@@ -145,7 +145,7 @@ export const ProductCard = ({ product, index, tag }: ProductCardProps) => {
           }`}>
             <button
               onClick={handleAddToCart}
-              className="w-full font-display text-xs uppercase tracking-wider py-3 border border-primary text-primary bg-transparent hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+              className="w-full font-display text-xs uppercase tracking-wider py-3 border border-primary text-primary bg-transparent hover:bg-primary hover:text-foreground transition-all duration-300"
             >
               View Details
             </button>
