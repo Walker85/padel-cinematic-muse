@@ -37,15 +37,19 @@ export const Header = () => {
               </Link>
             </nav>
 
-            {/* Mobile Menu Button */}
-            <button
-              onClick={toggleMobileMenu}
-              className="md:hidden p-2 hover:text-primary transition-colors"
-              aria-label="Toggle menu"
-            >
-              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
+            {/* Mobile: Hamburger + Cart */}
+            <div className="flex md:hidden items-center gap-3">
+              <CartDrawer />
+              <button
+                onClick={toggleMobileMenu}
+                className="p-2 hover:text-primary transition-colors"
+                aria-label="Toggle menu"
+              >
+                {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              </button>
+            </div>
 
+            {/* Desktop Cart */}
             <div className="hidden md:block">
               <CartDrawer />
             </div>
@@ -106,10 +110,6 @@ export const Header = () => {
         </div>
       </div>
 
-      {/* Cart - Always visible on mobile */}
-      <div className="md:hidden fixed top-5 right-4 z-50">
-        <CartDrawer />
-      </div>
     </>
   );
 };
