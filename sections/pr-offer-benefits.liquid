@@ -1,0 +1,93 @@
+{% comment %}
+  Offer Benefits Section
+  Benefits of Padel Ready products
+{% endcomment %}
+
+<section class="py-24 md:py-32 bg-background">
+  <div class="container mx-auto px-4 md:px-8">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="font-display text-4xl md:text-5xl text-center text-foreground mb-16">
+        {{ section.settings.heading | default: "Why Choose Padel Ready" }}
+      </h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {% for block in section.blocks %}
+          <div class="text-center">
+            {% if block.settings.icon != blank %}
+              <img src="{{ block.settings.icon | img_url: '100x' }}" alt="{{ block.settings.title }}" class="mx-auto mb-4">
+            {% endif %}
+            <h3 class="font-display text-xl font-bold text-foreground mb-2">{{ block.settings.title }}</h3>
+            <p class="font-body text-muted-foreground">{{ block.settings.description }}</p>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "PR Offer Benefits",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Why Choose Padel Ready"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Benefit",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Premium Quality"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Crafted with precision and premium materials"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "PR Offer Benefits",
+      "blocks": [
+        {
+          "type": "benefit",
+          "settings": {
+            "title": "Premium Quality",
+            "description": "Crafted with precision and premium materials"
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "title": "Expert Design",
+            "description": "Designed by padel professionals for optimal performance"
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "title": "Luxury Experience",
+            "description": "Elevate your game with premium gear"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
