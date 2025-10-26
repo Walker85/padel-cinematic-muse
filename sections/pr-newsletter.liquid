@@ -1,0 +1,38 @@
+{% comment %} PR Newsletter Section {% endcomment %}
+<section class="pr-newsletter-section">
+  <div class="pr-newsletter-container">
+    <div class="pr-newsletter-header">
+      <h2 class="pr-newsletter-title">Join the Inner Circle</h2>
+      <p class="pr-newsletter-subtitle">Be first to hear about limited drops and collaborations</p>
+    </div>
+    
+    <form action="/contact" method="post" class="pr-newsletter-form">
+      <input type="email" name="email" placeholder="Enter your email" required class="pr-newsletter-input">
+      <button type="submit" class="pr-newsletter-button">Subscribe</button>
+    </form>
+    
+    <p class="pr-newsletter-privacy">We respect your privacy. Unsubscribe at any time.</p>
+  </div>
+</section>
+
+<style>
+.pr-newsletter-section { padding: 8rem 0; background: #FEFAF3; border-top: 1px solid rgba(214,194,168,0.2); border-bottom: 1px solid rgba(214,194,168,0.2); }
+.pr-newsletter-container { max-width: 768px; margin: 0 auto; padding: 0 2rem; text-align: center; }
+.pr-newsletter-header { margin-bottom: 2rem; }
+.pr-newsletter-title { font-family: 'Mollen', serif; font-size: 2.5rem; font-weight: 800; color: #000; margin-bottom: 1rem; }
+@media (min-width: 768px) { .pr-newsletter-title { font-size: 3rem; } }
+@media (min-width: 1024px) { .pr-newsletter-title { font-size: 3.5rem; } }
+.pr-newsletter-subtitle { font-family: 'SA Triumph', serif; font-size: 1.125rem; color: #6b7280; }
+.pr-newsletter-form { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin-bottom: 1rem; max-width: 480px; margin-left: auto; margin-right: auto; }
+.pr-newsletter-input { flex: 1; min-width: 250px; padding: 1rem 1.5rem; border: 1px solid rgba(214,194,168,0.3); background: white; font-family: 'SA Triumph', serif; font-size: 1rem; transition: all 0.3s; }
+.pr-newsletter-input:focus { outline: none; border-color: #D6C2A8; }
+.pr-newsletter-button { padding: 1rem 2rem; background: #D6C2A8; color: #000; font-family: 'Mollen', serif; text-transform: uppercase; font-size: 0.875rem; letter-spacing: 0.05em; transition: all 0.3s; cursor: pointer; }
+.pr-newsletter-button:hover { background: rgba(214,194,168,0.9); box-shadow: 0 0 20px rgba(214,194,168,0.4); }
+.pr-newsletter-privacy { font-size: 0.75rem; color: rgba(107,114,128,0.6); }
+</style>
+
+{% schema %}
+{
+  "name": "PR Newsletter"
+}
+{% endschema %}

@@ -1,0 +1,37 @@
+{% comment %} PR Press Mentions Section {% endcomment %}
+<section class="pr-press-section">
+  <div class="pr-press-container">
+    <h3 class="pr-press-label">As Featured In</h3>
+    <div class="pr-press-grid">
+      {% for block in section.blocks %}
+        <div class="pr-press-outlet">
+          {{ block.settings.name }}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<style>
+.pr-press-section { padding: 6rem 0; background: rgba(0,0,0,0.02); border-top: 1px solid rgba(214,194,168,0.1); border-bottom: 1px solid rgba(214,194,168,0.1); }
+.pr-press-container { max-width: 1280px; margin: 0 auto; padding: 0 2rem; }
+.pr-press-label { font-family: 'Mollen', serif; font-size: 1.5rem; font-weight: 800; color: rgba(107,114,128,0.7); text-align: center; margin-bottom: 2rem; }
+.pr-press-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 3rem; }
+.pr-press-outlet { font-family: 'Mollen', serif; font-size: 0.875rem; color: #000; padding: 1rem 2rem; background: rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.05); border-radius: 0.5rem; letter-spacing: 0.05em; }
+</style>
+
+{% schema %}
+{
+  "name": "PR Press",
+  "blocks": [
+    {
+      "type": "outlet",
+      "name": "Outlet",
+      "settings": [
+        {"type": "text", "id": "name", "label": "Name", "default": "Publication Name"}
+      ]
+    }
+  ],
+  "presets": [{"name": "PR Press"}]
+}
+{% endschema %}

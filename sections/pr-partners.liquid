@@ -1,0 +1,51 @@
+{% comment %} PR Partners Section {% endcomment %}
+<section class="pr-partners-section">
+  <div class="pr-partners-container">
+    <div class="pr-partners-header">
+      <h2 class="pr-partners-title">Trusted by Leading Clubs and Partners</h2>
+      <p class="pr-partners-subtitle">Collaborating with the world's most prestigious venues and brands</p>
+    </div>
+    
+    <div class="pr-partners-grid">
+      {% for block in section.blocks %}
+        <div class="pr-partner-logo">
+          {% if block.settings.logo %}
+            <img src="{{ block.settings.logo | image_url: width: 200 }}" alt="{{ block.settings.name }}">
+          {% else %}
+            <span class="pr-partner-placeholder">{{ block.settings.name }}</span>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<style>
+.pr-partners-section { padding: 4rem 0 5rem; background: #FEFAF3; border-top: 1px solid rgba(214,194,168,0.2); }
+.pr-partners-container { max-width: 1280px; margin: 0 auto; padding: 0 2rem; }
+.pr-partners-header { text-align: center; margin-bottom: 3rem; }
+.pr-partners-title { font-family: 'Mollen', serif; font-size: 2rem; font-weight: 800; color: #000; margin-bottom: 1rem; }
+.pr-partners-subtitle { font-family: 'SA Triumph', serif; font-size: 1.125rem; color: #6b7280; }
+.pr-partners-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 3rem; align-items: center; justify-items: center; }
+.pr-partner-logo { display: flex; align-items: center; justify-content: center; filter: grayscale(100%) opacity(0.7); transition: all 0.5s; }
+.pr-partner-logo:hover { filter: grayscale(0%) opacity(1); transform: scale(1.05); }
+.pr-partner-logo img { max-height: 120px; width: auto; object-fit: contain; }
+.pr-partner-placeholder { font-family: 'Mollen', serif; font-size: 1rem; color: #9ca3af; padding: 1rem 2rem; border: 1px solid #e5e7eb; border-radius: 0.5rem; }
+</style>
+
+{% schema %}
+{
+  "name": "PR Partners",
+  "blocks": [
+    {
+      "type": "partner",
+      "name": "Partner",
+      "settings": [
+        {"type": "text", "id": "name", "label": "Name", "default": "Partner Name"},
+        {"type": "image_picker", "id": "logo", "label": "Logo"}
+      ]
+    }
+  ],
+  "presets": [{"name": "PR Partners"}]
+}
+{% endschema %}

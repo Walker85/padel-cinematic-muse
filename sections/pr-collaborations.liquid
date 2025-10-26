@@ -1,0 +1,27 @@
+{% comment %} PR Collaborations Section {% endcomment %}
+<section class="pr-collab-section">
+  <div class="pr-collab-overlay"></div>
+  <div class="pr-collab-container">
+    <h2 class="pr-collab-title">Padel Ready × Soho House</h2>
+    <p class="pr-collab-text">An exclusive collaboration blending design and performance</p>
+    <a href="/collections/all" class="pr-collab-button">Discover More</a>
+  </div>
+</section>
+
+<style>
+.pr-collab-section { position: relative; padding: 10rem 0; background: #000; overflow: hidden; }
+.pr-collab-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(214,194,168,0.05), transparent, transparent); pointer-events: none; }
+.pr-collab-container { position: relative; z-index: 10; max-width: 1024px; margin: 0 auto; padding: 0 2rem; text-align: center; }
+.pr-collab-title { font-family: 'Mollen', serif; font-size: 3rem; font-weight: 800; color: #D6C2A8; margin-bottom: 1.5rem; line-height: 1.1; }
+@media (min-width: 768px) { .pr-collab-title { font-size: 4rem; } }
+@media (min-width: 1024px) { .pr-collab-title { font-size: 5rem; } }
+.pr-collab-text { font-family: 'SA Triumph', serif; font-size: 1.25rem; color: rgba(255,255,255,0.9); max-width: 600px; margin: 0 auto 2rem; line-height: 1.6; }
+.pr-collab-button { display: inline-block; padding: 1rem 3rem; border: 1px solid #D6C2A8; color: #D6C2A8; font-family: 'Mollen', serif; text-transform: uppercase; font-size: 0.875rem; letter-spacing: 0.05em; transition: all 0.3s; }
+.pr-collab-button:hover { background: #D6C2A8; color: #000; box-shadow: 0 0 30px rgba(214,194,168,0.3); }
+</style>
+
+{% schema %}
+{
+  "name": "PR Collaborations"
+}
+{% endschema %}
