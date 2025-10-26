@@ -12,14 +12,15 @@ export default function About() {
         <title>About | Padel Ready × Babington House</title>
         <meta 
           name="description" 
-          content="Discover the story behind Padel Ready — a Somerset-born padel brand uniting minimalist design with Babington House creativity." 
+          content="Padel Ready × Babington House – where design, sport, and community converge. Crafted by creatives for creatives." 
         />
         <meta 
           name="keywords" 
           content="Padel Ready Babington House, padel rackets, premium padel brand, Somerset design, minimalist sports design, Babington House, creative sports equipment, performance padel" 
         />
         <meta property="og:title" content="Padel Ready × Babington House" />
-        <meta property="og:description" content="Where design, sport, and community converge." />
+        <meta property="og:site_name" content="Padel Ready" />
+        <meta property="og:description" content="Where design, sport, and community converge. Crafted by creatives for creatives." />
         <meta property="og:image" content="/images/soho-house-hero-new.png" />
       </Helmet>
 

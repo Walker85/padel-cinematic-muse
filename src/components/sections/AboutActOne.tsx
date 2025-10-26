@@ -1,8 +1,8 @@
 const AboutActOne = () => {
   return (
-    <section className="relative py-24 md:py-40 bg-background overflow-hidden">
-      <div className="max-w-6xl mx-auto px-6 md:px-8">
-        <h2 className="font-display text-5xl md:text-6xl mb-8 tracking-tight text-primary animate-fade-in uppercase">
+    <section className="relative pt-40 md:pt-56 pb-32 bg-background overflow-hidden">
+      <div className="max-w-5xl mx-auto px-6">
+        <h2 className="font-display text-5xl md:text-6xl mb-8 tracking-tight text-primary animate-fade-in delay-100 uppercase">
           By Creatives, For Creatives
         </h2>
         <p className="text-lg md:text-xl text-muted-foreground leading-relaxed animate-fade-in delay-200">
@@ -16,6 +16,8 @@ const AboutActOne = () => {
           collection where refinement meets rhythm, made for both the court and
           the creative.
         </p>
+        
+        <div className="w-16 h-[1px] bg-primary/40 mx-auto mt-16 animate-fade-in delay-300" />
       </div>
     </section>
   );

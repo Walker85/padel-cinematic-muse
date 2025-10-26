@@ -15,23 +15,22 @@ const AboutActThree = () => {
   };
 
   return (
-    <section className="relative bg-foreground text-center py-32 md:py-40">
-      <div className="max-w-4xl mx-auto px-6">
-        <h2 className="font-display text-5xl md:text-6xl tracking-tight text-primary animate-fade-in uppercase">
+    <section className="relative py-40 px-6 text-center bg-gradient-to-t from-black via-[#0a0a0a] to-background/0" style={{ backgroundColor: '#000000' }}>
+      <div className="max-w-4xl mx-auto">
+        <h2 className="text-5xl md:text-6xl font-display tracking-tight text-primary animate-fade-in uppercase">
           Where the Game Evolves
         </h2>
-        <p className="mt-6 text-lg md:text-xl text-background/80 leading-relaxed animate-fade-in delay-200">
+        <p className="mt-6 text-lg md:text-xl text-background/70 leading-relaxed animate-fade-in delay-200">
           We build for those shaping the next chapter of the sport. Every
           collection refines the dialogue between design and performance.
         </p>
-        <div className="mt-10 border-t border-primary/30 pt-10">
-          <Button
+        <div className="mt-12 animate-fade-in delay-300">
+          <button
             onClick={handleExploreCollection}
-            variant="ghost"
-            className="text-lg md:text-xl text-primary hover:text-background transition-colors duration-300"
+            className="text-lg md:text-xl text-primary hover:text-background transition-colors duration-300 gold-underline"
           >
             Explore the Collection
-          </Button>
+          </button>
         </div>
       </div>
     </section>
