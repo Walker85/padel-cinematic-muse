@@ -1,0 +1,155 @@
+{% comment %}
+  Padel Ready Craft Section - Engineered for Balance
+  Two-column layout with image and text
+{% endcomment %}
+
+<section class="pr-craft-section">
+  <div class="pr-craft-container">
+    <div class="pr-craft-grid">
+      <div class="pr-craft-text">
+        <h2 class="pr-craft-title">Engineered for Balance.</h2>
+        <p class="pr-craft-paragraph">
+          Every racket is refined for precision and control using carbon fibre construction. 
+          Meticulously crafted to deliver the perfect balance of power and finesse.
+        </p>
+        <p class="pr-craft-paragraph-secondary">
+          Premium materials meet expert craftsmanship. Each detail considered. 
+          Each element purposeful. Performance elevated.
+        </p>
+      </div>
+      
+      <div class="pr-craft-image">
+        {% if section.settings.craft_image %}
+          <img 
+            src="{{ section.settings.craft_image | img_url: '800x800' }}" 
+            alt="{{ section.settings.craft_image.alt | default: 'Padel Ready rackets - precision equipment' }}"
+            class="pr-craft-img"
+          />
+        {% else %}
+          <img 
+            src="{{ 'background_1.png' | asset_url }}" 
+            alt="Padel Ready rackets - precision equipment"
+            class="pr-craft-img"
+          />
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.pr-craft-section {
+  padding: 10rem 0;
+  background-color: #FEFAF3;
+  overflow: hidden;
+}
+
+.pr-craft-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.pr-craft-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 5rem;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .pr-craft-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.pr-craft-text {
+  animation: pr-fade-in 0.8s ease-out both;
+}
+
+.pr-craft-title {
+  font-family: 'Mollen', serif;
+  font-weight: 800;
+  font-size: 2.5rem;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: #000000;
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 768px) {
+  .pr-craft-title {
+    font-size: 3.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .pr-craft-title {
+    font-size: 4rem;
+  }
+}
+
+.pr-craft-paragraph {
+  font-family: 'SA Triumph', serif;
+  font-size: 1.25rem;
+  line-height: 1.7;
+  color: #6b7280;
+  font-weight: 300;
+  margin-bottom: 1.5rem;
+}
+
+.pr-craft-paragraph-secondary {
+  font-family: 'SA Triumph', serif;
+  font-size: 1.125rem;
+  line-height: 1.7;
+  color: rgba(107, 114, 128, 0.8);
+  font-weight: 300;
+}
+
+.pr-craft-image {
+  position: relative;
+  animation: pr-fade-in 0.8s ease-out 0.3s both;
+  opacity: 0;
+}
+
+.pr-craft-image .pr-craft-img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: contain;
+  transition: transform 0.7s ease-out;
+}
+
+.pr-craft-image:hover .pr-craft-img {
+  transform: scale(1.05);
+}
+
+@keyframes pr-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "PR Craft - Balanced",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "craft_image",
+      "label": "Craft Image",
+      "info": "Upload image of rackets and ball"
+    }
+  ],
+  "presets": [
+    {
+      "name": "PR Craft - Balanced"
+    }
+  ]
+}
+{% endschema %}
