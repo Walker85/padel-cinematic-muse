@@ -4,6 +4,169 @@
  */
 
 /* ==========================================
+   Font Face Declarations
+   ========================================== */
+@font-face {
+  font-family: 'Mollen';
+  src: url('Mollen-ExtraBold.woff2') format('woff2');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Mollen';
+  src: url('MollenRegular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SA Triumph';
+  src: url('SATriumphRegular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ==========================================
+   Base Styles
+   ========================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'SA Triumph', serif;
+  background-color: #FEFAF3;
+  color: #1A1A1A;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Mollen', serif;
+  font-weight: 800;
+}
+
+/* ==========================================
+   Utility Classes (Tailwind replacements)
+   ========================================== */
+.py-24 { padding-top: 6rem; padding-bottom: 6rem; }
+.py-32 { padding-top: 8rem; padding-bottom: 8rem; }
+
+@media (min-width: 768px) {
+  .md\:py-32 { padding-top: 8rem; padding-bottom: 8rem; }
+}
+
+.container {
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.max-w-6xl {
+  max-width: 72rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.grid {
+  display: grid;
+}
+
+.grid-cols-1 {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+@media (min-width: 768px) {
+  .md\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.gap-8 {
+  gap: 2rem;
+}
+
+.gap-4 {
+  gap: 1rem;
+}
+
+.font-display {
+  font-family: 'Mollen', serif;
+}
+
+.font-body {
+  font-family: 'SA Triumph', serif;
+}
+
+.text-4xl {
+  font-size: 2.25rem;
+  line-height: 1.2;
+}
+
+.text-5xl {
+  font-size: 3rem;
+  line-height: 1.2;
+}
+
+.text-foreground {
+  color: #1A1A1A;
+}
+
+.text-muted-foreground {
+  color: #6b7280;
+}
+
+.bg-background {
+  background-color: #FEFAF3;
+}
+
+.mb-16 {
+  margin-bottom: 4rem;
+}
+
+.mb-8 {
+  margin-bottom: 2rem;
+}
+
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
+
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 768px) {
+  .md\:px-8 {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+  .md\:text-5xl {
+    font-size: 3rem;
+  }
+}
+
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
+/* ==========================================
    CSS Variables / Custom Properties
    ========================================== */
 :root {
