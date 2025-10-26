@@ -1,0 +1,323 @@
+{% comment %}
+  Padel Ready Product Showcase
+  Displays products in a responsive grid
+{% endcomment %}
+
+<section class="pr-product-showcase" id="products">
+  <!-- Subtle gold divider line -->
+  <div class="pr-showcase-divider"></div>
+  
+  <div class="pr-showcase-container">
+    <!-- Section Title -->
+    <div class="pr-showcase-title-wrapper">
+      <h2 class="pr-showcase-title">
+        SHOP OUR BEST SELLERS
+        <div class="pr-showcase-underline"></div>
+      </h2>
+    </div>
+
+    <!-- Product Grid -->
+    <div class="pr-product-grid">
+      {% for product in collections.all.products limit: section.settings.products_to_show %}
+        <div class="pr-product-card-wrapper" style="animation: fadeIn 0.6s ease-out {{ forloop.index0 | times: 0.1 }}s both; opacity: 0;">
+          <a href="{{ product.url }}" class="pr-product-card">
+            <div class="pr-product-image-wrapper">
+              {% if product.featured_media %}
+                <img
+                  src="{{ product.featured_media | image_url: width: 400 }}"
+                  alt="{{ product.featured_media.alt | escape }}"
+                  class="pr-product-image"
+                />
+              {% else %}
+                <div class="pr-product-placeholder">
+                  <span>No Image</span>
+                </div>
+              {% endif %}
+              
+              <!-- Hover gradient overlay -->
+              <div class="pr-product-overlay"></div>
+            </div>
+            
+            <!-- Product Info -->
+            <div class="pr-product-info">
+              <h3 class="pr-product-name">{{ product.title }}</h3>
+              <p class="pr-product-subtitle">Premium Carbon Fiber</p>
+              <div class="pr-product-price">GBP {{ product.price | money_without_currency }}</div>
+              
+              <!-- CTA Button - Appears on Hover -->
+              <div class="pr-product-cta">
+                <button class="pr-product-button">View Details</button>
+              </div>
+            </div>
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<style>
+.pr-product-showcase {
+  position: relative;
+  padding: 5rem 0 8rem;
+  background-color: #FEFAF3;
+}
+
+.pr-showcase-divider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(214, 194, 168, 0.2), transparent);
+}
+
+.pr-showcase-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .pr-showcase-container {
+    padding: 0 3rem;
+  }
+}
+
+.pr-showcase-title-wrapper {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+@media (min-width: 768px) {
+  .pr-showcase-title-wrapper {
+    margin-bottom: 3rem;
+  }
+}
+
+.pr-showcase-title {
+  display: inline-block;
+  position: relative;
+  font-family: 'Mollen', serif;
+  font-weight: 800;
+  font-size: 2rem;
+  color: #000000;
+}
+
+@media (min-width: 768px) {
+  .pr-showcase-title {
+    font-size: 2.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .pr-showcase-title {
+    font-size: 3rem;
+  }
+}
+
+.pr-showcase-underline {
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 2px;
+  background-color: #D6C2A8;
+}
+
+.pr-product-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.5rem;
+}
+
+@media (min-width: 768px) {
+  .pr-product-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .pr-product-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.pr-product-card-wrapper {
+  opacity: 0;
+}
+
+.pr-product-card {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid transparent;
+  background-color: #FEFAF3;
+  transition: all 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+}
+
+.pr-product-card:hover {
+  border-color: #D6C2A8;
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.pr-product-image-wrapper {
+  position: relative;
+  aspect-ratio: 4/5;
+  background-color: #FEFAF3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.pr-product-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  transition: all 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.pr-product-card:hover .pr-product-image {
+  transform: scale(1.03);
+}
+
+.pr-product-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #9ca3af;
+  font-size: 0.875rem;
+}
+
+.pr-product-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(214, 194, 168, 0.08);
+  z-index: 20;
+  transition: opacity 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.pr-product-card:hover .pr-product-overlay {
+  opacity: 1;
+}
+
+.pr-product-info {
+  padding: 1.25rem 1.25rem;
+  transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.pr-product-card:hover .pr-product-info {
+  transform: translateY(-4px);
+}
+
+.pr-product-name {
+  font-family: 'Mollen', serif;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: #6b7280;
+  margin-bottom: 0.75rem;
+}
+
+@media (min-width: 768px) {
+  .pr-product-name {
+    font-size: 1rem;
+  }
+}
+
+.pr-product-subtitle {
+  font-family: 'SA Triumph', serif;
+  font-size: 0.75rem;
+  color: rgba(107, 114, 128, 0.6);
+  line-height: 1.6;
+  margin-bottom: 0.75rem;
+}
+
+.pr-product-price {
+  font-family: 'SA Triumph', serif;
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #D6C2A8;
+}
+
+.pr-product-cta {
+  padding-top: 0.5rem;
+  transition: all 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none;
+}
+
+.pr-product-card:hover .pr-product-cta {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.pr-product-button {
+  width: 100%;
+  font-family: 'Mollen', serif;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.75rem 0;
+  border: 1px solid #D6C2A8;
+  color: #D6C2A8;
+  background: transparent;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.pr-product-button:hover {
+  background-color: #D6C2A8;
+  color: #000000;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "PR Product Showcase",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Section Heading",
+      "default": "SHOP OUR BEST SELLERS"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "label": "Number of products to show",
+      "min": 4,
+      "max": 16,
+      "step": 1,
+      "default": 8
+    }
+  ],
+  "presets": [
+    {
+      "name": "PR Product Showcase"
+    }
+  ]
+}
+{% endschema %}
