@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Instagram, Youtube, Linkedin } from "lucide-react";
+import logo from "@/assets/padel-ready-logo.png";
 
 export const Footer = () => {
   return (
@@ -11,9 +12,9 @@ export const Footer = () => {
         <div className="grid md:grid-cols-4 gap-12 lg:gap-16 mb-16">
           {/* Brand Column */}
           <div className="space-y-6">
-            <h3 className="font-display text-3xl tracking-tight text-secondary-foreground">
-              PADEL READY
-            </h3>
+            <Link to="/" className="block">
+              <img src={logo} alt="Padel Ready" className="h-12 w-auto mb-4" />
+            </Link>
             <p className="text-sm text-secondary-foreground/70 font-light leading-relaxed">
               Precision. Purpose. Padel Ready.
             </p>

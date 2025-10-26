@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { CartDrawer } from "./CartDrawer";
+import logo from "@/assets/padel-ready-logo.png";
 
 export const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -19,8 +20,8 @@ export const Header = () => {
       <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-lg border-b border-border/20">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="flex items-center justify-between h-20">
-            <Link to="/" className="font-display text-2xl tracking-tight">
-              PADEL READY
+            <Link to="/" className="flex items-center">
+              <img src={logo} alt="Padel Ready" className="h-8 md:h-10 w-auto" />
             </Link>
             
             {/* Desktop Navigation */}
