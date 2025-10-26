@@ -1,9 +1,35 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
       "type": "pr-hero",
-      "settings": {}
+      "settings": {
+        "hero_image": "shopify://shop_images/hero-padel-court.jpg",
+        "heading": "PADEL, PERFECTED.",
+        "subheading": "Precision. Purpose. Padel Ready.",
+        "cta_text": "EXPLORE COLLECTION"
+      }
+    },
+    "pr_product_grid_Mtwxq9": {
+      "type": "pr-product-grid",
+      "name": "PR Product Grid",
+      "settings": {
+        "heading": "SHOP OUR BEST SELLERS",
+        "collection": "",
+        "products_to_show": 8
+      }
     }
   },
-  "order": ["main"]
+  "order": [
+    "main",
+    "pr_product_grid_Mtwxq9"
+  ]
 }
