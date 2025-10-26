@@ -104,7 +104,7 @@ export const Header = () => {
               <Link to="/about" className={navLinkClass}>
                 About
               </Link>
-              <Link to="/#events" className={navLinkClass}>
+              <Link to="/events" className={navLinkClass}>
                 Events
               </Link>
             </nav>
@@ -168,7 +168,7 @@ export const Header = () => {
               About
             </Link>
             <Link
-              to="/#events"
+              to="/events"
               onClick={closeMobileMenu}
               className={mobileLinkClass}
             >
