@@ -72,7 +72,12 @@ export const ProductCard = ({ product, index, tag }: ProductCardProps) => {
       }}
     >
       {/* Card Container with Dark Mode Support */}
-      <div className="relative overflow-hidden border border-transparent bg-[#FEFAF3] dark:bg-black transition-all duration-[450ms] ease-[cubic-bezier(0.4,0,0.2,1)] group-hover:border-[#D6C2A8] group-hover:-translate-y-1 group-hover:shadow-[0_12px_32px_rgba(0,0,0,0.15)]">
+      <div 
+        className="relative overflow-hidden border border-transparent bg-[#FEFAF3] dark:bg-black transition-all duration-[450ms] ease-[cubic-bezier(0.4,0,0.2,1)] group-hover:border-[#D6C2A8] group-hover:-translate-y-1"
+        style={{
+          boxShadow: isHovered ? '0 8px 24px rgba(0,0,0,0.08)' : '0 4px 20px rgba(0,0,0,0.04)'
+        }}
+      >
         
         {/* Optional Tag */}
         {tag && (
@@ -83,16 +88,8 @@ export const ProductCard = ({ product, index, tag }: ProductCardProps) => {
           </div>
         )}
 
-        {/* Image Container - 4:5 ratio with Cinematic Vignette */}
+        {/* Image Container - 4:5 ratio, Clean & Evenly Lit */}
         <div className="aspect-[4/5] bg-[#FEFAF3] dark:bg-[#000000] relative overflow-hidden flex items-center justify-center">
-          {/* Vignette Gradient Overlay - Behind product, above background */}
-          <div 
-            className="absolute inset-0 z-[5] pointer-events-none opacity-25 mix-blend-multiply"
-            style={{
-              background: 'radial-gradient(ellipse at center, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.6) 100%)'
-            }}
-          ></div>
-          
           {/* Hover Gradient Overlay */}
           <div className={`absolute inset-0 bg-[rgba(214,194,168,0.08)] dark:bg-[rgba(214,194,168,0.15)] z-20 transition-opacity duration-[450ms] ease-[cubic-bezier(0.4,0,0.2,1)] ${
             isHovered ? 'opacity-100' : 'opacity-0'
