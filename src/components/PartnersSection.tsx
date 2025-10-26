@@ -31,37 +31,50 @@ export const PartnersSection = () => {
   return (
     <section 
       ref={sectionRef}
-      className="py-32 bg-background border-t border-primary/20"
+      className="py-24 md:py-32 bg-background border-t border-primary/20"
     >
       <div className="container mx-auto px-4 lg:px-8">
-        <div className="text-center mb-20">
+        {/* Section Header */}
+        <div className="text-center max-w-2xl mx-auto mb-16 md:mb-20">
           <h2 className="font-display text-4xl md:text-5xl tracking-tight mb-4">
             Trusted by Leading Clubs and Partners
           </h2>
-          <p className="text-muted-foreground text-lg font-light max-w-2xl mx-auto">
+          <p className="text-muted-foreground text-lg font-light">
             Collaborating with the world's most prestigious venues and brands
           </p>
         </div>
 
-        <div className="flex flex-wrap gap-12 lg:gap-16 items-center justify-center">
+        {/* Partner Logos Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-8 md:gap-x-12 md:gap-y-10 lg:gap-x-16 lg:gap-y-12 max-w-5xl mx-auto">
           {partners.map((partner, index) => (
             <div
               key={partner.name}
-              className={`transition-all duration-700 ${
+              className={`flex items-center justify-center transition-all duration-700 motion-reduce:transition-none ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}
               style={{
-                transitionDelay: `${index * 150}ms`,
+                animationDelay: `${index * 0.1}s`,
               }}
             >
-              <div className="group relative">
-                <div className="flex items-center justify-center h-24 px-8 transition-all duration-300 grayscale hover:grayscale-0 opacity-60 hover:opacity-100">
-                  <img 
-                    src={partner.logo} 
-                    alt={`${partner.name} logo`}
-                    className="h-full w-auto object-contain"
-                  />
-                </div>
+              <div className="group relative w-full flex items-center justify-center">
+                <img 
+                  src={partner.logo} 
+                  alt={`${partner.name} logo`}
+                  loading="lazy"
+                  className="
+                    max-h-[56px] md:max-h-[72px] lg:max-h-[88px]
+                    w-auto object-contain mx-auto
+                    grayscale opacity-90
+                    hover:grayscale-0 hover:opacity-100
+                    transition-all duration-500 ease-out
+                    motion-reduce:transition-none
+                    hover:scale-[1.02]
+                    focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2
+                  "
+                  tabIndex={0}
+                  role="img"
+                  aria-label={`${partner.name} - Official Partner`}
+                />
               </div>
             </div>
           ))}
