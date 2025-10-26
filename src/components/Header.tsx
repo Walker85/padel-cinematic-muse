@@ -89,9 +89,7 @@ export const Header = () => {
                 alt="Padel Ready" 
                 className="h-8 md:h-10 w-auto transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]"
                 style={{
-                  filter: isDarkMode 
-                    ? 'brightness(0) invert(1) opacity(0.9)' 
-                    : 'brightness(0) saturate(100%) invert(85%) sepia(20%) saturate(450%) hue-rotate(350deg)'
+                  filter: 'brightness(0) saturate(100%) invert(85%) sepia(20%) saturate(450%) hue-rotate(350deg)'
                 }}
               />
             </Link>
