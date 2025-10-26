@@ -71,16 +71,16 @@ export const Header = () => {
     };
   }, [location.pathname]);
 
-  const navLinkClass = `text-sm font-medium transition-all duration-300 ${
+  const navLinkClass = `text-sm font-medium transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] ${
     isDarkMode 
       ? 'text-[#D6C2A8] hover:text-white/90' 
-      : 'text-[#000000] hover:text-[#C5A572]'
+      : 'text-[#000000] hover:text-[#D6C2A8]'
   }`;
 
-  const mobileLinkClass = `font-display text-2xl uppercase tracking-wide transition-all duration-300 py-3 ${
+  const mobileLinkClass = `font-display text-2xl uppercase tracking-wide transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] py-3 ${
     isDarkMode
       ? 'text-[#D6C2A8] hover:text-white/90'
-      : 'text-[#000000] hover:text-[#C5A572]'
+      : 'text-[#000000] hover:text-[#D6C2A8]'
   }`;
 
   const iconColor = isDarkMode ? '#D6C2A8' : '#000000';
@@ -90,14 +90,11 @@ export const Header = () => {
       <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-lg border-b border-border/20 transition-all duration-300">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="flex items-center justify-between h-20">
-            <Link to="/" className="flex items-center transition-opacity duration-300 hover:opacity-80">
+            <Link to="/" className="flex items-center transition-opacity duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] hover:opacity-80">
               <img 
                 src={logo} 
                 alt="Padel Ready" 
-                className="h-8 md:h-10 w-auto transition-all duration-300"
-                style={{
-                  filter: isDarkMode ? 'brightness(0) saturate(100%) invert(78%) sepia(14%) saturate(476%) hue-rotate(359deg) brightness(93%) contrast(87%)' : 'none'
-                }}
+                className="h-8 md:h-10 w-auto"
               />
             </Link>
             
