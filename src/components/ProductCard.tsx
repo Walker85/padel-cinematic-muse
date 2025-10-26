@@ -83,8 +83,16 @@ export const ProductCard = ({ product, index, tag }: ProductCardProps) => {
           </div>
         )}
 
-        {/* Image Container - 4:5 ratio with Hover Gradient Overlay */}
-        <div className="aspect-[4/5] bg-muted/10 relative overflow-hidden">
+        {/* Image Container - 4:5 ratio with Cinematic Vignette */}
+        <div className="aspect-[4/5] bg-[#FEFAF3] dark:bg-[#000000] relative overflow-hidden flex items-center justify-center">
+          {/* Vignette Gradient Overlay */}
+          <div 
+            className="absolute inset-0 z-[5] pointer-events-none opacity-[0.12] mix-blend-multiply dark:opacity-[0.15]"
+            style={{
+              background: 'radial-gradient(ellipse at center, rgba(0,0,0,0.08) 0%, rgba(0,0,0,0.25) 100%)'
+            }}
+          ></div>
+          
           {/* Hover Gradient Overlay */}
           <div className={`absolute inset-0 bg-[rgba(214,194,168,0.08)] dark:bg-[rgba(214,194,168,0.15)] z-10 transition-opacity duration-[450ms] ease-[cubic-bezier(0.4,0,0.2,1)] ${
             isHovered ? 'opacity-100' : 'opacity-0'
@@ -94,9 +102,9 @@ export const ProductCard = ({ product, index, tag }: ProductCardProps) => {
             <img
               src={primaryImage.url}
               alt={primaryImage.altText || node.title}
-              className={`w-full h-full object-cover transition-all duration-[450ms] ease-[cubic-bezier(0.4,0,0.2,1)] ${
+              className={`w-full h-full object-contain object-center transition-all duration-[450ms] ease-[cubic-bezier(0.4,0,0.2,1)] ${
                 isHovered && secondaryImage ? 'opacity-0' : 'opacity-100'
-              } ${isHovered ? 'scale-103' : 'scale-100'}`}
+              }`}
               style={{ transform: isHovered ? 'scale(1.03)' : 'scale(1)' }}
             />
           )}
@@ -106,7 +114,7 @@ export const ProductCard = ({ product, index, tag }: ProductCardProps) => {
             <img
               src={secondaryImage.url}
               alt={secondaryImage.altText || node.title}
-              className={`absolute inset-0 w-full h-full object-cover transition-all duration-[450ms] ease-[cubic-bezier(0.4,0,0.2,1)] ${
+              className={`absolute inset-0 w-full h-full object-contain object-center transition-all duration-[450ms] ease-[cubic-bezier(0.4,0,0.2,1)] ${
                 isHovered ? 'opacity-100' : 'opacity-0'
               }`}
               style={{ transform: isHovered ? 'scale(1.03)' : 'scale(1)' }}
