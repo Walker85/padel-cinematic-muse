@@ -4,7 +4,6 @@ import { Helmet } from "react-helmet-async";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import sohoHouseHero from "@/assets/soho-house-hero.webp";
 
 export default function About() {
   const [scrollY, setScrollY] = useState(0);
@@ -108,10 +107,9 @@ export default function About() {
         <div 
           className="absolute inset-0 bg-cover bg-center"
           style={{ 
-            backgroundImage: `url(${sohoHouseHero})`,
+            backgroundImage: `url(/images/soho-house-hero.jpg)`,
             transform: `translateY(${scrollY * 0.5}px)`,
             filter: 'brightness(0.85) saturate(1.08)',
-            objectFit: 'cover',
           }}
         />
         
