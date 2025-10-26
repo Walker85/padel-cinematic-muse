@@ -1,0 +1,70 @@
+{% comment %}
+  Padel Ready About Hero Section
+  Hero section for about page
+{% endcomment %}
+
+<section class="relative pt-40 md:pt-56 py-24 lg:py-32 bg-background overflow-hidden pr-about-hero" data-nav-theme="light">
+  <div class="max-w-5xl mx-auto px-6">
+    <h2 class="font-display text-5xl md:text-6xl mb-8 tracking-tight text-primary animate-fade-in delay-100 uppercase">
+      {{ section.settings.heading | default: "By Creatives, For Creatives" }}
+    </h2>
+    <p class="text-lg md:text-xl text-muted-foreground leading-relaxed animate-fade-in delay-200">
+      {{ section.settings.description_1 | default: "Founded in Somerset by designers and players, Padel Ready was built around precision, simplicity, and creative balance. Every product embodies our belief that design and performance should feel effortless together." }}
+    </p>
+    <p class="mt-8 text-lg md:text-xl text-muted-foreground leading-relaxed animate-fade-in delay-300">
+      {{ section.settings.description_2 | default: "We create tools for those who value detail and calm. The result is a collection where refinement meets rhythm, made for both the court and the creative." }}
+    </p>
+    
+    <div class="w-16 h-[1px] bg-primary/40 mx-auto mt-16 animate-fade-in delay-300"></div>
+  </div>
+</section>
+
+<style>
+  .pr-about-hero .animate-fade-in {
+    animation: pr-fade-in 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  .delay-100 { animation-delay: 0.1s; }
+  .delay-200 { animation-delay: 0.2s; }
+  .delay-300 { animation-delay: 0.3s; }
+
+  @keyframes pr-fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "PR About Hero",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "By Creatives, For Creatives"
+    },
+    {
+      "type": "textarea",
+      "id": "description_1",
+      "label": "First Description"
+    },
+    {
+      "type": "textarea",
+      "id": "description_2",
+      "label": "Second Description"
+    }
+  ],
+  "presets": [
+    {
+      "name": "PR About Hero"
+    }
+  ]
+}
+{% endschema %}

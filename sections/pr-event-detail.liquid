@@ -1,0 +1,112 @@
+{% comment %}
+  Padel Ready Event Detail Section
+  Renders full event page content from metafields
+{% endcomment %}
+
+{% stylesheet %}
+  {{ 'pr-theme.css' | asset_url | stylesheet_tag }}
+{% endstylesheet %}
+
+{% assign event_title = page.metafields.custom.event_title | default: page.title %}
+{% assign event_date = page.metafields.custom.event_date %}
+{% assign event_location = page.metafields.custom.event_location %}
+{% assign event_type = page.metafields.custom.event_type | default: 'Event' %}
+{% assign event_description = page.metafields.custom.event_description %}
+{% assign event_image = page.metafields.custom.event_image %}
+{% assign event_status = page.metafields.custom.event_status | default: 'upcoming' %}
+{% assign event_register_url = page.metafields.custom.event_register_url %}
+{% assign event_featured = page.metafields.custom.event_featured %}
+
+<section class="pr-event-detail">
+  <!-- Hero Section -->
+  <div class="pr-event-hero">
+    {% if event_image %}
+      <img src="{{ event_image | img_url: '1920x' }}" alt="{{ event_title }}" class="pr-hero-image">
+    {% else %}
+      <img src="{{ 'placeholder.svg' | asset_url }}" alt="{{ event_title }}" class="pr-hero-image">
+    {% endif %}
+    
+    <div class="pr-hero-overlay"></div>
+    
+    <div class="pr-hero-content">
+      <div class="pr-hero-back">
+        <a href="/pages/events" class="pr-back-button">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 12H5M12 19l-7-7 7-7"/>
+          </svg>
+          Back to Events
+        </a>
+      </div>
+      
+      <div class="pr-hero-text">
+        <span class="pr-event-type-badge">{{ event_type }}</span>
+        <h1 class="pr-event-title">{{ event_title }}</h1>
+        <div class="pr-event-meta">
+          <div class="pr-meta-item">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+              <line x1="16" y1="2" x2="16" y2="6"/>
+              <line x1="8" y1="2" x2="8" y2="6"/>
+              <line x1="3" y1="10" x2="21" y2="10"/>
+            </svg>
+            <time>{{ event_date }}</time>
+          </div>
+          <div class="pr-meta-item">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+            <span>{{ event_location }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Event Content -->
+  <div class="pr-event-content">
+    <div class="pr-event-container">
+      <!-- Status Badges -->
+      <div class="pr-event-badges-wrapper">
+        <span class="pr-status-badge pr-status-{{ event_status }}">
+          {% if event_status == 'upcoming' %}Upcoming Event{% else %}Past Event{% endif %}
+        </span>
+        {% if event_featured %}
+          <span class="pr-status-badge pr-featured-badge">Featured</span>
+        {% endif %}
+      </div>
+
+      <!-- Description -->
+      <div class="pr-event-description">
+        {{ event_description | newline_to_br }}
+      </div>
+
+      <!-- CTA Section -->
+      {% if event_status == 'upcoming' and event_register_url != blank %}
+        <div class="pr-event-cta">
+          <h2 class="pr-cta-title">Ready to Join?</h2>
+          <p class="pr-cta-text">Secure your spot at this exclusive event. Limited availability.</p>
+          <a href="{{ event_register_url }}" target="_blank" rel="noopener noreferrer" class="pr-register-button">
+            Register Now
+          </a>
+        </div>
+      {% endif %}
+
+      {% if event_status == 'past' %}
+        <div class="pr-event-cta">
+          <p class="pr-cta-text">This event has concluded. Browse our upcoming events to find your next padel experience.</p>
+          <a href="/pages/events" class="pr-browse-button">
+            View Upcoming Events
+          </a>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "PR Event Detail",
+  "settings": []
+}
+{% endschema %}

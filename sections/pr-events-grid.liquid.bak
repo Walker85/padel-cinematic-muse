@@ -1,0 +1,206 @@
+{% comment %}
+  Padel Ready Events Grid Section
+  Displays filterable event cards
+{% endcomment %}
+
+{% stylesheet %}
+  {{ 'pr-theme.css' | asset_url | stylesheet_tag }}
+  {{ 'pr-cards.css' | asset_url | stylesheet_tag }}
+{% endstylesheet %}
+
+<section class="py-16 md:py-24 pr-events-section">
+  <div class="container mx-auto px-4">
+    <!-- Event Filter -->
+    <div class="flex items-center justify-center gap-8 mb-12 pr-event-filter">
+      <button
+        class="pr-filter-btn active"
+        data-filter="upcoming"
+        style="color: #D6C2A8;"
+      >
+        Upcoming Events
+        <div class="pr-filter-underline" style="background-color: #D6C2A8;"></div>
+      </button>
+
+      <button
+        class="pr-filter-btn"
+        data-filter="past"
+        style="color: #000000;"
+      >
+        Past Events
+        <div class="pr-filter-underline" style="background-color: #D6C2A8;"></div>
+      </button>
+    </div>
+
+    <!-- Events Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pr-events-grid">
+      {% comment %} Try to load events from metaobjects first {% endcomment %}
+      {% assign events = shop.metaobjects.event.values %}
+      
+      {% if events.size > 0 %}
+        {% comment %} Render events from metaobjects {% endcomment %}
+        {% for event in events %}
+          {% render 'pr-event-card',
+            title: event.title.value,
+            date: event.date.value,
+            location: event.location.value,
+            type: event.type.value,
+            description: event.description.value,
+            image: event.image.value,
+            status: event.status.value,
+            register_url: event.register_url.value,
+            featured: event.featured.value,
+            handle: event.system.handle
+          %}
+        {% endfor %}
+      {% else %}
+        {% comment %} Fallback to section blocks if no metaobjects {% endcomment %}
+        {% for block in section.blocks %}
+          {% render 'pr-event-card',
+            title: block.settings.title,
+            date: block.settings.date,
+            location: block.settings.location,
+            type: block.settings.type,
+            description: block.settings.description,
+            image: block.settings.image,
+            status: block.settings.status
+          %}
+        {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+</section>
+    position: relative;
+    font-family: Inter, sans-serif;
+    font-size: 1.125rem;
+    letter-spacing: 0.05em;
+    transition: color 0.3s ease;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem 0;
+  }
+
+  .pr-filter-underline {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    width: 0;
+    opacity: 0.3;
+    transition: width 0.3s ease, opacity 0.3s ease;
+  }
+
+  .pr-filter-btn.active .pr-filter-underline {
+    width: 100%;
+    opacity: 1;
+  }
+
+  .pr-events-grid > * {
+    animation: pr-card-fade-in 0.5s ease-out both;
+  }
+
+  .pr-events-grid > *:nth-child(1) { animation-delay: 0.1s; }
+  .pr-events-grid > *:nth-child(2) { animation-delay: 0.2s; }
+  .pr-events-grid > *:nth-child(3) { animation-delay: 0.3s; }
+
+  @keyframes pr-card-fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
+
+<script>
+  document.querySelectorAll('.pr-filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const filter = btn.dataset.filter;
+      
+      document.querySelectorAll('.pr-filter-btn').forEach(b => {
+        b.classList.remove('active');
+        b.style.color = '#000000';
+      });
+      
+      btn.classList.add('active');
+      btn.style.color = '#D6C2A8';
+      
+      document.querySelectorAll('[data-event-status]').forEach(card => {
+        if (card.dataset.eventStatus === filter) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "PR Events Grid",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "event",
+      "name": "Event",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Event Title"
+        },
+        {
+          "type": "text",
+          "id": "date",
+          "label": "Event Date"
+        },
+        {
+          "type": "text",
+          "id": "location",
+          "label": "Location"
+        },
+        {
+          "type": "select",
+          "id": "type",
+          "label": "Event Type",
+          "options": [
+            { "value": "Tournament", "label": "Tournament" },
+            { "value": "Training", "label": "Training" },
+            { "value": "Social", "label": "Social" }
+          ],
+          "default": "Tournament"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Event Image"
+        },
+        {
+          "type": "select",
+          "id": "status",
+          "label": "Status",
+          "options": [
+            { "value": "upcoming", "label": "Upcoming" },
+            { "value": "past", "label": "Past" }
+          ],
+          "default": "upcoming"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "PR Events Grid"
+    }
+  ]
+}
+{% endschema %}

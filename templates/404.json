@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "main": {
+      "type": "pr-hero",
+      "settings": {}
+    }
+  },
+  "order": ["main"]
+}

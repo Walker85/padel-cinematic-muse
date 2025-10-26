@@ -1,0 +1,317 @@
+/**
+ * Padel Ready Theme CSS
+ * Main theme styles, animations, and component styles
+ */
+
+/* ==========================================
+   CSS Variables / Custom Properties
+   ========================================== */
+:root {
+  --pr-primary: #D6C2A8;
+  --pr-foreground: #1A1A1A;
+  --pr-background: #FEFAF3;
+  --pr-border: #e5e7eb;
+  --pr-text-muted: #6b7280;
+}
+
+/* ==========================================
+   Event Detail Styles
+   ========================================== */
+.pr-event-detail {
+  background-color: var(--pr-background);
+}
+
+/* Hero Section */
+.pr-event-hero {
+  position: relative;
+  height: 80vh;
+  overflow: hidden;
+}
+
+.pr-hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: pr-hero-zoom 1.5s ease-out;
+}
+
+@keyframes pr-hero-zoom {
+  from {
+    transform: scale(1.1);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.pr-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 50%, rgba(254,250,243,0.2) 100%);
+}
+
+.pr-hero-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2rem;
+}
+
+.pr-back-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid rgba(255,255,255,0.5);
+  border-radius: 0.5rem;
+  color: white;
+  text-decoration: none;
+  backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
+}
+
+.pr-back-button:hover {
+  background-color: rgba(255,255,255,0.1);
+  border-color: white;
+}
+
+.pr-hero-text {
+  animation: pr-fade-up 0.8s ease-out 0.5s both;
+}
+
+@keyframes pr-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.pr-event-type-badge {
+  display: inline-block;
+  padding: 0.375rem 1rem;
+  background-color: var(--pr-primary);
+  color: var(--pr-foreground);
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  margin-bottom: 1rem;
+}
+
+.pr-event-title {
+  font-family: 'Mollen', serif;
+  font-size: clamp(2rem, 5vw, 4rem);
+  line-height: 1.1;
+  color: var(--pr-primary);
+  margin: 0 0 1.5rem 0;
+  max-width: 60rem;
+}
+
+.pr-event-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  color: rgba(255,255,255,0.9);
+}
+
+.pr-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.pr-meta-item svg {
+  color: var(--pr-primary);
+}
+
+@media (min-width: 640px) {
+  .pr-event-meta {
+    flex-direction: row;
+    gap: 2rem;
+  }
+}
+
+/* Event Content */
+.pr-event-content {
+  padding: 5rem 0 8rem;
+}
+
+.pr-event-container {
+  max-width: 56rem;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.pr-event-badges-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.pr-status-badge {
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.pr-status-upcoming {
+  background-color: var(--pr-primary);
+  color: var(--pr-foreground);
+}
+
+.pr-status-past {
+  background-color: var(--pr-border);
+  color: var(--pr-text-muted);
+}
+
+.pr-featured-badge {
+  background-color: var(--pr-primary);
+  color: var(--pr-foreground);
+}
+
+.pr-event-description {
+  font-size: 1.125rem;
+  line-height: 1.8;
+  color: rgba(0,0,0,0.9);
+  margin-bottom: 4rem;
+}
+
+.pr-event-description p {
+  margin-bottom: 1.5rem;
+}
+
+/* CTA Section */
+.pr-event-cta {
+  text-align: center;
+  padding: 3rem 0;
+  border-top: 1px solid var(--pr-border);
+}
+
+.pr-cta-title {
+  font-family: 'Mollen', serif;
+  font-size: clamp(1.875rem, 3vw, 2.25rem);
+  margin-bottom: 1rem;
+  color: #000000;
+}
+
+.pr-cta-text {
+  font-size: 1.125rem;
+  color: var(--pr-text-muted);
+  margin-bottom: 2rem;
+  max-width: 42rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.pr-register-button {
+  display: inline-block;
+  padding: 0.75rem 3rem;
+  background-color: var(--pr-primary);
+  color: var(--pr-foreground);
+  font-weight: 500;
+  font-size: 1.125rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+}
+
+.pr-register-button:hover {
+  background-color: rgba(214, 194, 168, 0.9);
+  transform: translateY(-2px);
+  box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+}
+
+.pr-browse-button {
+  display: inline-block;
+  padding: 0.75rem 3rem;
+  background-color: transparent;
+  color: var(--pr-primary);
+  font-weight: 500;
+  font-size: 1.125rem;
+  border: 1px solid var(--pr-primary);
+  border-radius: 0.5rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.pr-browse-button:hover {
+  background-color: var(--pr-primary);
+  color: var(--pr-foreground);
+}
+
+/* ==========================================
+   Events Grid Filter Styles
+   ========================================== */
+.pr-filter-btn {
+  position: relative;
+  font-family: Inter, sans-serif;
+  font-size: 1.125rem;
+  letter-spacing: 0.05em;
+  transition: color 0.3s ease;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem 0;
+}
+
+.pr-filter-underline {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 0;
+  opacity: 0.3;
+  transition: width 0.3s ease, opacity 0.3s ease;
+}
+
+.pr-filter-btn.active .pr-filter-underline {
+  width: 100%;
+  opacity: 1;
+}
+
+.pr-events-grid > * {
+  animation: pr-card-fade-in 0.5s ease-out both;
+}
+
+.pr-events-grid > *:nth-child(1) { animation-delay: 0.1s; }
+.pr-events-grid > *:nth-child(2) { animation-delay: 0.2s; }
+.pr-events-grid > *:nth-child(3) { animation-delay: 0.3s; }
+
+@keyframes pr-card-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================
+   Global Animations
+   ========================================== */
+@keyframes pr-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

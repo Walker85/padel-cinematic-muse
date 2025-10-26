@@ -1,0 +1,92 @@
+{% comment %}
+  Padel Ready Events Hero Section
+  Cinematic hero for events page
+{% endcomment %}
+
+<section class="relative h-[70vh] md:h-[80vh] overflow-hidden pr-events-hero">
+  <div class="absolute inset-0 pr-parallax-bg">
+    <div
+      class="w-full h-full bg-cover bg-center"
+      style="background-image: url('{{ section.settings.hero_image | img_url: '2048x' }}'); background-attachment: fixed;"
+    ></div>
+    
+    <div
+      class="absolute inset-0"
+      style="background: linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.2) 50%, rgba(254,250,243,0.3) 100%);"
+    ></div>
+  </div>
+
+  <div class="relative h-full flex items-center justify-center">
+    <div class="container mx-auto px-4 text-center">
+      <h1 class="font-display text-5xl md:text-7xl lg:text-8xl mb-6 pr-hero-title" style="color: #D6C2A8;">
+        {{ section.settings.heading | default: "Where Champions Gather." }}
+      </h1>
+      
+      <p class="font-body text-xl md:text-2xl tracking-wider" style="color: #D6C2A8;">
+        {{ section.settings.subheading | default: "Design. Sport. Community." }}
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .pr-events-hero .pr-parallax-bg {
+    animation: pr-fade-in 1.5s ease-out;
+  }
+
+  .pr-events-hero .pr-hero-title {
+    animation: pr-fade-up 0.8s ease-out 0.3s both;
+  }
+
+  @keyframes pr-fade-in {
+    from {
+      opacity: 0;
+      transform: scale(1.1);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes pr-fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "PR Events Hero",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero Background Image"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Where Champions Gather."
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Design. Sport. Community."
+    }
+  ],
+  "presets": [
+    {
+      "name": "PR Events Hero"
+    }
+  ]
+}
+{% endschema %}

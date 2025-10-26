@@ -1,0 +1,71 @@
+{% comment %}
+  Padel Ready Events Grid Section
+  Displays filterable event cards
+{% endcomment %}
+
+{% stylesheet %}
+  {{ 'pr-theme.css' | asset_url | stylesheet_tag }}
+  {{ 'pr-cards.css' | asset_url | stylesheet_tag }}
+{% endstylesheet %}
+
+<section class="py-16 md:py-24 pr-events-section">
+  <div class="container mx-auto px-4">
+    <!-- Event Filter -->
+    <div class="flex items-center justify-center gap-8 mb-12 pr-event-filter">
+      <button
+        class="pr-filter-btn active"
+        data-filter="upcoming"
+        style="color: #D6C2A8;"
+      >
+        Upcoming Events
+        <div class="pr-filter-underline" style="background-color: #D6C2A8;"></div>
+      </button>
+
+      <button
+        class="pr-filter-btn"
+        data-filter="past"
+        style="color: #000000;"
+      >
+        Past Events
+        <div class="pr-filter-underline" style="background-color: #D6C2A8;"></div>
+      </button>
+    </div>
+
+    <!-- Events Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pr-events-grid">
+      {% comment %} Try to load events from metaobjects first {% endcomment %}
+      {% assign events = shop.metaobjects.event.values %}
+      
+      {% if events.size > 0 %}
+        {% comment %} Render events from metaobjects {% endcomment %}
+        {% for event in events %}
+          {% render 'pr-event-card',
+            title: event.title.value,
+            date: event.date.value,
+            location: event.location.value,
+            type: event.type.value,
+            description: event.description.value,
+            image: event.image.value,
+            status: event.status.value,
+            register_url: event.register_url.value,
+            featured: event.featured.value,
+            handle: event.system.handle
+          %}
+        {% endfor %}
+      {% else %}
+        {% comment %} Fallback to section blocks if no metaobjects {% endcomment %}
+        {% for block in section.blocks %}
+          {% render 'pr-event-card',
+            title: block.settings.title,
+            date: block.settings.date,
+            location: block.settings.location,
+            type: block.settings.type,
+            description: block.settings.description,
+            image: block.settings.image,
+            status: block.settings.status
+          %}
+        {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+</section>

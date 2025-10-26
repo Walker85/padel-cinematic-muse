@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "main": {
+      "type": "pr-product-grid",
+      "settings": {}
+    }
+  },
+  "order": ["main"]
+}
