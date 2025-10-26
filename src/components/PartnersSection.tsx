@@ -31,11 +31,11 @@ export const PartnersSection = () => {
   return (
     <section 
       ref={sectionRef}
-      className="py-24 md:py-32 bg-background border-t border-primary/20"
+      className="py-20 md:py-28 bg-background border-t border-primary/20"
     >
       <div className="container mx-auto px-4 lg:px-8">
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-16 md:mb-20">
+        <div className="text-center max-w-2xl mx-auto mb-8 md:mb-12">
           <h2 className="font-display text-4xl md:text-5xl tracking-tight mb-4">
             Trusted by Leading Clubs and Partners
           </h2>
@@ -45,7 +45,7 @@ export const PartnersSection = () => {
         </div>
 
         {/* Partner Logos Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-8 md:gap-x-12 md:gap-y-10 lg:gap-x-16 lg:gap-y-12 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-4 md:gap-x-8 md:gap-y-5 lg:gap-x-10 lg:gap-y-6 max-w-5xl mx-auto">
           {partners.map((partner, index) => (
             <div
               key={partner.name}
@@ -62,13 +62,13 @@ export const PartnersSection = () => {
                   alt={`${partner.name} logo`}
                   loading="lazy"
                   className="
-                    max-h-[56px] md:max-h-[72px] lg:max-h-[88px]
+                    max-h-[80px] md:max-h-[108px] lg:max-h-[124px]
                     w-auto object-contain mx-auto
                     grayscale opacity-90
                     hover:grayscale-0 hover:opacity-100
                     transition-all duration-500 ease-out
                     motion-reduce:transition-none
-                    hover:scale-[1.02]
+                    hover:scale-[1.05]
                     focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2
                   "
                   tabIndex={0}
