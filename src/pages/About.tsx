@@ -4,6 +4,7 @@ import { Helmet } from "react-helmet-async";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
+import sohoHouseHero from "@/assets/soho-house-hero.png";
 
 export default function About() {
   const [scrollY, setScrollY] = useState(0);
@@ -24,14 +25,14 @@ export default function About() {
   return (
     <>
       <Helmet>
-        <title>Padel Ready × Soho House – Minimalist Design Meets Performance</title>
+        <title>Padel Ready × Babington House – Minimalist Design Meets Performance</title>
         <meta 
           name="description" 
-          content="Explore the Padel Ready × Soho House collaboration — where Somerset craftsmanship and minimalist design meet on court. Premium padel rackets by creatives, for creatives." 
+          content="Padel Ready × Babington House – A Somerset collaboration celebrating design, craft, and community." 
         />
         <meta 
           name="keywords" 
-          content="Padel Ready Soho House, padel rackets, premium padel brand, Somerset design, minimalist sports design, Babington House, creative sports equipment, performance padel" 
+          content="Padel Ready Babington House, padel rackets, premium padel brand, Somerset design, minimalist sports design, Babington House, creative sports equipment, performance padel" 
         />
       </Helmet>
 
@@ -101,18 +102,53 @@ export default function About() {
         </div>
       </section>
 
-      {/* Soho House Collaboration Hero with Parallax */}
+      {/* Babington House Collaboration Hero with Parallax */}
       <section className="relative w-full h-[70vh] md:h-[90vh] flex items-center justify-center overflow-hidden animate-fade-in" style={{ animationDuration: "800ms" }}>
+        {/* Parallax Background Image */}
         <div 
-          className="absolute inset-0 bg-black"
+          className="absolute inset-0 bg-cover bg-center"
           style={{ 
+            backgroundImage: `url(${sohoHouseHero})`,
             transform: `translateY(${scrollY * 0.5}px)`,
+            filter: 'brightness(0.85) saturate(1.08)',
+            objectFit: 'cover',
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-black via-black to-primary/10" />
-        <h2 className="relative z-10 font-display text-3xl md:text-5xl text-primary tracking-tight leading-tight text-center px-4 uppercase">
-          Padel Ready × Soho House
-        </h2>
+        
+        {/* Warm Gold Tint Overlay */}
+        <div 
+          className="absolute inset-0" 
+          style={{ 
+            background: 'linear-gradient(to bottom, rgba(0,0,0,0.25), rgba(0,0,0,0.85))',
+            mixBlendMode: 'multiply',
+          }}
+        />
+        
+        {/* Vignette Effect */}
+        <div 
+          className="absolute inset-0" 
+          style={{ 
+            background: 'radial-gradient(ellipse at center, transparent 30%, rgba(0,0,0,0.4) 100%)',
+          }}
+        />
+        
+        {/* Bottom Gradient Transition */}
+        <div 
+          className="absolute inset-0" 
+          style={{ 
+            background: 'linear-gradient(to bottom, rgba(0,0,0,0) 60%, #FEFAF3 100%)',
+          }}
+        />
+        
+        {/* Content */}
+        <div className="relative z-10 text-center px-4 space-y-4 animate-fade-in" style={{ animationDuration: "800ms" }}>
+          <h2 className="font-display text-6xl lg:text-7xl tracking-wider leading-tight uppercase" style={{ color: '#D6C2A8' }}>
+            Padel Ready × Babington House
+          </h2>
+          <p className="text-lg md:text-xl font-light leading-relaxed mt-4" style={{ color: 'rgba(255,255,255,0.85)' }}>
+            Where design, sport, and community converge.
+          </p>
+        </div>
       </section>
 
       {/* Brand Story: By Creatives, For Creatives */}
