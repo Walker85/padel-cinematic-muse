@@ -33,6 +33,7 @@ export default function About() {
           name="keywords" 
           content="Padel Ready Babington House, padel rackets, premium padel brand, Somerset design, minimalist sports design, Babington House, creative sports equipment, performance padel" 
         />
+        <meta name="og:image" content="/images/soho-house-hero-new.png" />
       </Helmet>
 
       <Header />
@@ -101,49 +102,19 @@ export default function About() {
         </div>
       </section>
 
-      {/* Babington House Collaboration Hero with Parallax */}
-      <section className="relative w-full h-[70vh] md:h-[90vh] flex items-center justify-center overflow-hidden animate-fade-in" style={{ animationDuration: "800ms" }}>
-        {/* Parallax Background Image */}
-        <div 
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ 
-            backgroundImage: `url(/images/soho-house-hero-new.png)`,
-            transform: `translateY(${scrollY * 0.5}px)`,
-            filter: 'brightness(0.85) saturate(1.08)',
-          }}
-        />
-        
-        {/* Warm Gold Tint Overlay */}
-        <div 
-          className="absolute inset-0" 
-          style={{ 
-            background: 'linear-gradient(to bottom, rgba(0,0,0,0.25), rgba(0,0,0,0.85))',
-            mixBlendMode: 'multiply',
-          }}
-        />
-        
-        {/* Vignette Effect */}
-        <div 
-          className="absolute inset-0" 
-          style={{ 
-            background: 'radial-gradient(ellipse at center, transparent 30%, rgba(0,0,0,0.4) 100%)',
-          }}
-        />
-        
-        {/* Bottom Gradient Transition */}
-        <div 
-          className="absolute inset-0" 
-          style={{ 
-            background: 'linear-gradient(to bottom, rgba(0,0,0,0) 60%, #FEFAF3 100%)',
-          }}
-        />
-        
-        {/* Content */}
-        <div className="relative z-10 text-center px-4 space-y-4 animate-fade-in" style={{ animationDuration: "800ms" }}>
-          <h2 className="font-display text-6xl lg:text-7xl tracking-wider leading-tight uppercase" style={{ color: '#D6C2A8' }}>
+      {/* Babington House Collaboration Hero */}
+      <section
+        className="relative h-[90vh] flex items-center justify-center bg-fixed bg-cover bg-center"
+        style={{
+          backgroundImage: "url('/images/soho-house-hero-new.png')",
+        }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 to-black/90" />
+        <div className="relative z-10 text-center px-4">
+          <h1 className="text-5xl md:text-6xl font-display font-bold text-[#D6C2A8] tracking-tight uppercase">
             Padel Ready × Babington House
-          </h2>
-          <p className="text-lg md:text-xl font-light leading-relaxed mt-4" style={{ color: 'rgba(255,255,255,0.85)' }}>
+          </h1>
+          <p className="mt-4 text-white/80 text-lg">
             Where design, sport, and community converge.
           </p>
         </div>
