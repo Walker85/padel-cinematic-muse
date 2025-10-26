@@ -9,11 +9,11 @@
 {% endif %}
 
 {% if card_url != blank %}
-<a href="{{ card_url }}" class="pr-event-card-link">
+<a href="{{ card_url }}" class="pr-event-card-wrapper" aria-label="View details for {{ title }}">
 {% endif %}
 
 <article
-  class="pr-event-card group bg-white rounded-lg overflow-hidden shadow-sm"
+  class="pr-event-card"
   data-event-status="{{ status }}"
   style="{% if status == 'past' %}display: none;{% endif %}"
 >
@@ -44,43 +44,41 @@
   </div>
 
   <!-- Content -->
-  <div class="p-6" style="display: flex; flex-direction: column; justify-content: space-between; flex-grow: 1;">
+  <div class="pr-event-content">
     <div>
-      <div class="flex items-center gap-2 mb-3" style="flex-wrap: wrap;">
-        <span class="pr-event-badge pr-badge-{{ type | downcase }}">
-          {{ type }}
-        </span>
+      <div class="pr-event-badges">
+        <span class="pr-event-badge">{{ type }}</span>
         {% if featured %}
-          <span class="pr-event-badge pr-badge-featured">Featured</span>
+          <span class="pr-event-badge">Featured</span>
         {% endif %}
       </div>
 
-    <h3 class="pr-card-title font-display text-2xl mb-3">
-      {{ title }}
-    </h3>
+      <h3 class="pr-card-title">
+        {{ title }}
+      </h3>
 
-    <div class="font-body text-sm text-gray-600 mb-2 uppercase tracking-wider">
-      <time datetime="{{ date }}">{{ date }}</time>
-    </div>
+      <div class="pr-event-date">
+        <time datetime="{{ date }}">{{ date }}</time>
+      </div>
 
-    <p class="font-body text-sm text-gray-600 mb-4 uppercase tracking-wider">
-      {{ location }}
-    </p>
+      <p class="pr-event-location">
+        {{ location }}
+      </p>
 
-      <p class="text-gray-700 mb-6 pr-card-description">
+      <p class="pr-card-description">
         {{ description }}
       </p>
     </div>
 
-    <div>
+    <div class="pr-event-action">
       {% if status == 'upcoming' and register_url != blank %}
-        <a href="{{ register_url }}" target="_blank" rel="noopener noreferrer" class="pr-card-btn w-full text-center" onclick="event.stopPropagation();">
+        <span class="pr-card-btn pr-card-btn-register" onclick="event.preventDefault(); event.stopPropagation(); window.open('{{ register_url }}', '_blank', 'noopener,noreferrer');">
           Register
-        </a>
+        </span>
       {% else %}
-        <button class="pr-card-btn w-full">
+        <span class="pr-card-btn pr-card-btn-outline">
           {% if status == 'upcoming' %}Learn More{% else %}View Recap{% endif %}
-        </button>
+        </span>
       {% endif %}
     </div>
   </div>
@@ -91,26 +89,32 @@
 {% endif %}
 
 <style>
-  .pr-event-card-link {
-    display: block;
+  .pr-event-card-wrapper {
+    display: flex;
+    flex-direction: column;
     text-decoration: none;
     color: inherit;
+    min-height: 420px;
   }
 
   .pr-event-card {
-    min-height: 420px;
+    background: white;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease-out;
     display: flex;
     flex-direction: column;
-    transition: all 0.3s ease;
-    cursor: pointer;
+    flex-grow: 1;
   }
 
-  .pr-event-card:hover {
-    transform: translateY(-8px);
+  .pr-event-card-wrapper:hover .pr-event-card {
+    transform: translateY(-4px);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
   }
 
-  .pr-event-card > .p-6 {
+  .pr-event-content {
+    padding: 1.5rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -121,24 +125,29 @@
     transition: transform 0.5s ease;
   }
 
-  .pr-event-card:hover .pr-card-image {
+  .pr-event-card-wrapper:hover .pr-card-image {
     transform: scale(1.05);
   }
 
   .pr-card-title {
+    font-family: 'Mollen', serif;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    margin-bottom: 0.75rem;
     color: #000000;
     transition: color 0.3s ease;
   }
 
-  .pr-event-card:hover .pr-card-title {
+  .pr-event-card-wrapper:hover .pr-card-title {
     color: #D6C2A8;
   }
 
-  .pr-card-description {
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+  .pr-event-badges {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+    flex-wrap: wrap;
   }
 
   .pr-event-badge {
@@ -148,33 +157,70 @@
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    background-color: rgba(214, 194, 168, 0.9);
+    background-color: #D6C2A8;
     color: #1A1A1A;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
   }
 
-  .pr-badge-tournament,
-  .pr-badge-training,
-  .pr-badge-social,
-  .pr-badge-featured {
-    background-color: rgba(214, 194, 168, 0.9);
-    color: #1A1A1A;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  .pr-event-date,
+  .pr-event-location {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.875rem;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .pr-event-date {
+    margin-bottom: 0.5rem;
+  }
+
+  .pr-event-location {
+    margin-bottom: 1rem;
+  }
+
+  .pr-card-description {
+    color: rgba(0, 0, 0, 0.8);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .pr-event-action {
+    margin-top: 1.5rem;
   }
 
   .pr-card-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
     padding: 0.5rem 1rem;
     border-radius: 0.5rem;
     font-weight: 500;
     transition: all 0.3s ease;
-    background-color: transparent;
-    border: 1px solid #D6C2A8;
-    color: #D6C2A8;
     cursor: pointer;
+    text-decoration: none;
   }
 
-  .pr-card-btn:hover {
+  .pr-card-btn-register {
     background-color: #D6C2A8;
     color: #000000;
+    border: none;
+  }
+
+  .pr-card-btn-register:hover {
+    background-color: rgba(214, 194, 168, 0.9);
+  }
+
+  .pr-card-btn-outline {
+    background-color: transparent;
+    border: 1px solid #e5e7eb;
+    color: #374151;
+  }
+
+  .pr-card-btn-outline:hover {
+    background-color: #f9fafb;
   }
 </style>

@@ -18,98 +18,122 @@ const EventCard = ({ event }: EventCardProps) => {
     },
   };
 
-  const getTypeColor = (type: string) => {
-    switch (type) {
-      case "Tournament":
-        return "bg-[#D6C2A8]/90 text-[#1A1A1A] shadow-sm";
-      case "Training":
-        return "bg-[#D6C2A8]/90 text-[#1A1A1A] shadow-sm";
-      case "Social":
-        return "bg-[#D6C2A8]/90 text-[#1A1A1A] shadow-sm";
-      default:
-        return "bg-[#D6C2A8]/90 text-[#1A1A1A] shadow-sm";
-    }
+  const getTypeColor = () => {
+    return "px-3 py-1.5 rounded-full bg-[#D6C2A8] text-[#1A1A1A] text-sm font-medium shadow-[0_1px_2px_rgba(0,0,0,0.15)]";
   };
 
   const eventDetailUrl = event.handle ? `/events/${event.handle}` : '#';
-  const hasLink = event.handle || event.registerUrl;
-
-  const cardContent = (
-    <>
-      {/* Image */}
-      <div className="aspect-video overflow-hidden">
-        <img
-          src={event.image}
-          alt={event.title}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-        />
-      </div>
-
-      {/* Content */}
-      <div className="p-6 flex flex-col justify-between flex-grow">
-        <div>
-          <div className="flex items-center gap-2 mb-3 flex-wrap">
-            <Badge className={getTypeColor(event.type)}>{event.type}</Badge>
-            {event.featured && (
-              <Badge className="bg-[#D6C2A8]/90 text-[#1A1A1A] shadow-sm">Featured</Badge>
-            )}
-          </div>
-
-          <h3 className="font-display text-2xl mb-3 text-foreground group-hover:text-[#D6C2A8] transition-colors duration-300">
-            {event.title}
-          </h3>
-
-          <div className="font-body text-sm text-muted-foreground mb-2 uppercase tracking-wider">
-            <time dateTime={event.date}>{event.date}</time>
-          </div>
-
-          <p className="font-body text-sm text-muted-foreground mb-4 uppercase tracking-wider">
-            {event.location}
-          </p>
-
-          <p className="text-foreground/80 mb-6 line-clamp-2">{event.description}</p>
-        </div>
-
-        {event.status === "upcoming" && event.registerUrl ? (
-          <Button
-            variant="secondary"
-            className="w-full"
-            asChild
-          >
-            <a 
-              href={event.registerUrl} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              onClick={(e) => e.stopPropagation()}
-            >
-              Register
-            </a>
-          </Button>
-        ) : (
-          <Button
-            variant={event.status === "upcoming" ? "secondary" : "outline"}
-            className="w-full"
-            disabled={!hasLink}
-          >
-            {event.status === "upcoming" ? "Learn More" : "View Recap"}
-          </Button>
-        )}
-      </div>
-    </>
-  );
 
   return (
     <motion.article
       variants={cardVariants}
-      className="group bg-card rounded-lg overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-2 flex flex-col min-h-[420px] cursor-pointer"
+      className="flex flex-col min-h-[420px]"
     >
-      {hasLink && event.handle ? (
-        <Link to={eventDetailUrl} className="flex flex-col h-full">
-          {cardContent}
+      {event.handle ? (
+        <Link 
+          to={eventDetailUrl} 
+          className="group bg-card rounded-lg overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 ease-out hover:-translate-y-1 flex flex-col h-full"
+          aria-label={`View details for ${event.title}`}
+        >
+          {/* Image */}
+          <div className="aspect-video overflow-hidden">
+            <img
+              src={event.image}
+              alt={event.title}
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            />
+          </div>
+
+          {/* Content */}
+          <div className="p-6 flex flex-col justify-between flex-grow">
+            <div>
+              <div className="flex items-center gap-2 mb-3 flex-wrap">
+                <span className={getTypeColor()}>{event.type}</span>
+                {event.featured && (
+                  <span className="px-3 py-1.5 rounded-full bg-[#D6C2A8] text-[#1A1A1A] text-sm font-medium shadow-[0_1px_2px_rgba(0,0,0,0.15)]">
+                    Featured
+                  </span>
+                )}
+              </div>
+
+              <h3 className="font-display text-2xl mb-3 text-foreground group-hover:text-[#D6C2A8] transition-colors duration-300">
+                {event.title}
+              </h3>
+
+              <div className="font-body text-sm text-muted-foreground mb-2 uppercase tracking-wider">
+                <time dateTime={event.date}>{event.date}</time>
+              </div>
+
+              <p className="font-body text-sm text-muted-foreground mb-4 uppercase tracking-wider">
+                {event.location}
+              </p>
+
+              <p className="text-foreground/80 line-clamp-2">{event.description}</p>
+            </div>
+
+            <div className="mt-6">
+              {event.status === "upcoming" && event.registerUrl ? (
+                <span
+                  className="inline-flex items-center justify-center w-full px-4 py-2 rounded-lg font-medium transition-all duration-300 bg-primary text-secondary hover:bg-primary/90"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    window.open(event.registerUrl, '_blank', 'noopener,noreferrer');
+                  }}
+                >
+                  Register
+                </span>
+              ) : (
+                <span className="inline-flex items-center justify-center w-full px-4 py-2 rounded-lg font-medium transition-all duration-300 border border-input bg-background hover:bg-accent hover:text-accent-foreground">
+                  {event.status === "upcoming" ? "Learn More" : "View Recap"}
+                </span>
+              )}
+            </div>
+          </div>
         </Link>
       ) : (
-        <div className="flex flex-col h-full cursor-default">
-          {cardContent}
+        <div className="group bg-card rounded-lg overflow-hidden shadow-sm flex flex-col h-full cursor-default">
+          {/* Image */}
+          <div className="aspect-video overflow-hidden">
+            <img
+              src={event.image}
+              alt={event.title}
+              className="w-full h-full object-cover"
+            />
+          </div>
+
+          {/* Content */}
+          <div className="p-6 flex flex-col justify-between flex-grow">
+            <div>
+              <div className="flex items-center gap-2 mb-3 flex-wrap">
+                <span className={getTypeColor()}>{event.type}</span>
+                {event.featured && (
+                  <span className="px-3 py-1.5 rounded-full bg-[#D6C2A8] text-[#1A1A1A] text-sm font-medium shadow-[0_1px_2px_rgba(0,0,0,0.15)]">
+                    Featured
+                  </span>
+                )}
+              </div>
+
+              <h3 className="font-display text-2xl mb-3 text-foreground">
+                {event.title}
+              </h3>
+
+              <div className="font-body text-sm text-muted-foreground mb-2 uppercase tracking-wider">
+                <time dateTime={event.date}>{event.date}</time>
+              </div>
+
+              <p className="font-body text-sm text-muted-foreground mb-4 uppercase tracking-wider">
+                {event.location}
+              </p>
+
+              <p className="text-foreground/80 line-clamp-2">{event.description}</p>
+            </div>
+
+            <div className="mt-6">
+              <Button variant="outline" className="w-full" disabled>
+                Coming Soon
+              </Button>
+            </div>
+          </div>
         </div>
       )}
     </motion.article>
