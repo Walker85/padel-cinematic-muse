@@ -22,6 +22,7 @@ export default function About() {
         <meta property="og:site_name" content="Padel Ready" />
         <meta property="og:description" content="Where design, sport, and community converge. Crafted by creatives for creatives." />
         <meta property="og:image" content="/images/soho-house-hero-new.png" />
+        <meta property="og:image:alt" content="Padel courts at Babington House, Somerset" />
       </Helmet>
 
       <Header />
