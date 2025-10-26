@@ -1,4 +1,4 @@
-import craftImage from "@/assets/craft-detail.jpg";
+import craftImage from "@/assets/PR_racket_black_1.png";
 
 export const CraftSection = () => {
   return (
@@ -23,7 +23,7 @@ export const CraftSection = () => {
             <div className="aspect-square rounded-2xl overflow-hidden shadow-[0_8px_32px_rgba(0,0,0,0.12)]">
               <img 
                 src={craftImage} 
-                alt="Carbon fiber racket detail" 
+                alt="Padel Ready RDY black carbon fiber racket" 
                 className="w-full h-full object-cover transition-transform duration-700 ease-out hover:scale-105"
               />
             </div>
