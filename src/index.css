@@ -145,6 +145,14 @@ All colors MUST be HSL.
   .animate-fade-in {
     animation: fadeIn 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
   }
+  
+  .delay-200 {
+    animation-delay: 0.2s;
+  }
+  
+  .delay-300 {
+    animation-delay: 0.3s;
+  }
 
   .animate-slide-up {
     animation: slideUp 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
