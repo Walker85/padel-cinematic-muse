@@ -4,7 +4,6 @@ import { Helmet } from "react-helmet-async";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import sohoHouseHero from "@/assets/soho-house-hero.png";
 
 export default function About() {
   const [scrollY, setScrollY] = useState(0);
@@ -105,13 +104,12 @@ export default function About() {
       {/* Soho House Collaboration Hero with Parallax */}
       <section className="relative w-full h-[70vh] md:h-[90vh] flex items-center justify-center overflow-hidden animate-fade-in" style={{ animationDuration: "800ms" }}>
         <div 
-          className="absolute inset-0 bg-cover bg-center"
+          className="absolute inset-0 bg-black"
           style={{ 
-            backgroundImage: `url(${sohoHouseHero})`,
             transform: `translateY(${scrollY * 0.5}px)`,
           }}
         />
-        <div className="absolute inset-0 bg-black/30" />
+        <div className="absolute inset-0 bg-gradient-to-br from-black via-black to-primary/10" />
         <h2 className="relative z-10 font-display text-3xl md:text-5xl text-primary tracking-tight leading-tight text-center px-4 uppercase">
           Padel Ready × Soho House
         </h2>
