@@ -1,0 +1,74 @@
+{% comment %} PR Header Navigation {% endcomment %}
+<header class="pr-header">
+  <div class="pr-header-container">
+    <a href="/" class="pr-logo-link">
+      <img src="{{ 'padel-ready-logo.png' | asset_url }}" alt="Padel Ready" class="pr-logo">
+    </a>
+    
+    {% comment %} Desktop Navigation {% endcomment %}
+    <nav class="pr-nav-desktop">
+      <a href="/collections/all" class="pr-nav-link">Shop</a>
+      <a href="/pages/about" class="pr-nav-link">About</a>
+      <a href="/pages/events" class="pr-nav-link">Events</a>
+    </nav>
+    
+    <div class="pr-cart-icon" onclick="document.querySelector('.pr-cart').click()">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="9" cy="21" r="1"></circle>
+        <circle cx="20" cy="21" r="1"></circle>
+        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+      </svg>
+      <span class="pr-cart-count">0</span>
+    </div>
+    
+    {% comment %} Mobile Menu Button {% endcomment %}
+    <button class="pr-mobile-menu-btn" onclick="document.querySelector('.pr-mobile-menu').classList.toggle('active')">
+      <svg class="pr-menu-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M3 12h18M3 6h18M3 18h18"></path>
+      </svg>
+      <svg class="pr-close-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M18 6L6 18M6 6l12 12"></path>
+      </svg>
+    </button>
+  </div>
+  
+  {% comment %} Mobile Menu {% endcomment %}
+  <div class="pr-mobile-menu">
+    <div class="pr-mobile-menu-backdrop" onclick="document.querySelector('.pr-mobile-menu').classList.remove('active')"></div>
+    <nav class="pr-mobile-menu-content">
+      <a href="/collections/all" class="pr-mobile-link">Shop</a>
+      <a href="/pages/about" class="pr-mobile-link">About</a>
+      <a href="/pages/events" class="pr-mobile-link">Events</a>
+      <a href="/pages/contact" class="pr-mobile-link">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<div class="pr-cart" onclick="console.log('Open cart')" style="display:none;"></div>
+
+<style>
+.pr-header { position: fixed; top: 0; left: 0; right: 0; z-index: 50; backdrop-filter: blur(16px); border-bottom: 1px solid rgba(0,0,0,0.1); background: rgba(254,250,243,0.9); transition: all 0.3s; }
+.pr-header-container { max-width: 1280px; margin: 0 auto; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 80px; }
+.pr-logo-link { display: flex; align-items: center; transition: opacity 0.3s; }
+.pr-logo-link:hover { opacity: 0.8; }
+.pr-logo { height: 40px; width: auto; }
+.pr-nav-desktop { display: none; align-items: center; gap: 2rem; }
+@media (min-width: 768px) { .pr-nav-desktop { display: flex; } }
+.pr-nav-link { font-family: 'SA Triumph', serif; font-size: 0.875rem; font-weight: 500; color: #000; transition: color 0.3s; }
+.pr-nav-link:hover { color: #D6C2A8; }
+.pr-cart-icon { position: relative; cursor: pointer; color: #000; }
+.pr-cart-icon svg { width: 24px; height: 24px; }
+.pr-cart-count { position: absolute; top: -8px; right: -8px; background: #000; color: #FEFAF3; font-size: 0.75rem; font-weight: 600; padding: 2px 6px; border-radius: 10px; min-width: 18px; text-align: center; }
+.pr-mobile-menu-btn { display: flex; align-items: center; color: #000; padding: 0.5rem; }
+@media (min-width: 768px) { .pr-mobile-menu-btn { display: none; } }
+.pr-close-icon { display: none; }
+.pr-mobile-menu.active .pr-close-icon { display: block; }
+.pr-mobile-menu.active .pr-menu-icon { display: none; }
+.pr-mobile-menu { position: fixed; inset: 0; z-index: 40; opacity: 0; pointer-events: none; transition: all 0.3s; }
+.pr-mobile-menu.active { opacity: 1; pointer-events: auto; }
+.pr-mobile-menu-backdrop { position: absolute; inset: 0; backdrop-filter: blur(8px); background: rgba(254,250,243,0.8); }
+.pr-mobile-menu-content { position: absolute; top: 80px; left: 0; right: 0; background: rgba(254,250,243,0.95); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(0,0,0,0.1); padding: 2rem; display: flex; flex-direction: column; gap: 1.5rem; transform: translateY(-100%); transition: transform 0.3s; }
+.pr-mobile-menu.active .pr-mobile-menu-content { transform: translateY(0); }
+.pr-mobile-link { font-family: 'Mollen', serif; font-size: 1.5rem; text-transform: uppercase; letter-spacing: 0.05em; color: #000; padding: 0.75rem 0; transition: color 0.3s; }
+.pr-mobile-link:hover { color: #D6C2A8; }
+</style>
