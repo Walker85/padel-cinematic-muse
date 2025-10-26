@@ -7,11 +7,19 @@
   <!-- Parallax Background -->
   <div class="absolute inset-0 pr-parallax-bg">
     <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-background z-10"></div>
-    <img 
-      src="{{ section.settings.hero_image | default: 'hero-padel-court.jpg' | file_img_url: '2048x' }}" 
-      alt="{{ section.settings.hero_image.alt | default: 'Luxury padel court at sunset' }}" 
-      class="w-full h-full object-cover"
-    />
+    {% if section.settings.hero_image %}
+      <img 
+        src="{{ section.settings.hero_image | img_url: '2048x' }}" 
+        alt="{{ section.settings.hero_image.alt | default: 'Luxury padel court at sunset' }}" 
+        class="w-full h-full object-cover"
+      />
+    {% else %}
+      <img 
+        src="{{ 'hero-padel-court.jpg' | asset_url }}" 
+        alt="Luxury padel court at sunset" 
+        class="w-full h-full object-cover"
+      />
+    {% endif %}
   </div>
   
   <!-- Content -->
