@@ -1,0 +1,54 @@
+{% comment %}
+  Padel Ready Event Detail Template
+  Displays a single event with full details
+{% endcomment %}
+
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>{{ page.title }} | {{ shop.name }}</title>
+    
+    {% if page.metafields.custom.event_description %}
+      <meta name="description" content="{{ page.metafields.custom.event_description | strip_html | truncate: 160 }}">
+    {% endif %}
+
+    {{ content_for_header }}
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+      :root {
+        --color-primary: #D6C2A8;
+        --color-foreground: #000000;
+        --color-background: #fefaf3;
+        --color-muted: #6b7280;
+      }
+      
+      body {
+        font-family: 'Inter', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: var(--color-background);
+        color: var(--color-foreground);
+      }
+      
+      .font-display {
+        font-family: 'Mollen', serif;
+      }
+    </style>
+  </head>
+  
+  <body>
+    {% section 'header' %}
+    
+    {% section 'pr-event-detail' %}
+    
+    {% section 'newsletter' %}
+    {% section 'footer' %}
+  </body>
+</html>
