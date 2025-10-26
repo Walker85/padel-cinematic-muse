@@ -4,6 +4,7 @@ import { Helmet } from "react-helmet-async";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
+import sohoHouseHero from "@/assets/soho-house-hero.png";
 
 export default function About() {
   const [scrollY, setScrollY] = useState(0);
@@ -24,14 +25,14 @@ export default function About() {
   return (
     <>
       <Helmet>
-        <title>Padel Ready | Designed in Somerset | Precision Padel Rackets for Creatives</title>
+        <title>Padel Ready × Soho House – Minimalist Design Meets Performance</title>
         <meta 
           name="description" 
-          content="Discover Padel Ready — minimalist padel rackets designed in Somerset and refined through collaboration with Babington House. By creatives, for creatives." 
+          content="Explore the Padel Ready × Soho House collaboration — where Somerset craftsmanship and minimalist design meet on court. Premium padel rackets by creatives, for creatives." 
         />
         <meta 
           name="keywords" 
-          content="padel rackets, premium padel brand, Somerset design, minimalist sports design, Babington House, creative sports equipment, Padel Ready" 
+          content="Padel Ready Soho House, padel rackets, premium padel brand, Somerset design, minimalist sports design, Babington House, creative sports equipment, performance padel" 
         />
       </Helmet>
 
@@ -101,11 +102,69 @@ export default function About() {
         </div>
       </section>
 
-      {/* Soho House Collaboration Hero */}
-      <section className="relative w-full h-[70vh] md:h-[90vh] bg-black flex items-center justify-center overflow-hidden animate-fade-in" style={{ animationDuration: "800ms" }}>
+      {/* Soho House Collaboration Hero with Parallax */}
+      <section className="relative w-full h-[70vh] md:h-[90vh] flex items-center justify-center overflow-hidden animate-fade-in" style={{ animationDuration: "800ms" }}>
+        <div 
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ 
+            backgroundImage: `url(${sohoHouseHero})`,
+            transform: `translateY(${scrollY * 0.5}px)`,
+          }}
+        />
+        <div className="absolute inset-0 bg-black/30" />
         <h2 className="relative z-10 font-display text-3xl md:text-5xl text-primary tracking-tight leading-tight text-center px-4 uppercase">
           Padel Ready × Soho House
         </h2>
+      </section>
+
+      {/* Brand Story: By Creatives, For Creatives */}
+      <section className="py-32 bg-background">
+        <div className="container mx-auto px-4 lg:px-8">
+          <div className="max-w-4xl mx-auto text-center space-y-8 animate-fade-in">
+            <h2 className="font-display text-5xl md:text-6xl text-foreground tracking-tight leading-tight uppercase">
+              By Creatives, For Creatives
+            </h2>
+            
+            <div className="space-y-6 text-lg md:text-xl text-muted-foreground leading-relaxed">
+              <p>
+                Padel Ready was born from a simple belief: sport should inspire the same care and creativity as art.
+              </p>
+              
+              <p>
+                We're not athletes. We're designers, artists, and makers who found padel — and decided to build something different.
+              </p>
+              
+              <p>
+                Every racket is designed with the same intention we bring to our work: precision, purpose, and a refusal to settle for ordinary.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Babington House Collaboration */}
+      <section className="py-32 bg-foreground">
+        <div className="container mx-auto px-4 lg:px-8">
+          <div className="max-w-4xl mx-auto text-center space-y-8 animate-fade-in">
+            <h2 className="font-display text-4xl md:text-5xl text-primary tracking-tight leading-tight uppercase">
+              In Collaboration with Babington House
+            </h2>
+            
+            <div className="space-y-6 text-lg md:text-xl text-background/90 leading-relaxed italic">
+              <p>
+                More than a location — a philosophy.
+              </p>
+              
+              <p>
+                Padel Ready shares Babington House's belief that creativity thrives in simplicity.
+              </p>
+              
+              <p>
+                Together, we've built a space where design, sport, and community converge.
+              </p>
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* The Design Philosophy */}
