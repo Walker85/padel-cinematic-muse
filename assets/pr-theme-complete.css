@@ -1,0 +1,360 @@
+/**
+ * Padel Ready Complete Theme CSS
+ * All styles for Hero, Products, and all sections
+ */
+
+/* ==========================================
+   Font Face Declarations
+   ========================================== */
+@font-face {
+  font-family: 'Mollen';
+  src: url('Mollen-ExtraBold.woff2') format('woff2');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Mollen';
+  src: url('MollenRegular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SA Triumph';
+  src: url('SATriumphRegular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ==========================================
+   Reset & Base
+   ========================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'SA Triumph', serif;
+  background-color: #FEFAF3;
+  color: #1A1A1A;
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Mollen', serif;
+  font-weight: 800;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ==========================================
+   Hero Section
+   ========================================== */
+.pr-hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.pr-parallax-bg {
+  position: absolute;
+  inset: 0;
+}
+
+.pr-parallax-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: pr-fade-in 1.5s ease-out;
+}
+
+.pr-hero .container {
+  position: relative;
+  z-index: 20;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 8rem 2rem;
+}
+
+.pr-hero-title {
+  font-family: 'Mollen', serif;
+  font-size: 4rem;
+  color: white;
+  text-align: center;
+  letter-spacing: 0.04em;
+  text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  animation: pr-fade-up 0.8s ease-out 0.3s both;
+}
+
+@media (min-width: 768px) {
+  .pr-hero-title {
+    font-size: 6rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .pr-hero-title {
+    font-size: 8rem;
+  }
+}
+
+.pr-hero-subtitle {
+  font-size: 1.25rem;
+  color: #D6C2A8;
+  text-align: center;
+  letter-spacing: 0.04em;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  animation: pr-fade-up 0.8s ease-out 0.5s both;
+}
+
+@media (min-width: 768px) {
+  .pr-hero-subtitle {
+    font-size: 1.5rem;
+  }
+}
+
+.pr-hero-cta {
+  animation: pr-fade-up 0.8s ease-out 0.7s both;
+}
+
+.pr-hero .pr-hero-cta a {
+  background-color: #D6C2A8;
+  color: #000;
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+  display: inline-block;
+  transition: all 0.3s ease;
+  border: none;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+}
+
+.pr-hero .pr-hero-cta a:hover {
+  background-color: rgba(214, 194, 168, 0.9);
+}
+
+.text-primary {
+  color: #D6C2A8;
+}
+
+.text-white {
+  color: white;
+}
+
+/* ==========================================
+   Product Grid Section
+   ========================================== */
+.pr-product-grid {
+  padding: 6rem 0;
+  background-color: #FEFAF3;
+}
+
+.pr-product-grid .grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  padding: 0 2rem;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.pr-product-card {
+  background: white;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pr-product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.pr-product-image {
+  width: 100%;
+  aspect-ratio: 4/5;
+  object-fit: cover;
+}
+
+.pr-product-info {
+  padding: 1.5rem;
+}
+
+.pr-product-title {
+  font-family: 'Mollen', serif;
+  font-size: 1.25rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+}
+
+.pr-product-price {
+  font-size: 1.125rem;
+  color: #D6C2A8;
+  font-weight: 600;
+}
+
+/* ==========================================
+   Animations
+   ========================================== */
+@keyframes pr-fade-in {
+  from {
+    opacity: 0;
+    transform: scale(1.1);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes pr-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================
+   Utility Classes
+   ========================================== */
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 0 2rem;
+  }
+}
+
+.text-center {
+  text-align: center;
+}
+
+.mt-8 {
+  margin-top: 2rem;
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.max-w-2xl {
+  max-width: 42rem;
+}
+
+.space-y-8 > * + * {
+  margin-top: 2rem;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.gap-4 {
+  gap: 1rem;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+@media (min-width: 640px) {
+  .sm\:flex-row {
+    flex-direction: row;
+  }
+}
+
+.pt-8 {
+  padding-top: 2rem;
+}
+
+@media (min-width: 640px) {
+  .md\:px-8 {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+  .md\:text-2xl {
+    font-size: 1.5rem;
+  }
+}
+
+.py-32 {
+  padding-top: 8rem;
+  padding-bottom: 8rem;
+}
+
+.font-display {
+  font-family: 'Mollen', serif;
+}
+
+.font-body {
+  font-family: 'SA Triumph', serif;
+}
+
+.bg-primary {
+  background-color: #D6C2A8;
+}
+
+.bg-background {
+  background-color: #FEFAF3;
+}
+
+.text-foreground {
+  color: #1A1A1A;
+}
+
+.text-muted-foreground {
+  color: #6b7280;
+}
+
+.mb-16 {
+  margin-bottom: 4rem;
+}
+
+.mb-8 {
+  margin-bottom: 2rem;
+}
+
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
