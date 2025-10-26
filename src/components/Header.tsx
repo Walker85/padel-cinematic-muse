@@ -19,7 +19,6 @@ export const Header = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      // Get all sections that might have dark backgrounds
       const darkSections = document.querySelectorAll('[data-nav-theme="dark"]');
       const header = document.querySelector('header');
       
@@ -33,22 +32,16 @@ export const Header = () => {
       
       darkSections.forEach((section) => {
         const rect = section.getBoundingClientRect();
-        // Check if header center is within this dark section
         if (rect.top <= headerCenter && rect.bottom >= headerCenter) {
           isOverDark = true;
         }
       });
       
-      // Fallback: check if we're at the very top of the page (hero section)
-      if (window.scrollY < 100) {
-        isOverDark = true;
-      }
-      
       setIsDarkMode(isOverDark);
     };
 
-    // Initial check with a small delay to ensure DOM is ready
-    setTimeout(handleScroll, 100);
+    // Immediate initial check - no delay
+    handleScroll();
     
     // Add scroll listener with throttling for performance
     let ticking = false;
