@@ -4,6 +4,7 @@ import { Helmet } from "react-helmet-async";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
+import sohoHouseImage from "@/assets/soho-house-collab.png";
 
 export default function About() {
   const [scrollY, setScrollY] = useState(0);
@@ -101,29 +102,15 @@ export default function About() {
         </div>
       </section>
 
-      {/* The Babington Collaboration */}
-      <section className="py-32 bg-secondary">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="max-w-3xl mx-auto text-center space-y-8 animate-fade-in">
-            <h2 className="font-display text-4xl md:text-5xl text-secondary-foreground tracking-tight leading-tight">
-              In Collaboration with Babington House
-            </h2>
-            
-            <div className="space-y-6 text-xl text-secondary-foreground/90 font-light italic leading-relaxed">
-              <p>
-                More than a location — a philosophy.
-              </p>
-              
-              <p>
-                Padel Ready shares Babington House's belief that creativity thrives in simplicity.
-              </p>
-              
-              <p>
-                Together, we've built a space where design, sport, and community converge.
-              </p>
-            </div>
-          </div>
-        </div>
+      {/* Soho House Collaboration Hero */}
+      <section className="relative w-full h-[90vh] md:h-[90vh] sm:h-[70vh] bg-black flex items-center justify-center overflow-hidden animate-fade-in" style={{ animationDuration: "800ms" }}>
+        <div 
+          className="absolute inset-0 bg-cover bg-center opacity-40"
+          style={{ backgroundImage: `url(${sohoHouseImage})` }}
+        />
+        <h2 className="relative z-10 font-display text-3xl md:text-5xl text-primary tracking-tight leading-tight text-center px-4">
+          PADEL READY × SOHO HOUSE
+        </h2>
       </section>
 
       {/* The Design Philosophy */}
