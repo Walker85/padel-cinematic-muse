@@ -1,6 +1,6 @@
 import { toast } from "sonner";
 
-const SHOPIFY_API_VERSION = '2025-07';
+const SHOPIFY_API_VERSION = '2024-10';
 const SHOPIFY_STORE_PERMANENT_DOMAIN = 'padel-cinematic-muse-utsrg.myshopify.com';
 const SHOPIFY_STOREFRONT_URL = `https://${SHOPIFY_STORE_PERMANENT_DOMAIN}/api/${SHOPIFY_API_VERSION}/graphql.json`;
 const SHOPIFY_STOREFRONT_TOKEN = '6b6188db7e4028a9ff3021e557f614b6';
