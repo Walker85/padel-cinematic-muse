@@ -14,8 +14,31 @@ export default {
     },
     extend: {
       fontFamily: {
-        display: ['var(--font-display)', 'system-ui', 'sans-serif'],
-        body: ['var(--font-body)', 'system-ui', 'sans-serif'],
+        display: ['var(--font-display)', 'serif'],
+        body: ['var(--font-body)', 'sans-serif'],
+      },
+      fontWeight: {
+        normal: '400',
+        medium: '500',
+        semibold: '600',
+      },
+      letterSpacing: {
+        tight: '-0.015em',
+        normal: '0em',
+        wide: '0.025em',
+      },
+      lineHeight: {
+        snug: '1.2',
+        relaxed: '1.6',
+      },
+      fontSize: {
+        'display-2xl': ['clamp(3rem, 6vw, 5rem)', { lineHeight: '1.1' }],
+        'display-xl': ['clamp(2rem, 5vw, 3.5rem)', { lineHeight: '1.15' }],
+        'display-lg': ['clamp(1.75rem, 4vw, 2.75rem)', { lineHeight: '1.2' }],
+        'heading': ['clamp(1.25rem, 2.5vw, 1.75rem)', { lineHeight: '1.3' }],
+        'body-lg': ['clamp(1rem, 1.5vw, 1.125rem)', { lineHeight: '1.6' }],
+        'body': ['1rem', { lineHeight: '1.6' }],
+        'caption': ['0.875rem', { lineHeight: '1.4' }],
       },
       colors: {
         border: "hsl(var(--border))",
