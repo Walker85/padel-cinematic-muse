@@ -10,14 +10,13 @@ const EventFilter = ({ filter, setFilter }: EventFilterProps) => {
     <div className="flex items-center justify-center gap-8">
       <button
         onClick={() => setFilter("upcoming")}
-        className="relative font-body text-lg md:text-xl tracking-wider transition-colors duration-300"
-        style={{
-          color: filter === "upcoming" ? "#D6C2A8" : "#000000",
-        }}
+        className={`relative font-body text-lg md:text-xl tracking-wider transition-colors duration-300 ${
+          filter === "upcoming" ? "text-primary" : "text-foreground"
+        }`}
       >
         Upcoming Events
         <motion.div
-          className="absolute bottom-0 left-0 h-0.5 bg-[#D6C2A8]"
+          className="absolute bottom-0 left-0 h-0.5 bg-primary"
           initial={false}
           animate={{
             width: filter === "upcoming" ? "100%" : "0%",
@@ -29,14 +28,13 @@ const EventFilter = ({ filter, setFilter }: EventFilterProps) => {
 
       <button
         onClick={() => setFilter("past")}
-        className="relative font-body text-lg md:text-xl tracking-wider transition-colors duration-300"
-        style={{
-          color: filter === "past" ? "#D6C2A8" : "#000000",
-        }}
+        className={`relative font-body text-lg md:text-xl tracking-wider transition-colors duration-300 ${
+          filter === "past" ? "text-primary" : "text-foreground"
+        }`}
       >
         Past Events
         <motion.div
-          className="absolute bottom-0 left-0 h-0.5 bg-[#D6C2A8]"
+          className="absolute bottom-0 left-0 h-0.5 bg-primary"
           initial={false}
           animate={{
             width: filter === "past" ? "100%" : "0%",

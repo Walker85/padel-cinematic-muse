@@ -83,7 +83,7 @@ const Product = () => {
       <Header />
       <main>
         {/* Hero Section - Centered Product Image */}
-        <section className="bg-[#fefaf3] pt-[120px] pb-20 md:pb-32">
+        <section className="bg-background pt-[120px] pb-20 md:pb-32">
           <div className="container mx-auto px-6 md:px-12 max-w-7xl">
             {/* Centered Product Image */}
             <div 
@@ -114,30 +114,30 @@ const Product = () => {
 
             {/* Brand Tagline */}
             <div className="text-center space-y-3 mb-16 animate-fade-in" style={{ animationDelay: '150ms' }}>
-              <h1 className="font-display font-extrabold text-3xl md:text-5xl uppercase tracking-tight text-[#000000] mb-2">
+              <h1 className="font-display font-extrabold text-3xl md:text-5xl uppercase tracking-tight text-foreground mb-2">
                 {product.title}
               </h1>
-              <p className="font-body text-base md:text-lg text-[#3C3C3C] italic">
+              <p className="font-body text-base md:text-lg text-muted-foreground italic">
                 Precision. Purpose. Padel Ready.
               </p>
-              <div className="w-16 h-[2px] bg-[#D6C2A8] mx-auto"></div>
+              <div className="w-16 h-[2px] bg-primary mx-auto"></div>
             </div>
 
             {/* Product Summary Info */}
             <div className="max-w-3xl mx-auto space-y-8 animate-fade-in" style={{ animationDelay: '300ms' }}>
               {/* Price */}
               <div className="text-center">
-                <div className="font-body text-2xl md:text-3xl font-bold text-[#D6C2A8] mb-2">
+                <div className="font-body text-2xl md:text-3xl font-bold text-primary mb-2">
                   {selectedVariant?.price.currencyCode} {parseFloat(selectedVariant?.price.amount || '0').toFixed(2)}
                 </div>
               </div>
 
               {/* Divider */}
-              <div className="h-px bg-[#E0DED9] max-w-md mx-auto"></div>
+              <div className="h-px bg-border max-w-md mx-auto"></div>
 
               {/* Description */}
               {product.description && (
-                <p className="font-body text-base md:text-lg leading-relaxed text-[#3C3C3C] text-center max-w-2xl mx-auto">
+                <p className="font-body text-base md:text-lg leading-relaxed text-muted-foreground text-center max-w-2xl mx-auto">
                   {product.description}
                 </p>
               )}
@@ -147,7 +147,7 @@ const Product = () => {
                 <div className="space-y-6 max-w-md mx-auto">
                   {product.options.map((option) => (
                     <div key={option.name} className="space-y-3">
-                      <label className="font-display text-sm uppercase tracking-wider text-[#000000] block text-center">
+                      <label className="font-display text-sm uppercase tracking-wider text-foreground block text-center">
                         {option.name}
                       </label>
                       <div className="flex flex-wrap gap-3 justify-center">
@@ -182,7 +182,7 @@ const Product = () => {
                 <button
                   onClick={handleAddToCart}
                   disabled={!selectedVariant?.availableForSale}
-                  className="w-full font-display text-sm uppercase tracking-wider bg-[#000000] text-[#ffffff] hover:bg-[#D6C2A8] hover:text-[#000000] rounded-lg px-8 py-4 transition-all duration-350 ease-[cubic-bezier(0.4,0,0.2,1)] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                  className="w-full font-display text-sm uppercase tracking-wider bg-secondary text-secondary-foreground hover:bg-primary hover:text-primary-foreground rounded-lg px-8 py-4 transition-all duration-350 ease-[cubic-bezier(0.4,0,0.2,1)] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                 >
                   <ShoppingCart className="w-4 h-4" />
                   {selectedVariant?.availableForSale ? 'Add to Cart' : 'Out of Stock'}
@@ -197,10 +197,10 @@ const Product = () => {
                       <button
                         key={idx}
                         onClick={() => setSelectedImageIndex(idx)}
-                        className={`flex-shrink-0 bg-[#FCFBF8] border-2 overflow-hidden rounded-lg transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] hover:scale-105 snap-start ${
+                        className={`flex-shrink-0 bg-card border-2 overflow-hidden rounded-lg transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] hover:scale-105 snap-start ${
                           selectedImageIndex === idx 
-                            ? 'border-[#D6C2A8] shadow-[0_4px_12px_rgba(214,194,168,0.3)]' 
-                            : 'border-transparent opacity-70 hover:opacity-100 hover:border-[#D6C2A8]/40'
+                            ? 'border-primary shadow-[0_4px_12px_rgba(214,194,168,0.3)]' 
+                            : 'border-transparent opacity-70 hover:opacity-100 hover:border-primary/40'
                         }`}
                         style={{
                           width: '80px',
@@ -222,9 +222,9 @@ const Product = () => {
         </section>
 
         {/* Specifications Section */}
-        <section className="py-24 md:py-32 bg-[#fefaf3]">
+        <section className="py-24 md:py-32 bg-background">
           <div className="container mx-auto px-6 md:px-12 max-w-6xl">
-            <h2 className="font-display font-extrabold text-2xl md:text-3xl uppercase text-center text-[#000000] mb-12">
+            <h2 className="font-display font-extrabold text-2xl md:text-3xl uppercase text-center text-foreground mb-12">
               Specifications
             </h2>
             
@@ -239,12 +239,12 @@ const Product = () => {
               ].map((spec, idx) => (
                 <div 
                   key={idx}
-                  className="border border-[#EAE6DD] bg-[#FCFBF8] rounded-xl p-6 text-center transition-all duration-300 hover:shadow-md hover:-translate-y-1"
+                  className="border border-border bg-card rounded-xl p-6 text-center transition-all duration-300 hover:shadow-md hover:-translate-y-1"
                 >
-                  <div className="font-display text-xs uppercase tracking-wider text-[#D6C2A8] mb-2">
+                  <div className="font-display text-xs uppercase tracking-wider text-primary mb-2">
                     {spec.label}
                   </div>
-                  <div className="font-body text-lg text-[#3C3C3C] font-medium">
+                  <div className="font-body text-lg text-muted-foreground font-medium">
                     {spec.value}
                   </div>
                 </div>
@@ -255,13 +255,13 @@ const Product = () => {
 
 
         {/* The Story Section */}
-        <section className="py-24 md:py-32 bg-[#ffffff]">
+        <section className="py-24 md:py-32 bg-card">
           <div className="container mx-auto px-6 md:px-12 max-w-4xl">
             <div className="text-center space-y-8 animate-fade-in" style={{ animationDelay: '300ms' }}>
-              <p className="font-body text-[1.3rem] md:text-[1.5rem] leading-relaxed text-[#3C3C3C]">
+              <p className="font-body text-[1.3rem] md:text-[1.5rem] leading-relaxed text-muted-foreground">
                 Every Padel Ready racket is built with precision and purpose.
               </p>
-              <p className="font-body text-[1.3rem] md:text-[1.5rem] leading-relaxed text-[#3C3C3C]">
+              <p className="font-body text-[1.3rem] md:text-[1.5rem] leading-relaxed text-muted-foreground">
                 Engineered for control. Designed for confidence.
               </p>
             </div>
@@ -270,9 +270,9 @@ const Product = () => {
 
         {/* Related Products Section */}
         {relatedProducts && relatedProducts.length > 0 && (
-          <section className="py-24 md:py-32 bg-[#fefaf3]">
+          <section className="py-24 md:py-32 bg-background">
             <div className="container mx-auto px-6 md:px-12 max-w-7xl">
-              <h2 className="font-display font-extrabold text-2xl md:text-3xl uppercase text-center text-[#000000] mb-16">
+              <h2 className="font-display font-extrabold text-2xl md:text-3xl uppercase text-center text-foreground mb-16">
                 You Might Also Like
               </h2>
 

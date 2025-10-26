@@ -105,7 +105,7 @@ const EventDetail = () => {
           <title>Loading Event... | Padel Ready</title>
         </Helmet>
         <Header />
-        <div className="min-h-screen flex items-center justify-center bg-[#fefaf3]">
+        <div className="min-h-screen flex items-center justify-center bg-background">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -113,7 +113,7 @@ const EventDetail = () => {
             className="text-center"
           >
             <div className="inline-block animate-pulse mb-4">
-              <div className="w-16 h-16 border-4 border-[#D6C2A8] border-t-transparent rounded-full animate-spin"></div>
+              <div className="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
             </div>
             <p className="font-body text-muted-foreground">Loading event details...</p>
           </motion.div>
@@ -130,7 +130,7 @@ const EventDetail = () => {
           <title>Event Not Found | Padel Ready</title>
         </Helmet>
         <Header />
-        <div className="min-h-screen flex flex-col items-center justify-center bg-[#fefaf3] px-4">
+        <div className="min-h-screen flex flex-col items-center justify-center bg-background px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -146,7 +146,7 @@ const EventDetail = () => {
             <Link to="/events">
               <Button 
                 size="lg"
-                className="bg-[#D6C2A8] text-[#1A1A1A] hover:bg-[#D6C2A8]/90 shadow-lg"
+                className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg"
               >
                 <ArrowLeft className="mr-2 h-5 w-5" />
                 Back to All Events
@@ -186,7 +186,7 @@ const EventDetail = () => {
             }}
           />
           <div
-            className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-[#fefaf3]/20"
+            className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-background/20"
           />
         </motion.div>
 
@@ -217,23 +217,23 @@ const EventDetail = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.5 }}
             >
-              <span className="inline-block px-4 py-1.5 rounded-full bg-[#D6C2A8] text-[#1A1A1A] text-sm font-medium shadow-lg mb-4">
+              <span className="inline-block px-4 py-1.5 rounded-full bg-primary text-primary-foreground text-sm font-medium shadow-lg mb-4">
                 {event.type}
               </span>
               
-              <h1 className="font-display text-4xl md:text-6xl lg:text-7xl text-[#D6C2A8] mb-6 max-w-4xl">
+              <h1 className="font-display text-4xl md:text-6xl lg:text-7xl text-primary mb-6 max-w-4xl">
                 {event.title}
               </h1>
 
               <div className="flex flex-col sm:flex-row gap-6 text-white/90">
                 <div className="flex items-center gap-2">
-                  <Calendar className="h-5 w-5 text-[#D6C2A8]" />
+                  <Calendar className="h-5 w-5 text-primary" />
                   <time className="font-body tracking-wide" dateTime={event.date}>
                     {event.date}
                   </time>
                 </div>
                 <div className="flex items-center gap-2">
-                  <MapPin className="h-5 w-5 text-[#D6C2A8]" />
+                  <MapPin className="h-5 w-5 text-primary" />
                   <span className="font-body tracking-wide">{event.location}</span>
                 </div>
               </div>
@@ -243,7 +243,7 @@ const EventDetail = () => {
       </section>
 
       {/* Event Content */}
-      <section className="py-20 md:py-32 bg-[#fefaf3]">
+      <section className="py-20 md:py-32 bg-background">
         <div className="container mx-auto px-4 md:px-8 max-w-4xl">
           {/* Status Badge */}
           <motion.div
@@ -254,13 +254,13 @@ const EventDetail = () => {
           >
             <span className={`px-4 py-2 rounded-full text-sm font-medium ${
               event.status === "upcoming" 
-                ? "bg-[#D6C2A8] text-[#1A1A1A]" 
+                ? "bg-primary text-primary-foreground" 
                 : "bg-muted text-muted-foreground"
             }`}>
               {event.status === "upcoming" ? "Upcoming Event" : "Past Event"}
             </span>
             {event.featured && (
-              <span className="px-4 py-2 rounded-full bg-[#D6C2A8] text-[#1A1A1A] text-sm font-medium">
+              <span className="px-4 py-2 rounded-full bg-primary text-primary-foreground text-sm font-medium">
                 Featured
               </span>
             )}
@@ -301,7 +301,7 @@ const EventDetail = () => {
               </p>
               <Button
                 size="lg"
-                className="bg-[#D6C2A8] text-[#1A1A1A] hover:bg-[#D6C2A8]/90 px-12 py-6 text-lg shadow-lg"
+                className="bg-primary text-primary-foreground hover:bg-primary/90 px-12 py-6 text-lg shadow-lg"
                 asChild
               >
                 <a href={event.registerUrl} target="_blank" rel="noopener noreferrer">
@@ -325,7 +325,7 @@ const EventDetail = () => {
               <Button
                 size="lg"
                 variant="outline"
-                className="border-[#D6C2A8] text-[#D6C2A8] hover:bg-[#D6C2A8] hover:text-[#1A1A1A]"
+                className="border-primary text-primary hover:bg-primary hover:text-primary-foreground"
                 asChild
               >
                 <Link to="/events">

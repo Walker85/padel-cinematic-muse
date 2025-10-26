@@ -73,7 +73,7 @@ export const ProductCard = ({ product, index, tag }: ProductCardProps) => {
     >
       {/* Card Container with Dark Mode Support */}
       <div 
-        className="relative overflow-hidden border border-transparent bg-[#FEFAF3] dark:bg-black transition-all duration-[450ms] ease-[cubic-bezier(0.4,0,0.2,1)] group-hover:border-[#D6C2A8] group-hover:-translate-y-1"
+        className="relative overflow-hidden border border-transparent bg-background dark:bg-black transition-all duration-[450ms] ease-[cubic-bezier(0.4,0,0.2,1)] group-hover:border-primary group-hover:-translate-y-1"
         style={{
           boxShadow: isHovered ? '0 8px 24px rgba(0,0,0,0.08)' : '0 4px 20px rgba(0,0,0,0.04)'
         }}
@@ -82,16 +82,16 @@ export const ProductCard = ({ product, index, tag }: ProductCardProps) => {
         {/* Optional Tag */}
         {tag && (
           <div className="absolute top-3 left-3 z-10 px-3 py-1 bg-black/40 dark:bg-white/10 backdrop-blur-sm rounded-full">
-            <span className="font-display text-[0.7rem] uppercase tracking-wider text-[#D6C2A8]">
+            <span className="font-display text-[0.7rem] uppercase tracking-wider text-primary">
               {tag}
             </span>
           </div>
         )}
 
         {/* Image Container - 4:5 ratio, Clean & Evenly Lit */}
-        <div className="aspect-[4/5] bg-[#FEFAF3] dark:bg-[#000000] relative overflow-hidden flex items-center justify-center">
+        <div className="aspect-[4/5] bg-background dark:bg-foreground relative overflow-hidden flex items-center justify-center">
           {/* Hover Gradient Overlay */}
-          <div className={`absolute inset-0 bg-[rgba(214,194,168,0.08)] dark:bg-[rgba(214,194,168,0.15)] z-20 transition-opacity duration-[450ms] ease-[cubic-bezier(0.4,0,0.2,1)] ${
+          <div className={`absolute inset-0 bg-primary/8 dark:bg-primary/15 z-20 transition-opacity duration-[450ms] ease-[cubic-bezier(0.4,0,0.2,1)] ${
             isHovered ? 'opacity-100' : 'opacity-0'
           }`}></div>
           
@@ -125,17 +125,17 @@ export const ProductCard = ({ product, index, tag }: ProductCardProps) => {
           style={{ transform: isHovered ? 'translateY(-4px)' : 'translateY(0)' }}
         >
           {/* Product Title - Mollen, Left Aligned */}
-          <h3 className="font-display text-sm md:text-base uppercase tracking-[0.03em] text-[#3C3C3C] dark:text-[#FEFAF3] transition-colors duration-300">
+          <h3 className="font-display text-sm md:text-base uppercase tracking-[0.03em] text-muted-foreground dark:text-background transition-colors duration-300">
             {node.title}
           </h3>
           
           {/* Optional Subtext */}
-          <p className="font-body text-xs text-[#3C3C3C]/60 dark:text-[#FEFAF3]/60 leading-relaxed">
+          <p className="font-body text-xs text-muted-foreground/60 dark:text-background/60 leading-relaxed">
             Premium Carbon Fiber
           </p>
           
           {/* Price - SA Triumph, Gold */}
-          <div className="font-body text-lg font-medium text-[#D6C2A8]">
+          <div className="font-body text-lg font-medium text-primary">
             {node.price.currencyCode} {price.toFixed(2)}
           </div>
           
@@ -145,7 +145,7 @@ export const ProductCard = ({ product, index, tag }: ProductCardProps) => {
           }`}>
             <button
               onClick={handleAddToCart}
-              className="w-full font-display text-xs uppercase tracking-wider py-3 border border-[#D6C2A8] text-[#D6C2A8] bg-transparent hover:bg-[#D6C2A8] hover:text-black transition-all duration-300"
+              className="w-full font-display text-xs uppercase tracking-wider py-3 border border-primary text-primary bg-transparent hover:bg-primary hover:text-primary-foreground transition-all duration-300"
             >
               View Details
             </button>

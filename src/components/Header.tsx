@@ -66,17 +66,17 @@ export const Header = () => {
 
   const navLinkClass = `text-sm font-medium transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] ${
     isDarkMode 
-      ? 'text-[#D6C2A8] hover:text-white/90' 
-      : 'text-[#000000] hover:text-[#D6C2A8]'
+      ? 'text-primary hover:text-white/90' 
+      : 'text-foreground hover:text-primary'
   }`;
 
   const mobileLinkClass = `font-display text-2xl uppercase tracking-wide transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] py-3 ${
     isDarkMode
-      ? 'text-[#D6C2A8] hover:text-white/90'
-      : 'text-[#000000] hover:text-[#D6C2A8]'
+      ? 'text-primary hover:text-white/90'
+      : 'text-foreground hover:text-primary'
   }`;
 
-  const iconColor = isDarkMode ? '#D6C2A8' : '#000000';
+  const iconColor = isDarkMode ? 'hsl(var(--primary))' : 'hsl(var(--foreground))';
 
   return (
     <>
