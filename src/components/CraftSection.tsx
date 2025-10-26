@@ -20,11 +20,11 @@ export const CraftSection = () => {
           </div>
           
           <div className="relative animate-fade-in" style={{ animationDelay: '0.3s', opacity: 0 }}>
-            <div className="aspect-square rounded-2xl overflow-hidden shadow-[0_8px_32px_rgba(0,0,0,0.12)]">
+            <div className="aspect-square rounded-2xl overflow-hidden shadow-[0_8px_32px_rgba(0,0,0,0.12)] bg-muted/5">
               <img 
                 src={craftImage} 
                 alt="Padel Ready RDY black carbon fiber racket" 
-                className="w-full h-full object-cover transition-transform duration-700 ease-out hover:scale-105"
+                className="w-full h-full object-contain p-8 transition-transform duration-700 ease-out hover:scale-105"
               />
             </div>
             <div className="absolute -bottom-6 -right-6 w-40 h-40 bg-primary/10 rounded-2xl -z-10"></div>
