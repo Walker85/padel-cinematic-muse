@@ -107,7 +107,7 @@ export default function About() {
         <div 
           className="absolute inset-0 bg-cover bg-center"
           style={{ 
-            backgroundImage: `url(/images/soho-house-hero.jpg)`,
+            backgroundImage: `url(/images/soho-house-hero-new.png)`,
             transform: `translateY(${scrollY * 0.5}px)`,
             filter: 'brightness(0.85) saturate(1.08)',
           }}
