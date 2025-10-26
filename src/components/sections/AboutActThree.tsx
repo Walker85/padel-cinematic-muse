@@ -15,7 +15,11 @@ const AboutActThree = () => {
   };
 
   return (
-    <section className="relative py-40 px-6 text-center bg-gradient-to-t from-black via-[#0a0a0a] to-background/0" style={{ backgroundColor: '#000000' }}>
+    <section 
+      data-nav-theme="dark"
+      className="relative py-40 px-6 text-center bg-gradient-to-t from-black via-[#0a0a0a] to-background/0" 
+      style={{ backgroundColor: '#000000' }}
+    >
       <div className="max-w-4xl mx-auto">
         <h2 className="text-5xl md:text-6xl font-display tracking-tight text-primary animate-fade-in uppercase">
           Where the Game Evolves

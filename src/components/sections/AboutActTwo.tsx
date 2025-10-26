@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 const AboutActTwo = () => {
   return (
     <section
+      data-nav-theme="dark"
       className="relative h-[85vh] md:h-[90vh] lg:h-[100vh] flex items-center justify-center text-center overflow-hidden bg-cover bg-center md:bg-[position:50%_30%]"
       style={{
         backgroundImage: "url('/images/soho-house-hero-new.png')",

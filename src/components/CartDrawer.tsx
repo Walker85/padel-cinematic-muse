@@ -12,7 +12,11 @@ import {
 import { ShoppingCart, Minus, Plus, Trash2, ExternalLink, Loader2 } from "lucide-react";
 import { useCartStore } from "@/stores/cartStore";
 
-export const CartDrawer = () => {
+interface CartDrawerProps {
+  isDarkMode?: boolean;
+}
+
+export const CartDrawer = ({ isDarkMode = false }: CartDrawerProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const { 
     items, 
@@ -38,13 +42,21 @@ export const CartDrawer = () => {
     }
   };
 
+  const iconColor = isDarkMode ? '#D6C2A8' : '#000000';
+  const badgeClass = isDarkMode ? 'bg-[#D6C2A8] text-[#000000]' : 'bg-[#000000] text-[#FEFAF3]';
+
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <SheetTrigger asChild>
-        <Button variant="outline" size="icon" className="relative">
+        <Button 
+          variant="outline" 
+          size="icon" 
+          className="relative border-none bg-transparent transition-all duration-300 hover:bg-transparent"
+          style={{ color: iconColor }}
+        >
           <ShoppingCart className="h-5 w-5" />
           {totalItems > 0 && (
-            <Badge className="absolute -top-2 -right-2 h-5 w-5 rounded-full p-0 flex items-center justify-center text-xs">
+            <Badge className={`absolute -top-2 -right-2 h-5 w-5 rounded-full p-0 flex items-center justify-center text-xs transition-all duration-300 ${badgeClass}`}>
               {totalItems}
             </Badge>
           )}
