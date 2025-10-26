@@ -2,7 +2,7 @@ import craftImage from "@/assets/PR_racket_black_1.png";
 
 export const CraftSection = () => {
   return (
-    <section className="py-40 bg-muted/10 relative overflow-hidden">
+    <section className="py-40 bg-background relative overflow-hidden">
       <div className="container mx-auto px-4 lg:px-8">
         <div className="grid md:grid-cols-2 gap-20 items-center">
           <div className="space-y-8 animate-fade-in">
