@@ -2,18 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Custom Fonts - SA Triumph (Display) and Mollen (Body) */
+/* Custom Fonts - Mollen ExtraBold (Display) and SA Triumph (Body) */
 @font-face {
-  font-family: 'SA Triumph';
-  src: url('/fonts/SATriumphRegular.woff2') format('woff2');
-  font-weight: 400;
+  font-family: 'Mollen ExtraBold';
+  src: url('/fonts/Mollen-ExtraBold.woff2') format('woff2');
+  font-weight: 800;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Mollen';
-  src: url('/fonts/MollenRegular.woff2') format('woff2');
+  font-family: 'SA Triumph';
+  src: url('/fonts/SATriumphRegular.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -26,8 +26,8 @@ All colors MUST be HSL.
 @layer base {
   :root {
     /* Custom Font Variables */
-    --font-display: 'SA Triumph', serif;
-    --font-body: 'Mollen', sans-serif;
+    --font-display: 'Mollen ExtraBold', sans-serif;
+    --font-body: 'SA Triumph', sans-serif;
     
     /* Padel Ready - Luxury Minimalism */
     --background: 42 30% 97%; /* Off-White #FEFAF3 */

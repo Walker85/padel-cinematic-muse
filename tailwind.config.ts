@@ -14,13 +14,14 @@ export default {
     },
     extend: {
       fontFamily: {
-        display: ['var(--font-display)', 'serif'],
+        display: ['var(--font-display)', 'sans-serif'],
         body: ['var(--font-body)', 'sans-serif'],
       },
       fontWeight: {
         normal: '400',
         medium: '500',
         semibold: '600',
+        extrabold: '800',
       },
       letterSpacing: {
         tight: '-0.015em',

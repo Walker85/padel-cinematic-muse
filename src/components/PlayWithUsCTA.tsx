@@ -12,11 +12,11 @@ export const PlayWithUsCTA = () => {
       
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
         <div className="max-w-3xl mx-auto text-center space-y-8 animate-fade-in">
-          <h2 className="font-display font-semibold text-display-2xl tracking-tight text-secondary-foreground leading-snug">
+          <h2 className="font-display font-extrabold text-display-2xl tracking-tight text-secondary-foreground leading-snug">
             Play With Us
           </h2>
           
-          <p className="font-body font-normal text-body-lg leading-relaxed text-secondary-foreground/80">
+          <p className="font-body text-body-lg leading-relaxed text-secondary-foreground/80">
             Partner with us to bring premium padel experiences worldwide
           </p>
 
