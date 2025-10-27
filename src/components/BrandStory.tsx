@@ -1,13 +1,13 @@
 export const BrandStory = () => {
   return (
-    <section className="py-40 bg-primary">
+    <section className="py-40 bg-primary" data-nav-theme="dark">
       <div className="container mx-auto px-4 lg:px-8">
         <div className="max-w-4xl mx-auto text-center space-y-8 animate-fade-in-slow">
-          <h2 className="font-display font-extrabold text-display-lg tracking-tight text-foreground leading-snug">
+          <h2 className="font-display font-extrabold text-display-lg tracking-tight text-background leading-snug">
             Built for Precision
           </h2>
           
-          <div className="space-y-6 text-foreground/90">
+          <div className="space-y-6 text-background/90">
             <p className="font-body text-body-lg leading-relaxed">
               Padel Ready exists for those who play with precision. Minimal design, maximum performance.
             </p>
