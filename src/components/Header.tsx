@@ -80,7 +80,7 @@ export const Header = () => {
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-lg border-b border-border/20 transition-all duration-300" style={{ backgroundColor: 'rgba(254, 250, 243, 0.7)', backdropFilter: 'blur(20px) saturate(180%)' }}>
+      <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-lg border-b border-border/20 transition-all duration-300" style={{ backgroundColor: 'rgba(254, 250, 243, 0.3)', backdropFilter: 'blur(10px) saturate(100%)' }}>
         <div className="container mx-auto px-4 lg:px-8">
           <div className="flex items-center justify-between h-20">
             <Link to="/" className="flex items-center transition-opacity duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] hover:opacity-80">
