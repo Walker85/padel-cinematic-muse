@@ -18,6 +18,10 @@
         "cta_text": "EXPLORE COLLECTION"
       }
     },
+    "pr_offer_benefits": {
+      "type": "pr-offer-benefits",
+      "settings": {}
+    },
     "pr_product_grid_Mtwxq9": {
       "type": "pr-product-grid",
       "name": "PR Product Grid",
@@ -26,10 +30,56 @@
         "collection": "",
         "products_to_show": 8
       }
+    },
+    "pr_fit_finder": {
+      "type": "pr-fit-finder",
+      "settings": {}
+    },
+    "pr_testimonials": {
+      "type": "pr-testimonials",
+      "settings": {}
+    },
+    "pr_partners": {
+      "type": "pr-partners",
+      "settings": {}
+    },
+    "pr_craft": {
+      "type": "pr-craft-balanced",
+      "settings": {}
+    },
+    "pr_collaborations": {
+      "type": "pr-collaborations",
+      "settings": {}
+    },
+    "pr_press": {
+      "type": "pr-press",
+      "settings": {}
+    },
+    "pr_brand_story": {
+      "type": "pr-brand-story",
+      "settings": {}
+    },
+    "pr_play_cta": {
+      "type": "pr-play-cta",
+      "settings": {}
+    },
+    "pr_newsletter": {
+      "type": "pr-newsletter",
+      "settings": {}
     }
   },
   "order": [
     "main",
-    "pr_product_grid_Mtwxq9"
+    "pr_offer_benefits",
+    "pr_product_grid_Mtwxq9",
+    "pr_fit_finder",
+    "pr_testimonials",
+    "pr_partners",
+    "pr_craft",
+    "pr_collaborations",
+    "pr_press",
+    "pr_brand_story",
+    "pr_play_cta",
+    "pr_newsletter"
   ]
 }
