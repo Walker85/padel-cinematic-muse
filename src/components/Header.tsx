@@ -90,7 +90,7 @@ export const Header = () => {
                 className="h-8 md:h-10 w-auto transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]"
                 style={{
                   filter: isDarkMode 
-                    ? 'none' 
+                    ? 'brightness(0) saturate(100%) invert(100%)' 
                     : 'brightness(0) saturate(100%) invert(85%) sepia(12%) saturate(650%) hue-rotate(350deg) brightness(92%) contrast(88%)'
                 }}
               />
