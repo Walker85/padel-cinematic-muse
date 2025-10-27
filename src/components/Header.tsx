@@ -66,13 +66,13 @@ export const Header = () => {
 
   const navLinkClass = `text-sm font-medium transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] ${
     isDarkMode 
-      ? 'text-primary hover:text-white/90' 
+      ? 'text-background hover:text-primary' 
       : 'text-foreground hover:text-primary'
   }`;
 
   const mobileLinkClass = `font-display text-2xl uppercase tracking-wide transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] py-3 ${
     isDarkMode
-      ? 'text-primary hover:text-white/90'
+      ? 'text-background hover:text-primary'
       : 'text-foreground hover:text-primary'
   }`;
 
