@@ -9,14 +9,18 @@
  */
 {
   "sections": {
-    "main": {
-      "type": "pr-hero",
+    "pr_events_hero_AAjnxK": {
+      "type": "pr-events-hero",
+      "name": "PR Events Hero",
       "settings": {
-        "heading": "PADEL, PERFECTED.",
-        "subheading": "Precision. Purpose. Padel Ready.",
-        "cta_text": "EXPLORE COLLECTION",
-        "cta_link": "shopify://collections/all"
+        "heading": "Where Champions Gather.",
+        "subheading": "Design. Sport. Community."
       }
+    },
+    "pr_events_grid_YmBbQJ": {
+      "type": "pr-events-grid",
+      "name": "PR Events Grid",
+      "settings": {}
     },
     "pr_craft_balanced_Ez8tCN": {
       "type": "pr-craft-balanced",
@@ -33,7 +37,8 @@
     }
   },
   "order": [
-    "main",
+    "pr_events_hero_AAjnxK",
+    "pr_events_grid_YmBbQJ",
     "pr_craft_balanced_Ez8tCN",
     "pr_product_showcase_zWV3AR"
   ]
