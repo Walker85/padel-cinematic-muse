@@ -1,9 +1,40 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
       "type": "pr-hero",
+      "settings": {
+        "heading": "PADEL, PERFECTED.",
+        "subheading": "Precision. Purpose. Padel Ready.",
+        "cta_text": "EXPLORE COLLECTION",
+        "cta_link": "shopify://collections/all"
+      }
+    },
+    "pr_craft_balanced_Ez8tCN": {
+      "type": "pr-craft-balanced",
+      "name": "PR Craft - Balanced",
       "settings": {}
+    },
+    "pr_product_showcase_zWV3AR": {
+      "type": "pr-product-showcase",
+      "name": "PR Product Showcase",
+      "settings": {
+        "heading": "SHOP OUR BEST SELLERS",
+        "products_to_show": 8
+      }
     }
   },
-  "order": ["main"]
+  "order": [
+    "main",
+    "pr_craft_balanced_Ez8tCN",
+    "pr_product_showcase_zWV3AR"
+  ]
 }
