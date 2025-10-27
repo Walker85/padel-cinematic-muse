@@ -5,10 +5,27 @@
 
 <section class="relative h-[70vh] md:h-[80vh] overflow-hidden pr-events-hero" data-nav-theme="dark">
   <div class="absolute inset-0 pr-parallax-bg">
-    <div
-      class="w-full h-full bg-cover bg-center"
-      style="background-image: url('{{ section.settings.hero_image | img_url: '2048x' }}'); background-attachment: fixed;"
-    ></div>
+    {% if section.settings.hero_image %}
+      {% if section.settings.hero_image == blank or section.settings.hero_image contains 'data:' %}
+        {% comment %} User selected an asset URL, use it directly {% endcomment %}
+        <div
+          class="w-full h-full bg-cover bg-center"
+          style="background-image: url('{{ section.settings.hero_image }}'); background-attachment: fixed;"
+        ></div>
+      {% else %}
+        {% comment %} User selected an image object, use img_url filter {% endcomment %}
+        <div
+          class="w-full h-full bg-cover bg-center"
+          style="background-image: url('{{ section.settings.hero_image | img_url: '2048x' }}'); background-attachment: fixed;"
+        ></div>
+      {% endif %}
+    {% else %}
+      {% comment %} Fallback to default asset {% endcomment %}
+      <div
+        class="w-full h-full bg-cover bg-center"
+        style="background-image: url('{{ 'soho-house-hero-new.png' | asset_url }}'); background-attachment: fixed;"
+      ></div>
+    {% endif %}
     
     <div
       class="absolute inset-0"
