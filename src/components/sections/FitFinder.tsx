@@ -70,7 +70,12 @@ const FitFinder = () => {
       // Calculate result based on answers
       const avgAnswer = newAnswers.reduce((a, b) => a + b, 0) / newAnswers.length;
       const racketIndex = Math.floor(avgAnswer / 2) % racketTypes.length;
-      setResult(racketTypes[racketIndex]);
+      const selected = racketTypes[racketIndex];
+      setResult({
+        racketType: selected.name,
+        description: selected.description,
+        recommendation: selected.recommendation
+      });
     }
   };
 
@@ -157,7 +162,7 @@ const FitFinder = () => {
 
             <div className="text-center mb-8">
               <h4 className="font-display text-2xl md:text-3xl text-primary mb-4">
-                {result.name}
+                {result.racketType}
               </h4>
               <p className="font-body text-lg text-muted-foreground max-w-2xl mx-auto">
                 {result.description}
