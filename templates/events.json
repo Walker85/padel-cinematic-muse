@@ -1,24 +1,27 @@
 {
   "sections": {
-    "pr_events_hero": {
+    "events_hero": {
       "type": "pr-events-hero",
+      "name": "Events Hero",
       "settings": {
         "heading": "Where Champions Gather.",
         "subheading": "Design. Sport. Community."
       }
     },
-    "pr_events_grid": {
+    "events_grid": {
       "type": "pr-events-grid",
+      "name": "Events Grid",
       "settings": {}
     },
-    "pr_newsletter": {
+    "events_newsletter": {
       "type": "pr-newsletter",
+      "name": "Newsletter",
       "settings": {}
     }
   },
   "order": [
-    "pr_events_hero",
-    "pr_events_grid",
-    "pr_newsletter"
+    "events_hero",
+    "events_grid",
+    "events_newsletter"
   ]
 }
