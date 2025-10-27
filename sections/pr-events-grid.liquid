@@ -33,8 +33,14 @@
 
     <!-- Events Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pr-events-grid">
-      {% comment %} Try to load events from metaobjects first {% endcomment %}
+      {% comment %} Try to load events from metaobjects first - try multiple namespace variations {% endcomment %}
       {% assign events = shop.metaobjects.event.values %}
+      {% if events.size == 0 %}
+        {% assign events = shop.metaobjects.events.values %}
+      {% endif %}
+      {% if events.size == 0 %}
+        {% assign events = shop.metaobjects.padel_ready_events.values %}
+      {% endif %}
       
       {% if events.size > 0 %}
         {% comment %} Render events from metaobjects {% endcomment %}
