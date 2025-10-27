@@ -4,33 +4,31 @@
 {% endcomment %}
 
 <section class="relative h-[70vh] md:h-[80vh] overflow-hidden pr-events-hero" data-nav-theme="dark">
-  <div class="absolute inset-0 pr-parallax-bg">
-    {% if section.settings.hero_image %}
-      {% comment %} Try img_url first (works for uploaded images) {% endcomment %}
-      {% assign hero_img_url = section.settings.hero_image | img_url: '2048x' %}
-      {% if hero_img_url contains 'no-image' %}
-        {% comment %} Fallback: if img_url fails, try asset_url with filename {% endcomment %}
-        {% assign hero_img_url = section.settings.hero_image | asset_url %}
-      {% endif %}
+  {% comment %} Background Image Container {% endcomment %}
+  <div class="absolute inset-0 z-0">
+    {% if section.settings.hero_image != blank %}
+      {% comment %} Use image_url filter for proper Shopify image handling {% endcomment %}
       <div
-        class="w-full h-full bg-cover bg-center"
-        style="background-image: url('{{ hero_img_url }}'); background-attachment: fixed;"
+        class="w-full h-full bg-cover bg-center bg-no-repeat"
+        style="background-image: url('{{ section.settings.hero_image | image_url: width: 2048 }}'); background-attachment: fixed; min-height: 100%;"
       ></div>
     {% else %}
       {% comment %} Fallback to default asset {% endcomment %}
       <div
-        class="w-full h-full bg-cover bg-center"
-        style="background-image: url('{{ 'soho-house-hero-new.png' | asset_url }}'); background-attachment: fixed;"
+        class="w-full h-full bg-cover bg-center bg-no-repeat"
+        style="background-image: url('{{ 'soho-house-hero-new.png' | asset_url }}'); background-attachment: fixed; min-height: 100%;"
       ></div>
     {% endif %}
-    
-    <div
-      class="absolute inset-0"
-      style="background: linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.2) 50%, rgba(254,250,243,0.3) 100%);"
-    ></div>
   </div>
 
-  <div class="relative h-full flex items-center justify-center">
+  {% comment %} Dark Overlay Gradient {% endcomment %}
+  <div
+    class="absolute inset-0 z-10"
+    style="background: linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.2) 50%, rgba(254,250,243,0.3) 100%);"
+  ></div>
+
+  {% comment %} Content Container {% endcomment %}
+  <div class="relative z-20 h-full flex items-center justify-center">
     <div class="container mx-auto px-4 text-center">
       <h1 class="font-display text-5xl md:text-7xl lg:text-8xl mb-6 pr-hero-title" style="color: #D6C2A8;">
         {{ section.settings.heading | default: "Where Champions Gather." }}
@@ -44,7 +42,11 @@
 </section>
 
 <style>
-  .pr-events-hero .pr-parallax-bg {
+  .pr-events-hero {
+    position: relative;
+  }
+
+  .pr-events-hero > div:first-child {
     animation: pr-fade-in 1.5s ease-out;
   }
 
