@@ -15,12 +15,9 @@
         "hero_image": "shopify://shop_images/hero-padel-court.jpg",
         "heading": "PADEL, PERFECTED.",
         "subheading": "Precision. Purpose. Padel Ready.",
-        "cta_text": "EXPLORE COLLECTION"
+        "cta_text": "EXPLORE COLLECTION",
+        "cta_link": "shopify://collections/all"
       }
-    },
-    "pr_offer_benefits": {
-      "type": "pr-offer-benefits",
-      "settings": {}
     },
     "pr_product_grid_Mtwxq9": {
       "type": "pr-product-grid",
@@ -33,11 +30,16 @@
     },
     "pr_fit_finder": {
       "type": "pr-fit-finder",
-      "settings": {}
+      "settings": {
+        "heading": "Find Your Perfect Fit",
+        "description": ""
+      }
     },
     "pr_testimonials": {
       "type": "pr-testimonials",
-      "settings": {}
+      "settings": {
+        "heading": "What Players Say"
+      }
     },
     "pr_partners": {
       "type": "pr-partners",
@@ -49,7 +51,10 @@
     },
     "pr_collaborations": {
       "type": "pr-collaborations",
-      "settings": {}
+      "settings": {
+        "cta_text": "Discover More",
+        "cta_link": "shopify://collections/all"
+      }
     },
     "pr_press": {
       "type": "pr-press",
@@ -70,7 +75,6 @@
   },
   "order": [
     "main",
-    "pr_offer_benefits",
     "pr_product_grid_Mtwxq9",
     "pr_fit_finder",
     "pr_testimonials",
