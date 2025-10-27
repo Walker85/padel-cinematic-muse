@@ -1,0 +1,44 @@
+{% comment %} PR About CTA Section {% endcomment %}
+<section class="pr-about-cta-section">
+  <div class="pr-about-cta-container">
+    <h2 class="pr-about-cta-title">{{ section.settings.heading | default: "Where the Game Evolves" }}</h2>
+    <p class="pr-about-cta-text">{{ section.settings.description | default: "We build for those shaping the next chapter of the sport. Every collection refines the dialogue between design and performance." }}</p>
+    <a href="/collections/all" class="pr-about-cta-button">{{ section.settings.cta_text | default: "Explore the Collection" }}</a>
+  </div>
+</section>
+
+<style>
+.pr-about-cta-section { padding: 8rem 0; background-color: #FEFAF3; text-align: center; }
+.pr-about-cta-container { max-width: 800px; margin: 0 auto; padding: 0 2rem; }
+.pr-about-cta-title { font-family: 'Mollen', serif; font-size: 3rem; font-weight: 800; color: #000000; margin-bottom: 1.5rem; letter-spacing: 0.02em; }
+@media (min-width: 768px) { .pr-about-cta-title { font-size: 4rem; } }
+.pr-about-cta-text { font-family: 'SA Triumph', serif; font-size: 1.125rem; color: #3C3C3C; line-height: 1.8; margin-bottom: 2.5rem; max-width: 600px; margin-left: auto; margin-right: auto; }
+.pr-about-cta-button { display: inline-block; padding: 1rem 3rem; background-color: #D6C2A8; color: #000000; font-family: 'Mollen', serif; text-transform: uppercase; font-size: 0.875rem; font-weight: 800; letter-spacing: 0.05em; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); border: none; text-decoration: none; }
+.pr-about-cta-button:hover { background-color: #c5b295; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(214, 194, 168, 0.3); }
+</style>
+
+{% schema %}
+{
+  "name": "PR About CTA",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Where the Game Evolves"
+    },
+    {
+      "type": "text",
+      "id": "description",
+      "label": "Description",
+      "default": "We build for those shaping the next chapter of the sport. Every collection refines the dialogue between design and performance."
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "CTA Button Text",
+      "default": "Explore the Collection"
+    }
+  ]
+}
+{% endschema %}

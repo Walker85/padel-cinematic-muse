@@ -17,6 +17,7 @@
     },
     "pr_about_cta": {
       "type": "pr-about-cta",
+      "name": "PR About CTA",
       "settings": {
         "heading": "Where the Game Evolves",
         "description": "We build for those shaping the next chapter of the sport. Every collection refines the dialogue between design and performance.",
