@@ -22,8 +22,8 @@
       <h3 class="pr-cta-title">Ready to Elevate Your Game?</h3>
       <p class="pr-cta-text">Join the Padel Ready community and experience the difference that premium craftsmanship makes.</p>
       <div class="pr-cta-buttons">
-        <a href="{{ section.settings.cta_link_1 | default: '/collections/all' }}" class="pr-cta-button-primary">{{ section.settings.cta_text_1 | default: 'Shop Collection' }}</a>
-        <a href="{{ section.settings.cta_link_2 | default: '/pages/about' }}" class="pr-cta-button-secondary">{{ section.settings.cta_text_2 | default: 'Learn More' }}</a>
+        <a href="#products" class="pr-cta-button-primary">Shop Collection</a>
+        <a href="/about" class="pr-cta-button-secondary">Learn More</a>
       </div>
     </div>
   </div>
@@ -58,32 +58,6 @@
 {% schema %}
 {
   "name": "PR Offer Benefits",
-  "settings": [
-    {
-      "type": "text",
-      "id": "cta_text_1",
-      "label": "Primary Button Text",
-      "default": "Shop Collection"
-    },
-    {
-      "type": "url",
-      "id": "cta_link_1",
-      "label": "Primary Button Link",
-      "default": "/collections/all"
-    },
-    {
-      "type": "text",
-      "id": "cta_text_2",
-      "label": "Secondary Button Text",
-      "default": "Learn More"
-    },
-    {
-      "type": "url",
-      "id": "cta_link_2",
-      "label": "Secondary Button Link",
-      "default": "/pages/about"
-    }
-  ],
   "blocks": [
     {
       "type": "benefit",
