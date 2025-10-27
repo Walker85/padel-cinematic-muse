@@ -34,7 +34,7 @@
       </p>
       
       <div class="flex flex-col sm:flex-row gap-4 justify-center pt-8 pr-hero-cta">
-        <a href="#products" class="bg-primary text-primary-foreground hover:bg-primary/90 font-display tracking-wide hover-glow border-none px-8 py-4 rounded-lg transition-all duration-300">
+        <a href="{{ section.settings.cta_link | default: '/collections/all' }}" class="bg-primary text-primary-foreground hover:bg-primary/90 font-display tracking-wide hover-glow border-none px-8 py-4 rounded-lg transition-all duration-300">
           {{ section.settings.cta_text | default: "EXPLORE COLLECTION" }}
         </a>
       </div>
@@ -115,6 +115,12 @@
       "id": "cta_text",
       "label": "CTA Button Text",
       "default": "EXPLORE COLLECTION"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "CTA Button Link",
+      "default": "/collections/all"
     }
   ],
   "presets": [

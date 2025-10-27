@@ -4,7 +4,7 @@
   <div class="pr-play-container">
     <h2 class="pr-play-title">Play With Us</h2>
     <p class="pr-play-text">Partner with us to bring premium padel experiences worldwide</p>
-    <a href="/contact" class="pr-play-button">Get in Touch</a>
+    <a href="{{ section.settings.cta_link | default: '/pages/contact' }}" class="pr-play-button">{{ section.settings.cta_text | default: 'Get in Touch' }}</a>
   </div>
 </section>
 
@@ -20,6 +20,20 @@
 
 {% schema %}
 {
-  "name": "PR Play CTA"
+  "name": "PR Play CTA",
+  "settings": [
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Button Text",
+      "default": "Get in Touch"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "Button Link",
+      "default": "/pages/contact"
+    }
+  ]
 }
 {% endschema %}

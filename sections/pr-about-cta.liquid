@@ -3,7 +3,7 @@
   <div class="pr-about-cta-container">
     <h2 class="pr-about-cta-title">{{ section.settings.heading | default: "Where the Game Evolves" }}</h2>
     <p class="pr-about-cta-text">{{ section.settings.description | default: "We build for those shaping the next chapter of the sport. Every collection refines the dialogue between design and performance." }}</p>
-    <a href="/collections/all" class="pr-about-cta-button">{{ section.settings.cta_text | default: "Explore the Collection" }}</a>
+    <a href="{{ section.settings.cta_link | default: '/collections/all' }}" class="pr-about-cta-button">{{ section.settings.cta_text | default: "Explore the Collection" }}</a>
   </div>
 </section>
 
@@ -38,6 +38,12 @@
       "id": "cta_text",
       "label": "CTA Button Text",
       "default": "Explore the Collection"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "CTA Button Link",
+      "default": "/collections/all"
     }
   ]
 }
