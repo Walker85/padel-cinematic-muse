@@ -9,12 +9,28 @@
  */
 {
   "sections": {
-    "main": {
-      "type": "pr-hero",
+    "events_hero": {
+      "type": "pr-events-hero",
+      "name": "Events Hero",
+      "settings": {
+        "heading": "Where Champions Gather.",
+        "subheading": "Design. Sport. Community."
+      }
+    },
+    "events_grid": {
+      "type": "pr-events-grid",
+      "name": "Events Grid",
+      "settings": {}
+    },
+    "newsletter": {
+      "type": "pr-newsletter",
+      "name": "Newsletter",
       "settings": {}
     }
   },
   "order": [
-    "main"
+    "events_hero",
+    "events_grid",
+    "newsletter"
   ]
 }
